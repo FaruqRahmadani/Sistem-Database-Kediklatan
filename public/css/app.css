@@ -12959,3 +12959,12 @@ p.back-link {
 .input-lg {
   font-size: 14px;
 }
+
+.forget-pass {
+  margin: 10px 0 !important;
+}
+
+img.login-logo {
+  margin: 15px;
+  max-width: 300px !important;
+}
