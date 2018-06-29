@@ -7,14 +7,13 @@
 	<title>Login</title>
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="    background: #27a859;">
+<body style="background: #27a859;">
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="text-center">
+				<div class="header-login text-center">
 					<img class="login-logo" src="{{asset('img/logo.png')}}">					
 				</div>
-				<hr>
 				<div class="panel-body">
 					<p>Masukan username dan password anda dengan benar !</p>
 					<form action="{{ route('login') }}" method="post">

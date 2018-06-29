@@ -12966,10 +12966,14 @@ p.back-link {
 
 img.login-logo {
   margin: 15px;
-  max-width: 300px !important;
+  max-width: 260px !important;
 }
 
 .login-panel {
   -webkit-box-shadow: 0px 0px 7px 2px #656565 !important;
           box-shadow: 0px 0px 7px 2px #656565 !important;
+}
+
+.header-login {
+  border-bottom: 1px solid #e3e3e3;
 }
