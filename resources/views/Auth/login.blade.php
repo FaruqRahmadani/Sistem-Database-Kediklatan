@@ -26,7 +26,7 @@
 								<input class="form-control" placeholder="Password" name="password" type="password">
 							</div>
 						</fieldset>
-						<button type="submit" class="btn btn-primary btn-block" name="button">Login</button>
+						<button type="submit" class="btn btn-lg btn-primary btn-block" name="button">Login</button>
 					</form>
 					
 					<a href="#" class="forget-pass pull-right">Lupa Password?</a>
