@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Data Penyuluhan</title>
+  <title>Sistem Kediklatan - BBPP Binuang Kalimantan Selatan</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <span>Data</span>Penyuluhan
+          <span>SISTEM</span> KEDIKLATAN
         </a>
       </div>
     </nav>

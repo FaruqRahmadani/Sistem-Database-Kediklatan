@@ -14,10 +14,9 @@
 				<div class="text-center">
 					<img class="login-logo" src="{{asset('img/logo.png')}}">					
 				</div>
-
-
-				<div class="panel-heading">Silahkan Login !</div>
+				<hr>
 				<div class="panel-body">
+					<p>Masukan username dan password anda dengan benar !</p>
 					<form action="{{ route('login') }}" method="post">
 						{{ csrf_field() }}
 						<fieldset>
@@ -28,11 +27,14 @@
 								<input class="form-control" placeholder="Password" name="password" type="password">
 							</div>
 						</fieldset>
+						<button type="submit" class="btn btn-primary btn-block" name="button">Login</button>
 					</form>
+					
+					<a href="#" class="forget-pass pull-right">Lupa Password?</a>
 				</div>
-				<div class="panel-footer">
-					<a href="#" class="forget-pass pull-right">Lupas Password?</a>
-					<button type="submit" class="btn btn-primary btn-block" name="button">Login</button>
+				<div class="panel-footer text-center">
+					<p>&copy; 2018 Balai Besar Pelatihan Pertanian <br>
+					Binuang - Kalimantan Selatan</p>
 				</div>
 
 			</div>
