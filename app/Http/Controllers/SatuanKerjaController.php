@@ -21,11 +21,8 @@ class SatuanKerjaController extends Controller
 
   public function submitTambah(Request $request){
     $SatKerja = new SatuanKerja;
-    $SatKerja->nama = $request->nama;
-    $SatKerja->alamat = $request->alamat;
-    $SatKerja->provinsi_id = $request->provinsi_id;
-    $SatKerja->kota_id = $request->kota_id;
-    $SatKerja->nomor_telepon = $request->nomor_telepon;
+    $SatKerja->fill($request->all());
+
     $SatKerja->save();
 
     return redirect(route('Data-Satuan-Kerja'))->with('success', 'Tambah Data Berhasil');
@@ -41,11 +38,7 @@ class SatuanKerjaController extends Controller
   public function submitEdit(Request $request, $Id){
     $Id = Crypter::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
-    $SatKerja->nama = $request->nama;
-    $SatKerja->alamat = $request->alamat;
-    $SatKerja->provinsi_id = $request->provinsi_id;
-    $SatKerja->kota_id = $request->kota_id;
-    $SatKerja->nomor_telepon = $request->nomor_telepon;
+    $SatKerja->fill($request->all());
     $SatKerja->save();
 
     return redirect(route('Data-Satuan-Kerja'))->with('success', 'Edit Data Berhasil');

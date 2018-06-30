@@ -5,7 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-tambah
-						url = {{ Route('Tambah-Data-Satuan-Kerja') }}
+						url = {{ Route('Tambah-Satuan-Kerja') }}
 					></button-tambah>
 					<button-print
 						url = {{ Route('Cetak-Satuan-Kerja') }}
@@ -15,7 +15,6 @@
 					<table id="table_satkerja" class="table table-striped table-advance table-bordered" style="width:100%">
 						<thead>
 							<tr>
-								<th class="text-center"> #</th>
 								<th class="text-center"> Nama</th>
 								<th class="text-center"> Alamat</th>
 								<th class="text-center"> Provinsi</th>
@@ -27,7 +26,6 @@
 						<tbody>
 							@foreach ($SatKerja as $Index => $DataSatKerja)
 								<tr>
-									<td class="text-center">{{$Index+=1}}</td>
 									<td>{{$DataSatKerja->nama}}</td>
 									<td>{{$DataSatKerja->alamat}}</td>
 									<td>{{$DataSatKerja->Provinsi->nama_provinsi}}</td>
@@ -35,10 +33,10 @@
 									<td>{{$DataSatKerja->nomor_telepon}}</td>
 									<td class="text-center">
 										<button-edit
-											url = {{ Route('Edit-Data-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
+											url = {{ Route('Edit-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
 										></button-edit>
 										<button-delete
-											url = {{ Route('Delete-Data-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
+											url = {{ Route('Delete-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
 											jumlah = {{ $DataSatKerja->Penyuluh->Count() }}
 										></button-delete>
 								</td>

@@ -9,11 +9,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::prefix('satuankerja')->group(function () {
     Route::GET('', 'SatuanKerjaController@Data')->Name('Data-Satuan-Kerja');
-    Route::GET('tambah', 'SatuanKerjaController@Tambah')->Name('Tambah-Data-Satuan-Kerja');
-    Route::POST('tambah', 'SatuanKerjaController@submitTambah')->Name('submit-Tambah-Data-Satuan-Kerja');
-    Route::GET('edit/{id}', 'SatuanKerjaController@Edit')->Name('Edit-Data-Satuan-Kerja');
-    Route::POST('edit/{id}', 'SatuanKerjaController@submitEdit')->Name('submit-Edit-Data-Satuan-Kerja');
-    Route::GET('delete/{id}', 'SatuanKerjaController@Delete')->Name('Delete-Data-Satuan-Kerja');
+    Route::GET('tambah', 'SatuanKerjaController@Tambah')->Name('Tambah-Satuan-Kerja');
+    Route::POST('tambah', 'SatuanKerjaController@submitTambah')->Name('submit-Tambah-Satuan-Kerja');
+    Route::GET('edit/{id}', 'SatuanKerjaController@Edit')->Name('Edit-Satuan-Kerja');
+    Route::POST('edit/{id}', 'SatuanKerjaController@submitEdit')->Name('submit-Edit-Satuan-Kerja');
+    Route::GET('delete/{id}', 'SatuanKerjaController@Delete')->Name('Delete-Satuan-Kerja');
   });
 
   Route::prefix('unitkerja')->group(function () {

@@ -9,7 +9,7 @@
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Data-Satuan-Kerja') }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Satuan-Kerja') }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Satuan Kerja</label>
