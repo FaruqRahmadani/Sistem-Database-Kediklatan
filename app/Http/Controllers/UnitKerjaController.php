@@ -21,8 +21,7 @@ class UnitKerjaController extends Controller
 
   public function submitTambah(Request $request){
     $UnitKerja = new UnitKerja;
-    $UnitKerja->nama = $request->nama;
-    $UnitKerja->alamat = $request->alamat;
+    $UnitKerja->fill($request->all());
     $UnitKerja->save();
 
     return redirect(route('Data-Unit-Kerja'))->with('success', 'Tambah Data Berhasil');
@@ -38,8 +37,7 @@ class UnitKerjaController extends Controller
   public function submitEdit(Request $request, $Id){
     $Id = Crypter::Decrypt($Id);
     $UnitKerja = UnitKerja::findOrFail($Id);
-    $UnitKerja->nama = $request->nama;
-    $UnitKerja->alamat = $request->alamat;
+    $UnitKerja->fill($request->all());
     $UnitKerja->save();
 
     return redirect(route('Data-Unit-Kerja'))->with('success', 'Edit Data Berhasil');

@@ -18,11 +18,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::prefix('unitkerja')->group(function () {
     Route::GET('', 'UnitKerjaController@Data')->Name('Data-Unit-Kerja');
-    Route::GET('tambah', 'UnitKerjaController@Tambah')->Name('Tambah-Data-Unit-Kerja');
-    Route::POST('tambah', 'UnitKerjaController@submitTambah')->Name('submit-Tambah-Data-Unit-Kerja');
-    Route::GET('edit/{id}', 'UnitKerjaController@Edit')->Name('Edit-Data-Unit-Kerja');
-    Route::POST('edit/{id}', 'UnitKerjaController@submitEdit')->Name('submit-Edit-Data-Unit-Kerja');
-    Route::GET('delete/{id}', 'UnitKerjaController@Delete')->Name('Delete-Data-Unit-Kerja');
+    Route::GET('tambah', 'UnitKerjaController@Tambah')->Name('Tambah-Unit-Kerja');
+    Route::POST('tambah', 'UnitKerjaController@submitTambah')->Name('submit-Tambah-Unit-Kerja');
+    Route::GET('edit/{id}', 'UnitKerjaController@Edit')->Name('Edit-Unit-Kerja');
+    Route::POST('edit/{id}', 'UnitKerjaController@submitEdit')->Name('submit-Edit-Unit-Kerja');
+    Route::GET('delete/{id}', 'UnitKerjaController@Delete')->Name('Delete-Unit-Kerja');
   });
 
   Route::prefix('penyuluh')->group(function () {
