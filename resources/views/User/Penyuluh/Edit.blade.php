@@ -5,11 +5,11 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-Unit-Kerja') }}
+					url = {{ Route('Data-Penyuluh') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Data-Penyuluh', ['id' => Crypter::Encrypt($Penyuluh->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Penyuluh', ['id' => Crypter::Encrypt($Penyuluh->id)]) }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIP</label>

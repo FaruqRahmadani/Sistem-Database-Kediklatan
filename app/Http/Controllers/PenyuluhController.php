@@ -37,21 +37,9 @@ class PenyuluhController extends Controller
       $UnitKerja->save();
     }
     $Penyuluh = new Penyuluh;
-    $Penyuluh->nip  = $request->nip;
-    $Penyuluh->nama                = $request->nama;
-    $Penyuluh->tempat_lahir        = $request->tempat_lahir;
-    $Penyuluh->tanggal_lahir       = $request->tanggal_lahir;
-    $Penyuluh->agama               = $request->agama;
-    $Penyuluh->jenis_kelamin       = $request->jenis_kelamin;
-    $Penyuluh->status_kawin        = $request->status_kawin;
-    $Penyuluh->pangkat_golongan    = $request->pangkat_golongan;
-    $Penyuluh->jabatan             = $request->jabatan;
-    $Penyuluh->pendidikan_terakhir = $request->pendidikan_terakhir;
-    $Penyuluh->nomor_hp            = $request->nomor_hp;
-    $Penyuluh->satuan_kerja_id     = !$request->satuan_kerja_id ? $SatKerja->id : $request->satuan_kerja_id;
-    $Penyuluh->unit_kerja_id       = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
-    $Penyuluh->komoditas_unggulan  = $request->komoditas_unggulan;
-    $Penyuluh->pelatihan           = $request->pelatihan;
+    $Penyuluh->fill($request->all());
+    $Penyuluh->satuan_kerja_id = !$request->satuan_kerja_id ? $SatKerja->id : $request->satuan_kerja_id;
+    $Penyuluh->unit_kerja_id   = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
     $Penyuluh->save();
 
     return redirect(route('Data-Penyuluh'))->with('success', 'Tambah Data Berhasil');
@@ -83,21 +71,9 @@ class PenyuluhController extends Controller
       $UnitKerja->alamat = $request->alamat_unitkerja;
       $UnitKerja->save();
     }
-    $Penyuluh->nip  = $request->nip;
-    $Penyuluh->nama                = $request->nama;
-    $Penyuluh->tempat_lahir        = $request->tempat_lahir;
-    $Penyuluh->tanggal_lahir       = $request->tanggal_lahir;
-    $Penyuluh->agama               = $request->agama;
-    $Penyuluh->jenis_kelamin       = $request->jenis_kelamin;
-    $Penyuluh->status_kawin        = $request->status_kawin;
-    $Penyuluh->pangkat_golongan    = $request->pangkat_golongan;
-    $Penyuluh->jabatan             = $request->jabatan;
-    $Penyuluh->pendidikan_terakhir = $request->pendidikan_terakhir;
-    $Penyuluh->nomor_hp            = $request->nomor_hp;
-    $Penyuluh->satuan_kerja_id     = !$request->satuan_kerja_id ? $SatKerja->id : $request->satuan_kerja_id;
-    $Penyuluh->unit_kerja_id       = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
-    $Penyuluh->komoditas_unggulan  = $request->komoditas_unggulan;
-    $Penyuluh->pelatihan           = $request->pelatihan;
+    $Penyuluh->fill($request->all());
+    $Penyuluh->satuan_kerja_id = !$request->satuan_kerja_id ? $SatKerja->id : $request->satuan_kerja_id;
+    $Penyuluh->unit_kerja_id   = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
     $Penyuluh->save();
 
     return redirect(route('Data-Penyuluh'))->with('success', 'Tambah Data Berhasil');

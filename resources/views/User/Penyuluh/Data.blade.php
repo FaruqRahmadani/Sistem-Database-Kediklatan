@@ -5,7 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-tambah
-						url = {{ Route('Tambah-Data-Penyuluh') }}
+						url = {{ Route('Tambah-Penyuluh') }}
 					></button-tambah>
 					<button-print
 						url = {{ Route('Cetak-Penyuluh') }}
@@ -15,7 +15,6 @@
 					<table id="table_penyuluh" class="table table-striped table-advance table-bordered">
 						<thead>
 							<tr>
-								<th class="text-center"> #</th>
 								<th class="text-center"> Nama</th>
 								<th class="text-center"> Tempat/Tanggal Lahir</th>
 								<th class="text-center"> Agama</th>
@@ -33,7 +32,6 @@
 						<tbody>
 							@foreach ($Penyuluh as $Index => $DataPenyuluh)
 								<tr>
-									<td class="text-center">{{$Index+=1}}</td>
 									<td>
 										({{$DataPenyuluh->nip}})<br>
 										{{$DataPenyuluh->nama}}
@@ -50,10 +48,10 @@
 									<td>{{$DataPenyuluh->pelatihan}}</td>
 									<td class="text-center">
 										<button-edit
-											url = {{ Route('Edit-Data-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
+											url = {{ Route('Edit-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
 										></button-edit>
 										<button-delete
-											url = {{ Route('Delete-Data-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
+											url = {{ Route('Delete-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
 										></button-delete>
 								</td>
 								</tr>

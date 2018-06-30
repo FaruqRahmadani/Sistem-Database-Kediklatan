@@ -27,11 +27,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::prefix('penyuluh')->group(function () {
     Route::GET('', 'PenyuluhController@Data')->Name('Data-Penyuluh');
-    Route::GET('tambah', 'PenyuluhController@Tambah')->Name('Tambah-Data-Penyuluh');
-    Route::POST('tambah', 'PenyuluhController@submitTambah')->Name('submit-Tambah-Data-Penyuluh');
-    Route::GET('edit/{id}', 'PenyuluhController@Edit')->Name('Edit-Data-Penyuluh');
-    Route::POST('edit/{id}', 'PenyuluhController@submitEdit')->Name('submit-Edit-Data-Penyuluh');
-    Route::GET('delete/{id}', 'PenyuluhController@Delete')->Name('Delete-Data-Penyuluh');
+    Route::GET('tambah', 'PenyuluhController@Tambah')->Name('Tambah-Penyuluh');
+    Route::POST('tambah', 'PenyuluhController@submitTambah')->Name('submit-Tambah-Penyuluh');
+    Route::GET('edit/{id}', 'PenyuluhController@Edit')->Name('Edit-Penyuluh');
+    Route::POST('edit/{id}', 'PenyuluhController@submitEdit')->Name('submit-Edit-Penyuluh');
+    Route::GET('delete/{id}', 'PenyuluhController@Delete')->Name('Delete-Penyuluh');
   });
 
   Route::prefix('komoditas')->group(function () {
