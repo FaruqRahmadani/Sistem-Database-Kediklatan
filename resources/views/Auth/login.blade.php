@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="icon" href="{{asset('img/bbpp-logo.png')}}" type="image/gif">
 	<title>Login</title>
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -12,7 +13,7 @@
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
 				<div class="header-login text-center">
-					<img class="login-logo" src="{{asset('img/logo.png')}}">					
+					<img class="login-logo" src="{{asset('img/logo.png')}}">
 				</div>
 				<div class="panel-body">
 					<p>Masukan username dan password anda dengan benar !</p>
@@ -28,7 +29,7 @@
 						</fieldset>
 						<button type="submit" class="btn btn-lg btn-primary btn-block" name="button">Login</button>
 					</form>
-					
+
 					<a href="#" class="forget-pass pull-right">Lupa Password?</a>
 				</div>
 				<div class="panel-footer text-center">
