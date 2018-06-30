@@ -58,6 +58,11 @@
               <em class="fa fa-calendar">&nbsp;</em> Penyuluh
             </a>
           </li>
+          <li {{HRoute::ActiveRoute('Data-Komoditas')}}>
+            <a href="{{ Route('Data-Komoditas') }}">
+              <em class="fa fa-calendar">&nbsp;</em> Komoditas
+            </a>
+          </li>
           <button-logout></button-logout>
         </ul>
       </div>
