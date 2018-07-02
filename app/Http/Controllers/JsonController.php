@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\SatuanKerja;
 use App\UnitKerja;
+use App\Komoditas;
 use App\Provinsi;
 use App\Kota;
 
@@ -36,5 +37,16 @@ class JsonController extends Controller
     $UnitKerja = UnitKerja::select('id', 'nama')
                           ->get();
     return $UnitKerja;
+  }
+
+  public function DataKomoditas($Id = null){
+    if ($Id) {
+      $Komoditas = Komoditas::select('id', 'nama', 'keterangan')
+                            ->findOrFail($Id);
+    } else {
+      $Komoditas = Komoditas::select('id', 'nama', 'keterangan')
+                            ->get();
+    }
+    return $Komoditas;
   }
 }

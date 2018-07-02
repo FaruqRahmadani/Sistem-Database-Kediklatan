@@ -21,8 +21,7 @@ class CreateKelompokTanisTable extends Migration
       $table->string('alamat');
       $table->integer('provinsi_id');
       $table->integer('kota_id');
-      $table->integer('komoditas_id');
-      $table->integer('pelatihan_id');
+      $table->integer('komoditas_id')->default(0);
       $table->string('foto')->default('default.png');
       $table->timestamps();
     });

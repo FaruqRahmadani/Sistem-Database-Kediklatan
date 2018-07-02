@@ -34,7 +34,8 @@
   "dependencies": {
     "datatables.net": "^1.10.16",
     "datatables.net-dt": "^1.10.16",
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "vue-select": "^2.4.0"
   },
   "repository": {
     "type": "git",

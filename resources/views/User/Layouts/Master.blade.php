@@ -5,6 +5,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{asset('img/bbpp-logo.png')}}" type="image/gif">
   <title>Sistem Kediklatan - BBPP Binuang Kalimantan Selatan</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -63,6 +64,16 @@
               <em class="fa fa-calendar">&nbsp;</em> Komoditas
             </a>
           </li>
+          <li {{HRoute::ActiveRoute('Data-Kota-Komoditas')}}>
+            <a href="{{ Route('Data-Kota-Komoditas') }}">
+              <em class="fa fa-calendar">&nbsp;</em> Kota Komoditas
+            </a>
+          </li>
+          <li {{HRoute::ActiveRoute('Data-Kelompok-Tani')}}>
+            <a href="{{ Route('Data-Kelompok-Tani') }}">
+              <em class="fa fa-calendar">&nbsp;</em> Kelompok Tani
+            </a>
+          </li>
           <button-logout></button-logout>
         </ul>
       </div>
@@ -85,6 +96,7 @@
       </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     @if (session('success'))
       <script type="text/javascript">
       notif('success', 'Berhasil', '{{session('success')}}');

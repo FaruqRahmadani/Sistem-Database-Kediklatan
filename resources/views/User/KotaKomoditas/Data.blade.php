@@ -5,33 +5,32 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-tambah
-						url = {{ Route('Tambah-Data-Komoditas') }}
+						url = {{ Route('Tambah-Kota-Komoditas') }}
 					></button-tambah>
 					<button-print
 						url = {{ Route('Cetak-Unit-Kerja') }}
 					></button-print>
 				</div>
 				<div class="panel-body">
-					<table id="table_komoditas" class="table table-striped table-advance table-bordered table-custom">
+					<table id="table_kotakomoditas" class="table table-striped table-advance table-bordered table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Nama</th>
-								<th class="text-center"> Keterangan</th>
+								<th class="text-center"> Provinsi</th>
+								<th class="text-center"> Kota</th>
+								<th class="text-center"> Jumlah Komoditas</th>
 								<th class="text-center" style="width:15%"> Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($Komoditas as $Index => $DataKomoditas)
+							@foreach ($Kota as $DataKota)
 								<tr>
-									<td>{{$DataKomoditas->nama}}</td>
-									<td>{!!nl2br($DataKomoditas->keterangan)!!}</td>
+									<td>{{$DataKota->Provinsi->nama_provinsi}}</td>
+									<td>{{$DataKota->nama_kota}}</td>
+									<td class="text-center">{{$DataKota->Komoditas->count()}}</td>
 									<td class="text-center">
 										<button-edit
-											url = {{ Route('Edit-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
+											url = {{ Route('Edit-Kota-Komoditas', ['id' => Crypter::Encrypt($DataKota->id)]) }}
 										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
-										></button-delete>
 									</td>
 								</tr>
 							@endforeach

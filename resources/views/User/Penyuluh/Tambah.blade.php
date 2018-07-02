@@ -100,7 +100,6 @@
 								<input type="text" name="nomor_hp" class="form-control" required>
 							</div>
 						</div>
-						{{-- DISINI KENA Satuan Kerja dan Unit Kerja --}}
 						<field-satkerja
 							api = {{Auth::User()->api_token}}
 						></field-satkerja>

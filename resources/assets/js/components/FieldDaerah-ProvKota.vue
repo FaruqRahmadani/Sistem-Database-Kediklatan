@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Provinsi</label>
       <div class="col-md-10">
-        <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)" required>
+        <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)" :disabled="disable == 1" required>
           <option value="">Provinsi</option>
           <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama_provinsi}}</option>
         </select>
@@ -12,7 +12,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Kab/Kota</label>
       <div class="col-md-10">
-        <select name="kota_id" class="form-control input-lg" v-model="KotaId" required>
+        <select name="kota_id" class="form-control input-lg" v-model="KotaId" :disabled="disable == 1" required>
           <option value="">Kota</option>
           <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama_kota}}</option>
         </select>
@@ -23,13 +23,14 @@
 
 <script>
 export default {
-  props: ['api', 'provinsi', 'kota'],
+  props: ['api', 'provinsi', 'kota', 'disabled'],
   data: function(){
     return {
       dataprovinsi : '',
       datakota : '',
       ProvinsiId : this.provinsi,
       KotaId : this.kota,
+      disable : this.disabled,
     }
   },
   mounted: function(){
@@ -38,8 +39,10 @@ export default {
       url: '/api/dataprovinsi',
       headers: { Authorization: 'Bearer '+this.api },
     }).then((response) => {
-      this.dataprovinsi = response.data,
-      this.searchKey(this.dataprovinsi, this.provinsi)
+      this.dataprovinsi = response.data
+      if (this.kota != null) {
+        this.searchKey(this.dataprovinsi, this.provinsi)
+      }
     })
   },
   methods: {

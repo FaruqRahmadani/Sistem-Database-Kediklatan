@@ -10,4 +10,8 @@ class Komoditas extends Model
     'nama',
     'keterangan',
   ];
+
+  public function Kota(){
+    return $this->belongsToMany('App\Kota');
+  }
 }

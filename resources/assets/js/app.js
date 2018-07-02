@@ -8,6 +8,7 @@ require('./Lumino/easypiechart');
 require('./Lumino/easypiechart-data');
 require('./Lumino/bootstrap-datepicker');
 require('./Lumino/dataTables.responsive.min')
+require('./Lumino/dataTables.fixedColumns.min')
 require('./Lumino/jquery.dataTables.min')
 require('./Lumino/jquery.dataTables.bootstrap.min')
 require('./Lumino/custom');

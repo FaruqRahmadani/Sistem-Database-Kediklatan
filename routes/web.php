@@ -43,6 +43,23 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('delete/{id}', 'KomoditasController@Delete')->Name('Delete-Data-Komoditas');
   });
 
+  Route::prefix('kota_komoditas')->group(function () {
+    Route::GET('', 'KotaKomoditasController@Data')->Name('Data-Kota-Komoditas');
+    Route::GET('tambah', 'KotaKomoditasController@Tambah')->Name('Tambah-Kota-Komoditas');
+    Route::POST('tambah', 'KotaKomoditasController@submitTambah')->Name('submit-Tambah-Kota-Komoditas');
+    Route::GET('edit/{id}', 'KotaKomoditasController@Edit')->Name('Edit-Kota-Komoditas');
+    Route::POST('edit/{id}', 'KotaKomoditasController@submitEdit')->Name('submit-Edit-Kota-Komoditas');
+  });
+
+  Route::prefix('keltani')->group(function () {
+    Route::GET('', 'KelTaniController@Data')->Name('Data-Kelompok-Tani');
+    Route::GET('tambah', 'KelTaniController@Tambah')->Name('Tambah-Kelompok-Tani');
+    Route::POST('tambah', 'KelTaniController@submitTambah')->Name('submit-Tambah-Kelompok-Tani');
+    Route::GET('edit/{id}', 'KomoditasController@Edit')->Name('Edit-Data-Komoditas');
+    Route::POST('edit/{id}', 'KomoditasController@submitEdit')->Name('submit-Edit-Data-Komoditas');
+    Route::GET('delete/{id}', 'KomoditasController@Delete')->Name('Delete-Data-Komoditas');
+  });
+
   Route::prefix('cetak')->group(function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('Cetak-Satuan-Kerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('Cetak-Unit-Kerja');

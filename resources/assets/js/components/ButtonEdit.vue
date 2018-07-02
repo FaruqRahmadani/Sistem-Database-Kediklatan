@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-info btn-sm" @click.passive="redirect(url)">
+  <button class="btn btn-info btn-xs" @click.passive="redirect(url)">
     Edit
   </button>
 </template>

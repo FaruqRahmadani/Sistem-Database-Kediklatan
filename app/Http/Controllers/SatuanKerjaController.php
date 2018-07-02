@@ -22,7 +22,6 @@ class SatuanKerjaController extends Controller
   public function submitTambah(Request $request){
     $SatKerja = new SatuanKerja;
     $SatKerja->fill($request->all());
-
     $SatKerja->save();
 
     return redirect(route('Data-Satuan-Kerja'))->with('success', 'Tambah Data Berhasil');

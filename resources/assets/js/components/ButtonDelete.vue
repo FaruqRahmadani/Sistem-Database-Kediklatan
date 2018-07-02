@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-warning btn-sm" @click="hapus(url, jumlah)">
+  <button class="btn btn-warning btn-xs" @click="hapus(url, jumlah)">
     Delete
   </button>
 </template>
