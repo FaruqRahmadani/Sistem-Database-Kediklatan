@@ -27,13 +27,7 @@ class KotaKomoditasController extends Controller
 
   public function submitTambah(Request $request){
     $Kota = Kota::findOrFail($request->kota_id);
-    $KotaKomoditas = KotaKomoditas::where('kota_id', $request->kota_id)
-                                  ->whereIn('komoditas_id', $request->komoditas_id)
-                                  ->delete();
-    foreach ($request->komoditas_id as $KomoditasId) {
-      $Kota->Komoditas()->attach($KomoditasId);
-    }
-
+    $Kota->Komoditas()->sync($request->komoditas_id);
 
     return redirect(route('Data-Kota-Komoditas'))->with('success', 'Tambah Data Berhasil');
   }
@@ -49,11 +43,7 @@ class KotaKomoditasController extends Controller
   public function submitEdit(Request $request, $Id){
     $Id = Crypter::Decrypt($Id);
     $Kota = Kota::findOrFail($Id);
-    $KotaKomoditas = KotaKomoditas::where('kota_id', $Id)
-                                  ->delete();
-    foreach ($request->komoditas_id as $KomoditasId) {
-      $Kota->Komoditas()->attach($KomoditasId);
-    }
+    $Kota->Komoditas()->sync($request->komoditas_id);
 
     return redirect(route('Data-Kota-Komoditas'))->with('success', 'Edit Data Berhasil');
   }

@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Komoditas</label>
 							<div class="col-md-10">
-								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple required>
+								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple>
 									@foreach ($Komoditas as $DataKomoditas)
 										<option value="{{$DataKomoditas->id}}" {{$Kota->Komoditas->pluck('id')->search($DataKomoditas->id) !== false ? 'selected' : ''}}>{{$DataKomoditas->nama}}</option>
 									@endforeach
