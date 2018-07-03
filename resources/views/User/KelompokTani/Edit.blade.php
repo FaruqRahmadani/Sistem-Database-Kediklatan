@@ -9,20 +9,48 @@
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Unit-Kerja', ['id' => Crypter::Encrypt($UnitKerja->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Kelompok-Tani', ['id' => Crypter::Encrypt($KelompokTani->id)]) }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
-							<label class="col-md-2 control-label">Nama Unit Kerja</label>
+							<label class="col-md-2 control-label">Nama Kelompok Tani</label>
 							<div class="col-md-10">
-								<input type="text" name="nama" class="form-control" value="{{$UnitKerja->nama}}" required>
+								<input type="text" name="nama" class="form-control" value="{{$KelompokTani->nama}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Nama Ketua Kelompok</label>
+							<div class="col-md-10">
+								<input type="text" name="nama_ketua" class="form-control" value="{{$KelompokTani->nama_ketua}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Nomor HP</label>
+							<div class="col-md-10">
+								<input type="text" name="nomor_hp" class="form-control" value="{{$KelompokTani->nomor_hp}}" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<input type="text" name="alamat" class="form-control" value="{{$UnitKerja->alamat}}" required>
+								<input type="text" name="alamat" class="form-control" value="{{$KelompokTani->alamat}}" required>
 							</div>
 						</div>
+						<field-daerah-provkota
+							provinsi = {{$KelompokTani->provinsi_id}}
+							kota = {{$KelompokTani->kota_id}}
+							api = {{Auth::User()->api_token}}
+						></field-daerah-provkota>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Komoditas</label>
+							<div class="col-md-10">
+								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple required>
+									@foreach ($Komoditas as $DataKomoditas)
+										<option value="{{$DataKomoditas->id}}" {{$KelompokTani->Komoditas->pluck('id')->search($DataKomoditas->id) !== false ? 'selected' : ''}}>{{$DataKomoditas->nama}}</option>
+									@endforeach
+				        </select>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

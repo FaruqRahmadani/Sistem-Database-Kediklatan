@@ -36,5 +36,16 @@ class KelTaniController extends Controller
 
   public function Edit($Id){
     $Id = Crypter::Decrypt($Id);
+    $KelompokTani = KelompokTani::findOrFail($Id);
+    $Komoditas = Komoditas::all();
+
+    return view('User.KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas]);
+  }
+
+  public function submitEdit(Request $request, $Id){
+    $Id = Crypter::Decrypt($Id);
+    $KelompokTani = KelompokTani::findOrFail($Id);
+    $KelompokTani->fill($request->all());
+    $KelompokTani->save();
   }
 }

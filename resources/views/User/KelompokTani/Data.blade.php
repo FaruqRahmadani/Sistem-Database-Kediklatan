@@ -37,7 +37,7 @@
 									<td class="text-center">{{$DataKelompokTani->Komoditas->count()}}</td>
 									<td class="text-center">
 										<button-edit
-											url = {{ Route('Edit-Data-Komoditas', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}
+											url = {{ Route('Edit-Kelompok-Tani', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}
 										></button-edit>
 										<button-delete
 											url = {{ Route('Delete-Data-Komoditas', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}
