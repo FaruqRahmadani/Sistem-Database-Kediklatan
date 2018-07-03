@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Crypter;
+
 use App\KelompokTani;
 use App\Komoditas;
 
@@ -19,5 +21,20 @@ class KelTaniController extends Controller
     $Komoditas = Komoditas::all();
 
     return view('User.KelompokTani.Tambah', ['Komoditas' => $Komoditas]);
+  }
+
+  public function submitTambah(Request $request){
+    $KelompokTani = new KelompokTani;
+    $KelompokTani->fill($request->all());
+    $KelompokTani->save();
+    foreach ($request->komoditas_id as $KomoditasId) {
+      $KelompokTani->Komoditas()->attach($KomoditasId);
+    }
+
+    return redirect(route('Data-Kelompok-Tani'))->with('success', 'Tambah Data Berhasil');
+  }
+
+  public function Edit($Id){
+    $Id = Crypter::Decrypt($Id);
   }
 }

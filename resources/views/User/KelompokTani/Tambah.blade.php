@@ -41,7 +41,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Komoditas</label>
 							<div class="col-md-10">
-								<select id="select2" name="komoditas_id" class="form-control input-lg" multiple required>
+								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple required>
 									@foreach ($Komoditas as $DataKomoditas)
 										<option value="{{$DataKomoditas->id}}">{{$DataKomoditas->nama}}</option>
 									@endforeach

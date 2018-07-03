@@ -17,7 +17,7 @@
 							<tr>
 								<th class="text-center"> Provinsi</th>
 								<th class="text-center"> Kota</th>
-								<th class="text-center"> Jumlah Komoditas</th>
+								<th class="text-center"> Komoditas</th>
 								<th class="text-center" style="width:15%"> Action</th>
 							</tr>
 						</thead>
@@ -26,7 +26,14 @@
 								<tr>
 									<td>{{$DataKota->Provinsi->nama_provinsi}}</td>
 									<td>{{$DataKota->nama_kota}}</td>
-									<td class="text-center">{{$DataKota->Komoditas->count()}}</td>
+									<td class="text-center">
+										@foreach ($DataKota->Komoditas as $Komoditas)
+											{{-- <span class="label label-default">{{$Komoditas->nama}}</span> --}}
+											<span class="btn-default btn-xs span-list">
+										    {{$Komoditas->nama}}
+										  </span>
+										@endforeach
+									</td>
 									<td class="text-center">
 										<button-edit
 											url = {{ Route('Edit-Kota-Komoditas', ['id' => Crypter::Encrypt($DataKota->id)]) }}

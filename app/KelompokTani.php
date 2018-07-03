@@ -13,7 +13,6 @@ class KelompokTani extends Model
     'alamat',
     'provinsi_id',
     'kota_id',
-    'komoditas_id',
     'foto',
   ];
 
