@@ -34,7 +34,13 @@
 									<td>{{$DataKelompokTani->alamat}}</td>
 									<td>{{$DataKelompokTani->Provinsi->nama_provinsi}}</td>
 									<td>{{$DataKelompokTani->Kota->nama_kota}}</td>
-									<td class="text-center">{{$DataKelompokTani->Komoditas->count()}}</td>
+									<td class="text-center">
+										@foreach ($DataKelompokTani->Komoditas as $Komoditas)
+											<span class="btn-default btn-xs span-list">
+										    {{$Komoditas->nama}}
+										  </span>
+										@endforeach
+									</td>
 									<td class="text-center">
 										<button-edit
 											url = {{ Route('Edit-Kelompok-Tani', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}

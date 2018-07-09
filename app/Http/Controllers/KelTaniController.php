@@ -46,6 +46,9 @@ class KelTaniController extends Controller
     $Id = Crypter::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->fill($request->all());
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
     $KelompokTani->save();
+
+    return redirect(route('Data-Kelompok-Tani'))->with('success', 'Edit Data Berhasil');
   }
 }
