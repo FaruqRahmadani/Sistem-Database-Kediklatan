@@ -24,8 +24,6 @@
 								<th class="text-center"> Nomor HP</th>
 								<th class="text-center"> Satuan Kerja</th>
 								<th class="text-center"> Unit Kerja</th>
-								<th class="text-center"> Komoditas Unggulan</th>
-								<th class="text-center"> Pelatihan</th>
 								<th class="text-center"> Action</th>
 							</tr>
 						</thead>
@@ -44,8 +42,6 @@
 									<td>{{$DataPenyuluh->nomor_hp}}</td>
 									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
 									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-									<td>{{$DataPenyuluh->komoditas_unggulan}}</td>
-									<td>{{$DataPenyuluh->pelatihan}}</td>
 									<td class="text-center">
 										<button-edit
 											url = {{ Route('Edit-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}

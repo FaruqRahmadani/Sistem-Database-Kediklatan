@@ -106,18 +106,6 @@
 							api = {{Auth::User()->api_token}}
 							UnitKerja = {{$Penyuluh->unit_kerja_id}}
 						></field-unitkerja>
-						<div class="form-group">
-							<label class="col-md-2 control-label">Komoditas Unggulan</label>
-							<div class="col-md-10">
-								<input type="text" name="komoditas_unggulan" class="form-control" value="{{$Penyuluh->komoditas_unggulan}}" required>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-2 control-label">Pelatihan</label>
-							<div class="col-md-10">
-								<input type="text" name="pelatihan" class="form-control" value="{{$Penyuluh->pelatihan}}" required>
-							</div>
-						</div>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

@@ -49,4 +49,19 @@ class JsonController extends Controller
     }
     return $Komoditas;
   }
+  public function TambahSatuanKerja(Request $request){
+    $SatuanKerja = new SatuanKerja;
+    $SatuanKerja->fill($request->all());
+    $SatuanKerja->save();
+
+    return $SatuanKerja->id;
+  }
+
+  public function TambahUnitKerja(Request $request){
+    $UnitKerja = new UnitKerja;
+    $UnitKerja->fill($request->all());
+    $UnitKerja->save();
+
+    return $UnitKerja->id;
+  }
 }

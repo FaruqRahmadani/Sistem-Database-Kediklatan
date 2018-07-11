@@ -69583,25 +69583,115 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'satkerja'],
+  props: ['api', 'satkerja', 'provinsi', 'kota'],
   data: function data() {
     return {
+      dataprovinsi: '',
+      datakota: '',
+      ProvinsiId: this.provinsi,
+      KotaId: this.kota,
       datasatkerja: null,
-      SatKerjaId: this.satkerja
+      SatKerjaId: this.satkerja,
+      nama: null,
+      alamat: null,
+      nomor_telepon: null
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios({
+    this.getSatuanKerja(), axios({
       method: 'get',
-      url: '/api/datasatuankerja',
+      url: '/api/dataprovinsi',
       headers: { Authorization: 'Bearer ' + this.api }
     }).then(function (response) {
-      _this.datasatkerja = response.data;
+      _this.dataprovinsi = response.data;
+      if (_this.kota != null) {
+        _this.searchKey(_this.dataprovinsi, _this.provinsi);
+      }
     });
+  },
+  methods: {
+    getSatuanKerja: function getSatuanKerja() {
+      var _this2 = this;
+
+      axios({
+        method: 'get',
+        url: '/api/satuankerja/data',
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        _this2.datasatkerja = response.data;
+      });
+    },
+    searchKey: function searchKey(data) {
+      var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      var returnData = [];
+      $.each(data, function (index, value) {
+        returnData.push(value.id);
+      });
+      console.log(returnData.lastIndexOf(parseInt(key)));
+      if (returnData.lastIndexOf(parseInt(key)) != '-1') {
+        this.showKota(this.ProvinsiId);
+      }
+    },
+    showKota: function showKota(ProvinsiId) {
+      var _this3 = this;
+
+      axios({
+        method: 'get',
+        url: '/api/datakota/' + ProvinsiId,
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        _this3.datakota = response.data;
+      });
+    },
+    submit: function submit() {
+      var _this4 = this;
+
+      axios({
+        method: 'post',
+        url: '/api/satuankerja/tambah',
+        data: {
+          nama: this.nama,
+          alamat: this.alamat,
+          nomor_telepon: this.nomor_telepon,
+          provinsi_id: this.ProvinsiId,
+          kota_id: this.KotaId
+        },
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        console.log(response.data);
+        _this4.getSatuanKerja();
+        _this4.SatKerjaId = response.data;
+      }).catch(function (error) {
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
+      });
+    }
   }
 });
 
@@ -69666,23 +69756,208 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.SatKerjaId == 0
-      ? _c(
-          "div",
-          [
-            _c("hr"),
+      ? _c("div", [
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Nama Satuan Kerja")
+            ]),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nama,
+                    expression: "nama"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.nama },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nama = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Alamat")
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.alamat,
+                    expression: "alamat"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.alamat },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.alamat = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Provinsi")
+            ]),
             _vm._v(" "),
-            _c("field-daerah-provkota", { attrs: { api: this.api } }),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ProvinsiId,
+                      expression: "ProvinsiId"
+                    }
+                  ],
+                  staticClass: "form-control input-lg",
+                  attrs: { required: "" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.ProvinsiId = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        _vm.showKota(_vm.ProvinsiId)
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Provinsi")]),
+                  _vm._v(" "),
+                  _vm._l(this.dataprovinsi, function(dataprovinsi) {
+                    return _c(
+                      "option",
+                      { domProps: { value: dataprovinsi.id } },
+                      [_vm._v(_vm._s(dataprovinsi.nama_provinsi))]
+                    )
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Kab/Kota")
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.KotaId,
+                      expression: "KotaId"
+                    }
+                  ],
+                  staticClass: "form-control input-lg",
+                  attrs: { required: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.KotaId = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [_vm._v("Kota")]),
+                  _vm._v(" "),
+                  _vm._l(this.datakota, function(datakota) {
+                    return _c("option", { domProps: { value: datakota.id } }, [
+                      _vm._v(_vm._s(datakota.nama_kota))
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Nomor Telepon")
+            ]),
             _vm._v(" "),
-            _c("hr")
-          ],
-          1
-        )
+            _c("div", { staticClass: "col-md-10" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nomor_telepon,
+                    expression: "nomor_telepon"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.nomor_telepon },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nomor_telepon = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("hr")
+        ])
       : _vm._e()
   ])
 }
@@ -69691,50 +69966,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Nama Satuan Kerja")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "nama_satkerja", required: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Alamat")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "alamat_satkerja", required: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Nomor Telepon")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "nomor_telepon_satkerja", required: "" }
-        })
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "text-center" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info btn-fill",
+              attrs: { type: "button", name: "button" }
+            },
+            [_vm._v("Simpan")]
+          )
+        ])
       ])
     ])
   }
@@ -69832,25 +70075,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['api', 'unitkerja'],
   data: function data() {
     return {
       dataunitkerja: null,
-      UnitKerjaId: this.unitkerja
+      UnitKerjaId: this.unitkerja,
+      nama: null,
+      alamat: null
     };
   },
   mounted: function mounted() {
-    var _this = this;
+    this.getUnitKerja();
+  },
+  methods: {
+    getUnitKerja: function getUnitKerja() {
+      var _this = this;
 
-    axios({
-      method: 'get',
-      url: '/api/dataunitkerja',
-      headers: { Authorization: 'Bearer ' + this.api }
-    }).then(function (response) {
-      _this.dataunitkerja = response.data;
-    });
+      axios({
+        method: 'get',
+        url: '/api/unitkerja/data',
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        _this.dataunitkerja = response.data;
+      });
+    },
+    submit: function submit() {
+      var _this2 = this;
+
+      axios({
+        method: 'post',
+        url: '/api/unitkerja/tambah',
+        data: {
+          nama: this.nama,
+          alamat: this.alamat
+        },
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        console.log(response.data);
+        _this2.getUnitKerja();
+        _this2.UnitKerjaId = response.data;
+      }).catch(function (error) {
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
+      });
+    }
   }
 });
 
@@ -69918,51 +70194,88 @@ var render = function() {
       ? _c("div", [
           _c("hr"),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Nama Unit Kerja")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nama,
+                    expression: "nama"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.nama },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nama = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { staticClass: "col-md-2 control-label" }, [
+              _vm._v("Alamat")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-10" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.alamat,
+                    expression: "alamat"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", required: "" },
+                domProps: { value: _vm.alamat },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.alamat = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "text-center" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btn-fill",
+                    attrs: { type: "button", name: "button" },
+                    on: { click: _vm.submit }
+                  },
+                  [_vm._v("Simpan")]
+                )
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("hr")
         ])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Nama Unit Kerja")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "nama_unitkerja", required: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Alamat")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "alamat_unitkerja", required: "" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -20,9 +20,6 @@ class Penyuluh extends Model
     'nomor_hp',
     'satuankerja_id',
     'unitkerja_id',
-    'komoditas_unggulan',
-    'pelatihan',
-    'foto',
   ];
 
   public function SatuanKerja(){

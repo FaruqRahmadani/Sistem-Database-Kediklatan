@@ -15,13 +15,20 @@
       <div class="form-group">
         <label class="col-md-2 control-label">Nama Unit Kerja</label>
         <div class="col-md-10">
-          <input type="text" name="nama_unitkerja" class="form-control" required>
+          <input type="text" v-model="nama" class="form-control" required>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label">Alamat</label>
         <div class="col-md-10">
-          <input type="text" name="alamat_unitkerja" class="form-control" required>
+          <input type="text" v-model="alamat" class="form-control" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <div class="col-md-12">
+            <button type="button" name="button" class="btn btn-info btn-fill" @click="submit">Simpan</button>
+          </div>
         </div>
       </div>
       <hr>
@@ -36,16 +43,40 @@ export default {
     return {
       dataunitkerja : null,
       UnitKerjaId : this.unitkerja,
+      nama: null,
+      alamat: null,
     }
   },
   mounted: function(){
-    axios({
-      method: 'get',
-      url: '/api/dataunitkerja',
-      headers: { Authorization: 'Bearer '+this.api },
-    }).then((response) => {
-      this.dataunitkerja = response.data
-    })
+    this.getUnitKerja()
+  },
+  methods: {
+    getUnitKerja(){
+      axios({
+        method: 'get',
+        url: '/api/unitkerja/data',
+        headers: { Authorization: 'Bearer '+this.api },
+      }).then((response) => {
+        this.dataunitkerja = response.data
+      })
+    },
+    submit(){
+      axios({
+        method: 'post',
+        url: '/api/unitkerja/tambah',
+        data: {
+          nama: this.nama,
+          alamat: this.alamat,
+        },
+        headers: { Authorization: 'Bearer '+this.api },
+      }).then((response) => {
+        console.log(response.data)
+        this.getUnitKerja()
+        this.UnitKerjaId = response.data
+      }).catch(error => {
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
+      });
+    }
   },
 }
 </script>

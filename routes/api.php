@@ -9,7 +9,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:api']], function () {
   Route::GET('dataprovinsi', 'JsonController@DataProvinsi');
   Route::GET('datakota/{ProvinsiId?}', 'JsonController@DataKota');
-  Route::GET('datasatuankerja', 'JsonController@DataSatuanKerja');
-  Route::GET('dataunitkerja', 'JsonController@DataUnitKerja');
+  Route::GET('satuankerja/data', 'JsonController@DataSatuanKerja');
+  Route::POST('satuankerja/tambah', 'JsonController@TambahSatuanKerja');
+  Route::GET('unitkerja/data', 'JsonController@DataUnitKerja');
+  Route::POST('unitkerja/tambah', 'JsonController@TambahUnitKerja');
   Route::GET('datakomoditas/{Id?}', 'JsonController@DataKomoditas');
 });
