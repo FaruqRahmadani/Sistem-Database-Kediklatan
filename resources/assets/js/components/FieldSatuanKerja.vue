@@ -51,7 +51,7 @@
       <div class="row">
         <div class="text-center">
           <div class="col-md-12">
-            <button type="button" name="button" class="btn btn-info btn-fill">Simpan</button>
+            <button type="button" name="button" class="btn btn-info btn-fill" @click="submit">Simpan</button>
           </div>
         </div>
       </div>
