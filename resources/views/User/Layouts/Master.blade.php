@@ -44,63 +44,69 @@
               <em class="fa fa-dashboard">&nbsp;</em> Dashboard
             </a>
           </li>
-          <li {{HRoute::ActiveRoute('Data-Satuan-Kerja')}}>
-            <a href="{{ Route('Data-Satuan-Kerja') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Satuan Kerja
-            </a>
-          </li>
-          <li {{HRoute::ActiveRoute('Data-Unit-Kerja')}}>
-            <a href="{{ Route('Data-Unit-Kerja') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Unit Kerja
-            </a>
-          </li>
-          <li {{HRoute::ActiveRoute('Data-Penyuluh')}}>
-            <a href="{{ Route('Data-Penyuluh') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Penyuluh
-            </a>
-          </li>
-          <li {{HRoute::ActiveRoute('Data-Komoditas')}}>
-            <a href="{{ Route('Data-Komoditas') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Komoditas
-            </a>
-          </li>
-          <li {{HRoute::ActiveRoute('Data-Kota-Komoditas')}}>
-            <a href="{{ Route('Data-Kota-Komoditas') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Kota Komoditas
-            </a>
-          </li>
-          <li {{HRoute::ActiveRoute('Data-Kelompok-Tani')}}>
-            <a href="{{ Route('Data-Kelompok-Tani') }}">
-              <em class="fa fa-calendar">&nbsp;</em> Kelompok Tani
-            </a>
-          </li>
-          <button-logout></button-logout>
-        </ul>
-      </div>
-      <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-          <ol class="breadcrumb">
-            <li><a href="#">
-              <em class="fa fa-home"></em>
-            </a></li>
-            <li class="active">{{HRoute::JudulRoute()}}</li>
-          </ol>
-        </div>
-
-        <div class="row row-header">
-          <div class="col-lg-12">
-            <h3 class="page-header">{{HRoute::JudulRoute()}}</h3>
-          </div>
-        </div>
-        @yield('content')
-      </div>
+          <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+            <em class="fa fa-navicon">&nbsp;</em> Master <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+          </a>
+          <ul class="children collapse" id="sub-item-1">
+            <li {{HRoute::ActiveRoute('Data-Satuan-Kerja')}}>
+              <a href="{{ Route('Data-Satuan-Kerja') }}">
+                <em class="fa fa-calendar">&nbsp;</em> Satuan Kerja
+              </a>
+            </li>
+            <li {{HRoute::ActiveRoute('Data-Unit-Kerja')}}>
+              <a href="{{ Route('Data-Unit-Kerja') }}">
+                <em class="fa fa-calendar">&nbsp;</em> Unit Kerja
+              </a>
+            </li>
+            <li {{HRoute::ActiveRoute('Data-Komoditas')}}>
+              <a href="{{ Route('Data-Komoditas') }}">
+                <em class="fa fa-calendar">&nbsp;</em> Komoditas
+              </a>
+            </li>
+            <li {{HRoute::ActiveRoute('Data-Kota-Komoditas')}}>
+              <a href="{{ Route('Data-Kota-Komoditas') }}">
+                <em class="fa fa-calendar">&nbsp;</em> Kota Komoditas
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li {{HRoute::ActiveRoute('Data-Penyuluh')}}>
+          <a href="{{ Route('Data-Penyuluh') }}">
+            <em class="fa fa-calendar">&nbsp;</em> Penyuluh
+          </a>
+        </li>
+        <li {{HRoute::ActiveRoute('Data-Kelompok-Tani')}}>
+          <a href="{{ Route('Data-Kelompok-Tani') }}">
+            <em class="fa fa-calendar">&nbsp;</em> Kelompok Tani
+          </a>
+        </li>
+        <button-logout></button-logout>
+      </ul>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    @if (session('success'))
-      <script type="text/javascript">
-      notif('success', 'Berhasil', '{{session('success')}}');
-      </script>
-    @endif
-  </body>
-  </html>
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+      <div class="row">
+        <ol class="breadcrumb">
+          <li><a href="#">
+            <em class="fa fa-home"></em>
+          </a></li>
+          <li class="active">{{HRoute::JudulRoute()}}</li>
+        </ol>
+      </div>
+
+      <div class="row row-header">
+        <div class="col-lg-12">
+          <h3 class="page-header">{{HRoute::JudulRoute()}}</h3>
+        </div>
+      </div>
+      @yield('content')
+    </div>
+  </div>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  @if (session('success'))
+    <script type="text/javascript">
+    notif('success', 'Berhasil', '{{session('success')}}');
+    </script>
+  @endif
+</body>
+</html>
