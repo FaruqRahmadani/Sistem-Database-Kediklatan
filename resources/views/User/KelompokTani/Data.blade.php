@@ -12,16 +12,16 @@
 					></button-print>
 				</div>
 				<div class="panel-body">
-					<table id="table_kelompoktani" class="table table-striped table-advance table-bordered table-custom">
+					<table id="table_kelompoktani" class="table table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Nama</th>
-								<th class="text-center"> Nama Ketua</th>
-								<th class="text-center"> Nomor HP</th>
-								<th class="text-center"> Alamat</th>
-								<th class="text-center"> Provinsi</th>
-								<th class="text-center"> Kota</th>
-								<th class="text-center"> Jumlah Komoditas</th>
+								<th class="text-center">Nama</th>
+								<th class="text-center">Nama Ketua</th>
+								<th class="text-center">Nomor HP</th>
+								<th class="text-center">Alamat</th>
+								<th class="text-center">Provinsi</th>
+								<th class="text-center">Kota</th>
+								<th class="text-center">Komoditas</th>
 								<th class="text-center" style="width:115px"> Action</th>
 							</tr>
 						</thead>
@@ -36,7 +36,7 @@
 									<td>{{$DataKelompokTani->Kota->nama_kota}}</td>
 									<td class="text-center">
 										@foreach ($DataKelompokTani->Komoditas as $Komoditas)
-											<span class="btn-default btn-xs span-list">
+											<span class="btn-primary btn-xs span-list">
 										    {{$Komoditas->nama}}
 										  </span>
 										@endforeach

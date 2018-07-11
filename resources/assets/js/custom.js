@@ -102,6 +102,7 @@ $(document).ready(function() {
   });
 
   $('#table_kelompoktani').DataTable({
+    scrollX: true,
     language: langDataTable,
   });
 
