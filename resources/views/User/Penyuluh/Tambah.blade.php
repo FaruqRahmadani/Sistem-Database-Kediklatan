@@ -45,7 +45,6 @@
 									<option value="Katolik">Katolik</option>
 									<option value="Hindu">Hindu</option>
 									<option value="Buddha">Buddha</option>
-				          <option value="Kong Hu Chu">Kong Hu Chu</option>
 				        </select>
 							</div>
 						</div>

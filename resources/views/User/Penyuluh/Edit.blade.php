@@ -44,7 +44,6 @@
 									<option value="Katolik" {{$Penyuluh->agama == 'Katolik' ? 'selected' : ''}}>Katolik</option>
 									<option value="Hindu" {{$Penyuluh->agama == 'Hindu' ? 'selected' : ''}}>Hindu</option>
 									<option value="Buddha" {{$Penyuluh->agama == 'Buddha' ? 'selected' : ''}}>Buddha</option>
-				          <option value="Kong Hu Chu" {{$Penyuluh->agama == 'Kong Hu Chu' ? 'selected' : ''}}>Kong Hu Chu</option>
 				        </select>
 							</div>
 						</div>
