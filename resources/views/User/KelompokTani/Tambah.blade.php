@@ -24,6 +24,17 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-md-2 control-label">Penyuluh</label>
+							<div class="col-md-10">
+								<select name="penyuluh_id" class="form-control input-lg" required>
+									<option value="">Penyuluh</option>
+									@foreach ($Penyuluh as $DataPenyuluh)
+										<option value="{{$DataPenyuluh->id}}">{{$DataPenyuluh->nip}} - {{$DataPenyuluh->nama}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor HP</label>
 							<div class="col-md-10">
 								<input type="text" name="nomor_hp" class="form-control" required>

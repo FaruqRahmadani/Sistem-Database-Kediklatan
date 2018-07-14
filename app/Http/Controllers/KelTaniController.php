@@ -8,6 +8,7 @@ use Crypter;
 
 use App\KelompokTani;
 use App\Komoditas;
+use App\Penyuluh;
 
 class KelTaniController extends Controller
 {
@@ -19,8 +20,9 @@ class KelTaniController extends Controller
 
   public function Tambah(){
     $Komoditas = Komoditas::all();
+    $Penyuluh = Penyuluh::all();
 
-    return view('User.KelompokTani.Tambah', ['Komoditas' => $Komoditas]);
+    return view('User.KelompokTani.Tambah', ['Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
   }
 
   public function submitTambah(Request $request){
@@ -38,8 +40,9 @@ class KelTaniController extends Controller
     $Id = Crypter::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $Komoditas = Komoditas::all();
+    $Penyuluh = Penyuluh::all();
 
-    return view('User.KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas]);
+    return view('User.KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
   }
 
   public function submitEdit(Request $request, $Id){
