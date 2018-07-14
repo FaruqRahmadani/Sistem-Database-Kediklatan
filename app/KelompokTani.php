@@ -28,4 +28,8 @@ class KelompokTani extends Model
   public function Kota(){
     return $this->belongsTo('App\Kota');
   }
+
+  public function Penyuluh(){
+    return $this->belongsTo('App\Penyuluh');
+  }
 }

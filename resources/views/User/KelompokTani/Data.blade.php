@@ -17,6 +17,7 @@
 							<tr>
 								<th class="text-center">Nama</th>
 								<th class="text-center">Nama Ketua</th>
+								<th class="text-center">Penyuluh</th>
 								<th class="text-center">Nomor HP</th>
 								<th class="text-center">Alamat</th>
 								<th class="text-center">Provinsi</th>
@@ -30,6 +31,7 @@
 								<tr>
 									<td>{{$DataKelompokTani->nama}}</td>
 									<td>{{$DataKelompokTani->nama_ketua}}</td>
+									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
 									<td>{{$DataKelompokTani->nomor_hp}}</td>
 									<td>{{$DataKelompokTani->alamat}}</td>
 									<td>{{$DataKelompokTani->Provinsi->nama_provinsi}}</td>
