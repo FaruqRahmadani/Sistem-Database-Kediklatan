@@ -137,7 +137,16 @@ export default {
       }).catch(error => {
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
       });
-    }
+    },
   },
+  watch: {
+    SatKerjaId: function (val){
+      if (val == 0) {
+        $( "#submit" ).prop('disabled', true);
+      }else{
+        $( "#submit" ).prop('disabled', false);
+      }
+    }
+  }
 }
 </script>

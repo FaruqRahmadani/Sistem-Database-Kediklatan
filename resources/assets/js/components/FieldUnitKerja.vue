@@ -78,5 +78,14 @@ export default {
       });
     }
   },
+  watch: {
+    UnitKerjaId: function (val){
+      if (val == 0) {
+        $( "#submit" ).prop('disabled', true);
+      }else{
+        $( "#submit" ).prop('disabled', false);
+      }
+    }
+  }
 }
 </script>

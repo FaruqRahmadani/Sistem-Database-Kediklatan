@@ -69692,6 +69692,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
       });
     }
+  },
+  watch: {
+    SatKerjaId: function SatKerjaId(val) {
+      if (val == 0) {
+        $("#submit").prop('disabled', true);
+      } else {
+        $("#submit").prop('disabled', false);
+      }
+    }
   }
 });
 
@@ -70120,6 +70129,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
       });
+    }
+  },
+  watch: {
+    UnitKerjaId: function UnitKerjaId(val) {
+      if (val == 0) {
+        $("#submit").prop('disabled', true);
+      } else {
+        $("#submit").prop('disabled', false);
+      }
     }
   }
 });

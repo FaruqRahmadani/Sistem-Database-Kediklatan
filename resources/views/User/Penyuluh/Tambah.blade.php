@@ -108,7 +108,7 @@
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">
-									<button type="submit" class="btn btn-info btn-fill">Simpan</button>
+									<button id="submit" type="submit" class="btn btn-info btn-fill">Simpan</button>
 									<button type="reset" class="btn btn-warning btn-fill">Batal</button>
 								</div>
 							</div>
