@@ -29,4 +29,8 @@ class Penyuluh extends Model
   public function UnitKerja(){
     return $this->belongsTo('App\UnitKerja');
   }
+
+  public function KelompokTani(){
+    return $this->hasMany('App\KelompokTani');
+  }
 }
