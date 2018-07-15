@@ -1,15 +1,15 @@
 <template>
-  <button class="btn btn-warning btn-xs" @click="hapus(url, jumlah)">
+  <button class="btn btn-warning btn-xs" @click="hapus(url, status, pesan)">
     Delete
   </button>
 </template>
 
 <script>
 export default {
-  props: ['url', 'jumlah'],
+  props: ['url', 'status', 'pesan'],
   methods: {
-    hapus(link,jumlah = 0){
-      if (jumlah == 0) {
+    hapus(link, status = 0, pesan){
+      if (status == 0) {
         swal({
           title   : "Hapus",
           text    : "Yakin Ingin Hapus Data?",
@@ -40,7 +40,7 @@ export default {
       }else{
         swal({
           title   : "Hapus",
-          text    : "Data tidak bisa dihapus karena ada data relasi",
+          text    : pesan,
           icon    : "warning",
           buttons : "OK",
         })

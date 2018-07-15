@@ -28,7 +28,6 @@
 									<td>{{$DataKota->nama_kota}}</td>
 									<td class="text-center">
 										@foreach ($DataKota->Komoditas as $Komoditas)
-											{{-- <span class="label label-default">{{$Komoditas->nama}}</span> --}}
 											<span class="btn-default btn-xs span-list">
 										    {{$Komoditas->nama}}
 										  </span>

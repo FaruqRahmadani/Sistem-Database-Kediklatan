@@ -69418,12 +69418,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url', 'jumlah'],
+  props: ['url', 'status', 'pesan'],
   methods: {
     hapus: function hapus(link) {
-      var jumlah = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var pesan = arguments[2];
 
-      if (jumlah == 0) {
+      if (status == 0) {
         swal({
           title: "Hapus",
           text: "Yakin Ingin Hapus Data?",
@@ -69450,7 +69451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         swal({
           title: "Hapus",
-          text: "Data tidak bisa dihapus karena ada data relasi",
+          text: pesan,
           icon: "warning",
           buttons: "OK"
         });
@@ -69473,7 +69474,7 @@ var render = function() {
       staticClass: "btn btn-warning btn-xs",
       on: {
         click: function($event) {
-          _vm.hapus(_vm.url, _vm.jumlah)
+          _vm.hapus(_vm.url, _vm.status, _vm.pesan)
         }
       }
     },

@@ -28,6 +28,8 @@
 										></button-edit>
 										<button-delete
 											url = {{ Route('Delete-User', ['id' => Crypter::Encrypt($DataUser->id)]) }}
+											status = {{ Auth::User()->id == $DataUser->id ? 1 : 0 }}
+											pesan = "Tidak Dapat Hapus Data Sendiri"
 										></button-delete>
 									</td>
 								</tr>

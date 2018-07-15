@@ -31,7 +31,8 @@
 										></button-edit>
 										<button-delete
 											url = {{ Route('Delete-Unit-Kerja', ['id' => Crypter::Encrypt($DataUnitKerja->id)]) }}
-											jumlah = {{ $DataUnitKerja->Penyuluh->Count() }}
+											status = {{ $DataUnitKerja->Penyuluh->Count() }}
+											pesan = "Data Tidak Dapat Dihapus Karena Ada Relasi"
 										></button-delete>
 									</td>
 								</tr>
