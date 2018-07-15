@@ -18,8 +18,8 @@ class Penyuluh extends Model
     'jabatan',
     'pendidikan_terakhir',
     'nomor_hp',
-    'satuankerja_id',
-    'unitkerja_id',
+    'satuan_kerja_id',
+    'unit_kerja_id',
   ];
 
   public function SatuanKerja(){
