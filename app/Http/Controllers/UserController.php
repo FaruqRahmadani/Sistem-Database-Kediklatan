@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Crypter;
+
 use App\User;
 
 class UserController extends Controller
@@ -24,5 +26,21 @@ class UserController extends Controller
     $User->save();
 
     return redirect(route('Data-User'))->with('success', 'Tambah Data Berhasil');
+  }
+
+  public function Edit($Id){
+    $Id = Crypter::Decrypt($Id);
+    $User = User::findOrFail($Id);
+
+    return view('User.Edit', ['User' => $User]);
+  }
+
+  public function submitEdit(Request $request, $Id){
+    $Id = Crypter::Decrypt($Id);
+    $User = User::findOrFail($Id);
+    $User->fill($request->all());
+    $User->save();
+
+    return redirect(route('Data-User'))->with('success', 'Edit Data Berhasil');
   }
 }
