@@ -24,7 +24,7 @@ class SatuanKerjaController extends Controller
     $SatKerja->fill($request->all());
     $SatKerja->save();
 
-    return redirect(route('Data-Satuan-Kerja'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -40,7 +40,7 @@ class SatuanKerjaController extends Controller
     $SatKerja->fill($request->all());
     $SatKerja->save();
 
-    return redirect(route('Data-Satuan-Kerja'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
@@ -48,6 +48,6 @@ class SatuanKerjaController extends Controller
     $SatKerja = SatuanKerja::findOrFail($Id);
     $SatKerja->delete();
 
-    return redirect(route('Data-Satuan-Kerja'))->with('success', 'Delete Data Berhasil');
+    return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

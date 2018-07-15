@@ -25,7 +25,7 @@ class UserController extends Controller
     $User->fill($request->all());
     $User->save();
 
-    return redirect(route('Data-User'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -41,7 +41,7 @@ class UserController extends Controller
     $User->fill($request->all());
     $User->save();
 
-    return redirect(route('Data-User'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
@@ -49,6 +49,6 @@ class UserController extends Controller
     $User = User::findOrFail($Id);
     $User->delete();
 
-    return redirect(route('Data-User'))->with('success', 'Hapus Data Berhasil');
+    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

@@ -24,7 +24,7 @@ class UnitKerjaController extends Controller
     $UnitKerja->fill($request->all());
     $UnitKerja->save();
 
-    return redirect(route('Data-Unit-Kerja'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Unit-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -40,7 +40,7 @@ class UnitKerjaController extends Controller
     $UnitKerja->fill($request->all());
     $UnitKerja->save();
 
-    return redirect(route('Data-Unit-Kerja'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-Unit-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
@@ -48,6 +48,6 @@ class UnitKerjaController extends Controller
     $UnitKerja = UnitKerja::findOrFail($Id);
     $UnitKerja->delete();
 
-    return redirect(route('Data-Unit-Kerja'))->with('success', 'Delete Data Berhasil');
+    return redirect()->Route('Data-Unit-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

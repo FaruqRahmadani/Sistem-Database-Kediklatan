@@ -42,7 +42,7 @@ class PenyuluhController extends Controller
     $Penyuluh->unit_kerja_id   = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
     $Penyuluh->save();
 
-    return redirect(route('Data-Penyuluh'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Penyuluh')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -76,7 +76,7 @@ class PenyuluhController extends Controller
     $Penyuluh->unit_kerja_id   = !$request->unit_kerja_id ? $UnitKerja->id : $request->unit_kerja_id;
     $Penyuluh->save();
 
-    return redirect(route('Data-Penyuluh'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Penyuluh')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
@@ -84,6 +84,6 @@ class PenyuluhController extends Controller
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->delete();
 
-    return redirect(route('Data-Penyuluh'))->with('success', 'Hapus Data Berhasil');
+    return redirect()->Route('Data-Penyuluh')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

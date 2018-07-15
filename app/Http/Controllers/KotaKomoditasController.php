@@ -29,7 +29,7 @@ class KotaKomoditasController extends Controller
     $Kota = Kota::findOrFail($request->kota_id);
     $Kota->Komoditas()->sync($request->komoditas_id);
 
-    return redirect(route('Data-Kota-Komoditas'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Kota-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -45,6 +45,6 @@ class KotaKomoditasController extends Controller
     $Kota = Kota::findOrFail($Id);
     $Kota->Komoditas()->sync($request->komoditas_id);
 
-    return redirect(route('Data-Kota-Komoditas'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-Kota-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 }

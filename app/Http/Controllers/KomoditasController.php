@@ -24,7 +24,7 @@ class KomoditasController extends Controller
     $Komoditas->fill($request->all());
     $Komoditas->save();
 
-    return redirect(route('Data-Komoditas'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -40,7 +40,7 @@ class KomoditasController extends Controller
     $Komoditas->fill($request->all());
     $Komoditas->save();
 
-    return redirect(route('Data-Komoditas'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
@@ -48,6 +48,6 @@ class KomoditasController extends Controller
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->delete();
 
-    return redirect(route('Data-Komoditas'))->with('success', 'Delete Data Berhasil');
+    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

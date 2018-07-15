@@ -108,9 +108,9 @@
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-  @if (session('success'))
+  @if (session('alert'))
     <script type="text/javascript">
-    notif('success', 'Berhasil', '{{session('success')}}');
+    notif('{{session('tipe')}}', '{{session('judul')}}', '{{session('pesan')}}');
     </script>
   @endif
 </body>

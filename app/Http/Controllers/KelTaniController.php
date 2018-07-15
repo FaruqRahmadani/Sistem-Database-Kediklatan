@@ -33,7 +33,7 @@ class KelTaniController extends Controller
       $KelompokTani->Komoditas()->attach($KomoditasId);
     }
 
-    return redirect(route('Data-Kelompok-Tani'))->with('success', 'Tambah Data Berhasil');
+    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -52,6 +52,6 @@ class KelTaniController extends Controller
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
     $KelompokTani->save();
 
-    return redirect(route('Data-Kelompok-Tani'))->with('success', 'Edit Data Berhasil');
+    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 }
