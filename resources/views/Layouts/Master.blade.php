@@ -48,6 +48,11 @@
             <em class="fa fa-navicon">&nbsp;</em> Master <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
           </a>
           <ul class="children collapse" id="sub-item-1">
+            <li {{HRoute::ActiveRoute('Data-User')}}>
+              <a href="{{ Route('Data-User') }}">
+                <em class="fa fa-user">&nbsp;</em> Data User
+              </a>
+            </li>
             <li {{HRoute::ActiveRoute('Data-Satuan-Kerja')}}>
               <a href="{{ Route('Data-Satuan-Kerja') }}">
                 <em class="fa fa-calendar">&nbsp;</em> Satuan Kerja

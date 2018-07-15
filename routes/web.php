@@ -7,6 +7,15 @@ Route::POST('login', 'Auth\LoginController@login');
 Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('', 'DashboardController@Dashboard')->Name('Dashboard');
 
+  Route::prefix('user')->group(function () {
+    Route::GET('', 'UserController@Data')->Name('Data-User');
+    Route::GET('tambah', 'UserController@Tambah')->Name('Tambah-User');
+    Route::POST('tambah', 'UserController@submitTambah')->Name('submit-Tambah-User');
+    Route::GET('edit/{id}', 'UserController@Edit')->Name('Edit-User');
+    Route::POST('edit/{id}', 'UserController@submitEdit')->Name('submit-Edit-User');
+    Route::GET('delete/{id}', 'UserController@Delete')->Name('Delete-User');
+  });
+
   Route::prefix('satuankerja')->group(function () {
     Route::GET('', 'SatuanKerjaController@Data')->Name('Data-Satuan-Kerja');
     Route::GET('tambah', 'SatuanKerjaController@Tambah')->Name('Tambah-Satuan-Kerja');
