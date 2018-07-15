@@ -43,4 +43,12 @@ class UserController extends Controller
 
     return redirect(route('Data-User'))->with('success', 'Edit Data Berhasil');
   }
+
+  public function Delete($Id){
+    $Id = Crypter::Decrypt($Id);
+    $User = User::findOrFail($Id);
+    $User->delete();
+
+    return redirect(route('Data-User'))->with('success', 'Hapus Data Berhasil');
+  }
 }
