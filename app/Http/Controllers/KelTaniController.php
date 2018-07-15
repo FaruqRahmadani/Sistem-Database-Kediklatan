@@ -54,4 +54,13 @@ class KelTaniController extends Controller
 
     return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
+
+  public function Delete($Id){
+    $Id = Crypter::Decrypt($Id);
+    $KelompokTani = KelompokTani::findOrFail($Id);
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
+    $KelompokTani->delete();
+
+    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+  }
 }

@@ -66,7 +66,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::POST('tambah', 'KelTaniController@submitTambah')->Name('submit-Tambah-Kelompok-Tani');
     Route::GET('edit/{id}', 'KelTaniController@Edit')->Name('Edit-Kelompok-Tani');
     Route::POST('edit/{id}', 'KelTaniController@submitEdit')->Name('submit-Edit-Kelompok-Tani');
-    Route::GET('delete/{id}', 'KomoditasController@Delete')->Name('Delete-Data-Komoditas');
+    Route::GET('delete/{id}', 'KelTaniController@Delete')->Name('Delete-Kelompok-Tani');
   });
 
   Route::prefix('cetak')->group(function () {
