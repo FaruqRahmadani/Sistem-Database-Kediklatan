@@ -15,14 +15,14 @@ class KelTaniController extends Controller
   public function Data(){
     $KelompokTani = KelompokTani::all();
 
-    return view('User.KelompokTani.Data', ['KelompokTani' => $KelompokTani]);
+    return view('KelompokTani.Data', ['KelompokTani' => $KelompokTani]);
   }
 
   public function Tambah(){
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
 
-    return view('User.KelompokTani.Tambah', ['Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
+    return view('KelompokTani.Tambah', ['Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
   }
 
   public function submitTambah(Request $request){
@@ -42,7 +42,7 @@ class KelTaniController extends Controller
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
 
-    return view('User.KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
+    return view('KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
   }
 
   public function submitEdit(Request $request, $Id){

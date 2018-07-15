@@ -12,11 +12,11 @@ class UnitKerjaController extends Controller
   public function Data(){
     $UnitKerja = UnitKerja::all();
 
-    return view('User.UnitKerja.Data', ['UnitKerja' => $UnitKerja]);
+    return view('UnitKerja.Data', ['UnitKerja' => $UnitKerja]);
   }
 
   public function Tambah(){
-    return view('User.UnitKerja.Tambah');
+    return view('UnitKerja.Tambah');
   }
 
   public function submitTambah(Request $request){
@@ -31,7 +31,7 @@ class UnitKerjaController extends Controller
     $Id = Crypter::Decrypt($Id);
     $UnitKerja = UnitKerja::findOrFail($Id);
 
-    return view('User.UnitKerja.Edit', ['UnitKerja' => $UnitKerja]);
+    return view('UnitKerja.Edit', ['UnitKerja' => $UnitKerja]);
   }
 
   public function submitEdit(Request $request, $Id){

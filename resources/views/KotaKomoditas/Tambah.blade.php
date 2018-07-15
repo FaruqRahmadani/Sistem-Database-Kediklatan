@@ -1,26 +1,27 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-Komoditas') }}
+					url = {{ Route('Data-Kota-Komoditas') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Data-Komoditas', ['Id' => Crypter::Encrypt($Komoditas->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Kota-Komoditas') }}" method="POST">
 						{{csrf_field()}}
+						<field-daerah-provkota
+							api = {{Auth::User()->api_token}}
+						></field-daerah-provkota>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Nama Komoditas</label>
+							<label class="col-md-2 control-label">Komoditas</label>
 							<div class="col-md-10">
-								<input type="text" name="nama" class="form-control" required value="{{$Komoditas->nama}}">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-2 control-label">Keterangan</label>
-							<div class="col-md-10">
-								<textarea rows="4" cols="50" name="keterangan" class="form-control" required>{{$Komoditas->keterangan}}</textarea>
+								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple required>
+									@foreach ($Komoditas as $DataKomoditas)
+										<option value="{{$DataKomoditas->id}}">{{$DataKomoditas->nama}}</option>
+									@endforeach
+				        </select>
 							</div>
 						</div>
 						<div class="row">

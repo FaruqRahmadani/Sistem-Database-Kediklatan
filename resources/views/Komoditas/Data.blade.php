@@ -1,4 +1,4 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">

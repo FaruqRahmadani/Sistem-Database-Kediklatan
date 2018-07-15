@@ -12,11 +12,11 @@ class KomoditasController extends Controller
 {
   public function Data(){
     $Komoditas = Komoditas::all();
-    return view('User.Komoditas.Data', ['Komoditas' => $Komoditas]);
+    return view('Komoditas.Data', ['Komoditas' => $Komoditas]);
   }
 
   public function Tambah(){
-    return view('User.Komoditas.Tambah');
+    return view('Komoditas.Tambah');
   }
 
   public function submitTambah(Request $request){
@@ -31,7 +31,7 @@ class KomoditasController extends Controller
     $Id = Crypter::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
 
-    return view('User.Komoditas.Edit', ['Komoditas' => $Komoditas]);
+    return view('Komoditas.Edit', ['Komoditas' => $Komoditas]);
   }
 
   public function submitEdit(Request $request, $Id){

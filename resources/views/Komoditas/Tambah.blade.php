@@ -1,35 +1,26 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-Satuan-Kerja') }}
+					url = {{ Route('Data-Komoditas') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Satuan-Kerja') }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Data-Komoditas') }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
-							<label class="col-md-2 control-label">Nama Satuan Kerja</label>
+							<label class="col-md-2 control-label">Nama Komoditas</label>
 							<div class="col-md-10">
 								<input type="text" name="nama" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Alamat</label>
+							<label class="col-md-2 control-label">Keterangan</label>
 							<div class="col-md-10">
-								<input type="text" name="alamat" class="form-control" required>
-							</div>
-						</div>
-						<field-daerah-provkota
-							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
-						<div class="form-group">
-							<label class="col-md-2 control-label">Nomor Telepon</label>
-							<div class="col-md-10">
-								<input type="text" name="nomor_telepon" class="form-control" required>
+								<textarea rows="4" cols="50" name="keterangan" class="form-control" required></textarea>
 							</div>
 						</div>
 						<div class="row">

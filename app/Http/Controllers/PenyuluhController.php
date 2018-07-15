@@ -13,11 +13,11 @@ class PenyuluhController extends Controller
 {
   public function Data(){
     $Penyuluh = Penyuluh::all();
-    return view('User.Penyuluh.Data', ['Penyuluh' => $Penyuluh]);
+    return view('Penyuluh.Data', ['Penyuluh' => $Penyuluh]);
   }
 
   public function Tambah(){
-    return view('User.Penyuluh.Tambah');
+    return view('Penyuluh.Tambah');
   }
 
   public function submitTambah(Request $request){
@@ -49,7 +49,7 @@ class PenyuluhController extends Controller
     $Id = Crypter::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
 
-    return view('User.Penyuluh.Edit', ['Penyuluh' => $Penyuluh]);
+    return view('Penyuluh.Edit', ['Penyuluh' => $Penyuluh]);
   }
 
   public function submitEdit(Request $request, $Id){

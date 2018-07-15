@@ -1,4 +1,4 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 <div class="row">
 	<div class="col-md-12">
@@ -6,9 +6,9 @@
 			{{-- <div class="panel-heading">Informasi Aplikasi</div> --}}
 			<div class="panel-body">
 				<blockquote><h2 style="margin:0;">Selamat datang di Sistem Database Kediklatan</h2>BBPP Binuang - Kalimantan Selatan</blockquote>
-				
+
 				<p>Sistem Database Kediklatan dapat membantu dalam pengelolaan data kediklatan seperti data pelatihan, data penyuluh, data komoditas, dan data peserta pelatihan.</p>
-				
+
 			</div>
 		</div>
 	</div>

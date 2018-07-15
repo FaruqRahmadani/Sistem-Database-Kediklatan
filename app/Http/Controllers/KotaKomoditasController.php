@@ -17,12 +17,12 @@ class KotaKomoditasController extends Controller
     $Kota = Kota::has('komoditas')
                 ->get();
 
-    return view('User.KotaKomoditas.Data', ['Kota' => $Kota]);
+    return view('KotaKomoditas.Data', ['Kota' => $Kota]);
   }
 
   public function Tambah(){
     $Komoditas = Komoditas::all();
-    return view('User.KotaKomoditas.Tambah', ['Komoditas' => $Komoditas]);
+    return view('KotaKomoditas.Tambah', ['Komoditas' => $Komoditas]);
   }
 
   public function submitTambah(Request $request){
@@ -37,7 +37,7 @@ class KotaKomoditasController extends Controller
     $Kota = Kota::findOrFail($Id);
     $Komoditas = Komoditas::all();
 
-    return view('User.KotaKomoditas.Edit', ['Kota' => $Kota, 'Komoditas' => $Komoditas]);
+    return view('KotaKomoditas.Edit', ['Kota' => $Kota, 'Komoditas' => $Komoditas]);
   }
 
   public function submitEdit(Request $request, $Id){

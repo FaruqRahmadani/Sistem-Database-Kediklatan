@@ -1,49 +1,50 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-Penyuluh') }}
+					url = {{ Route('Data-Unit-Kerja') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Penyuluh', ['id' => Crypter::Encrypt($Penyuluh->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Penyuluh') }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIP</label>
 							<div class="col-md-10">
-								<input type="text" name="nip" class="form-control" value="{{$Penyuluh->nip}}" required>
+								<input type="text" name="nip" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
 							<div class="col-md-10">
-								<input type="text" name="nama" class="form-control" value="{{$Penyuluh->nama}}" required>
+								<input type="text" name="nama" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Tempat Lahir</label>
 							<div class="col-md-10">
-								<input type="text" name="tempat_lahir" class="form-control" value="{{$Penyuluh->tempat_lahir}}" required>
+								<input type="text" name="tempat_lahir" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Tanggal Lahir</label>
 							<div class="col-md-10">
-								<input type="date" name="tanggal_lahir" class="form-control" value="{{$Penyuluh->tanggal_lahir}}" max="{{Tanggal::now()}}" required>
+								<input type="date" name="tanggal_lahir" class="form-control" value="{{Tanggal::now()}}" max="{{Tanggal::now()}}" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Agama</label>
 							<div class="col-md-10">
 								<select name="agama" class="form-control input-lg" required>
-									<option value="Islam" {{$Penyuluh->agama == 'Islam' ? 'selected' : ''}}>Islam</option>
-									<option value="Kristen Protestan" {{$Penyuluh->agama == 'Kristen Protestan' ? 'selected' : ''}}>Kristen Protestan</option>
-									<option value="Katolik" {{$Penyuluh->agama == 'Katolik' ? 'selected' : ''}}>Katolik</option>
-									<option value="Hindu" {{$Penyuluh->agama == 'Hindu' ? 'selected' : ''}}>Hindu</option>
-									<option value="Buddha" {{$Penyuluh->agama == 'Buddha' ? 'selected' : ''}}>Buddha</option>
+									<option value="" selected hidden>Agama</option>
+									<option value="Islam">Islam</option>
+									<option value="Kristen Protestan">Kristen Protestan</option>
+									<option value="Katolik">Katolik</option>
+									<option value="Hindu">Hindu</option>
+									<option value="Buddha">Buddha</option>
 				        </select>
 							</div>
 						</div>
@@ -52,8 +53,8 @@
 							<div class="col-md-10">
 								<select name="jenis_kelamin" class="form-control input-lg" required>
 									<option value="" selected hidden>Jenis Kelamin</option>
-									<option value="Laki-Laki" {{$Penyuluh->jenis_kelamin == 'Laki-Laki' ? 'selected' : ''}}>Laki-Laki</option>
-									<option value="Perempuan" {{$Penyuluh->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+									<option value="Laki-Laki">Laki-Laki</option>
+									<option value="Perempuan">Perempuan</option>
 				        </select>
 							</div>
 						</div>
@@ -62,48 +63,47 @@
 							<div class="col-md-10">
 								<select name="status_kawin" class="form-control input-lg" required>
 									<option value="" selected hidden>Status Kawin</option>
-									<option value="Belum Kawin" {{$Penyuluh->status_kawin == 'Belum Kawin' ? 'selected' : ''}}>Belum Kawin</option>
-									<option value="Sudah Kawin" {{$Penyuluh->status_kawin == 'Sudah Kawin' ? 'selected' : ''}}>Sudah Kawin</option>
+									<option value="Belum Kawin">Belum Kawin</option>
+									<option value="Sudah Kawin">Sudah Kawin</option>
 				        </select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Pangkat Golongan</label>
 							<div class="col-md-10">
-								<input type="text" name="pangkat_golongan" class="form-control" value="{{$Penyuluh->pangkat_golongan}}" required>
+								<input type="text" name="pangkat_golongan" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Jabatan</label>
 							<div class="col-md-10">
-								<input type="text" name="jabatan" class="form-control" value="{{$Penyuluh->jabatan}}" required>
+								<input type="text" name="jabatan" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Pendidikan Terakhir</label>
 							<div class="col-md-10">
 								<select name="pendidikan_terakhir" class="form-control input-lg" required>
-									<option value="SD" {{$Penyuluh->pendidikan_terakhir == 'SD' ? 'selected' : ''}}>SD</option>
-									<option value="SMP" {{$Penyuluh->pendidikan_terakhir == 'SMP' ? 'selected' : ''}}>SMP</option>
-									<option value="SMA" {{$Penyuluh->pendidikan_terakhir == 'SMA' ? 'selected' : ''}}>SMA</option>
-									<option value="DI/II" {{$Penyuluh->pendidikan_terakhir == 'DI/DII' ? 'selected' : ''}}>DI/II</option>
-									<option value="S1" {{$Penyuluh->pendidikan_terakhir == 'S1' ? 'selected' : ''}}>S1</option>
+									<option value="" selected hidden>Pendidikan Terakhir</option>
+									<option value="SD">SD</option>
+									<option value="SMP">SMP</option>
+									<option value="SMA">SMA</option>
+									<option value="DI/II">DI/II</option>
+									<option value="S1">S1</option>
 				        </select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor HP</label>
 							<div class="col-md-10">
-								<input type="text" name="nomor_hp" class="form-control" value="{{$Penyuluh->nomor_hp}}" required>
+								<input type="text" name="nomor_hp" class="form-control" required>
 							</div>
 						</div>
 						<field-satkerja
 							api = {{Auth::User()->api_token}}
-							SatKerja = {{$Penyuluh->satuan_kerja_id}}
 						></field-satkerja>
 						<field-unitkerja
 							api = {{Auth::User()->api_token}}
-							UnitKerja = {{$Penyuluh->unit_kerja_id}}
 						></field-unitkerja>
 						<div class="row">
 							<div class="text-center">

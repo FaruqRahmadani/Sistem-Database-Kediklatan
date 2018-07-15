@@ -5,7 +5,7 @@ Route::POST('login', 'Auth\LoginController@login');
 
 
 Route::group(['middleware' => ['UserMiddleware']], function () {
-  Route::GET('', 'UserController@Dashboard')->Name('Dashboard');
+  Route::GET('', 'DashboardController@Dashboard')->Name('Dashboard');
 
   Route::prefix('satuankerja')->group(function () {
     Route::GET('', 'SatuanKerjaController@Data')->Name('Data-Satuan-Kerja');

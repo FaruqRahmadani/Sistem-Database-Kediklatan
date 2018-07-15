@@ -1,30 +1,35 @@
-@extends('User.Layouts.Master')
+@extends('Layouts.Master')
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-Komoditas') }}
+					url = {{ Route('Data-Satuan-Kerja') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Kota-Komoditas', ['Id' => Crypter::Encrypt($Kota->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Satuan-Kerja') }}" method="POST">
 						{{csrf_field()}}
+						<div class="form-group">
+							<label class="col-md-2 control-label">Nama Satuan Kerja</label>
+							<div class="col-md-10">
+								<input type="text" name="nama" class="form-control" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Alamat</label>
+							<div class="col-md-10">
+								<input type="text" name="alamat" class="form-control" required>
+							</div>
+						</div>
 						<field-daerah-provkota
-							provinsi = {{$Kota->provinsi_id}}
-							kota = {{$Kota->id}}
-							disabled = 1
 							api = {{Auth::User()->api_token}}
 						></field-daerah-provkota>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Komoditas</label>
+							<label class="col-md-2 control-label">Nomor Telepon</label>
 							<div class="col-md-10">
-								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple>
-									@foreach ($Komoditas as $DataKomoditas)
-										<option value="{{$DataKomoditas->id}}" {{$Kota->Komoditas->pluck('id')->search($DataKomoditas->id) !== false ? 'selected' : ''}}>{{$DataKomoditas->nama}}</option>
-									@endforeach
-				        </select>
+								<input type="text" name="nomor_telepon" class="form-control" required>
 							</div>
 						</div>
 						<div class="row">

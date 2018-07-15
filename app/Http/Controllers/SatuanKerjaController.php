@@ -12,11 +12,11 @@ class SatuanKerjaController extends Controller
 {
   public function Data(){
     $SatKerja = SatuanKerja::all();
-    return view('User.SatuanKerja.Data', ['SatKerja' => $SatKerja]);
+    return view('SatuanKerja.Data', ['SatKerja' => $SatKerja]);
   }
 
   public function Tambah(){
-    return view('User.SatuanKerja.Tambah');
+    return view('SatuanKerja.Tambah');
   }
 
   public function submitTambah(Request $request){
@@ -31,7 +31,7 @@ class SatuanKerjaController extends Controller
     $Id = Crypter::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
 
-    return view('User.SatuanKerja.Edit', ['SatKerja' => $SatKerja]);
+    return view('SatuanKerja.Edit', ['SatKerja' => $SatKerja]);
   }
 
   public function submitEdit(Request $request, $Id){
