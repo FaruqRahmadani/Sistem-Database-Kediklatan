@@ -13,4 +13,16 @@ class UserController extends Controller
 
     return view('User.Data', ['User' => $User]);
   }
+
+  public function Tambah(){
+    return view('User.Tambah');
+  }
+
+  public function submitTambah(Request $request){
+    $User = new User;
+    $User->fill($request->all());
+    $User->save();
+
+    return redirect(route('Data-User'))->with('success', 'Tambah Data Berhasil');
+  }
 }
