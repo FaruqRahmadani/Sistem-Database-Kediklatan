@@ -69606,9 +69606,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'satkerja', 'provinsi', 'kota'],
+  props: ['api', 'satkerja', 'provinsi', 'kota', 'show'],
   data: function data() {
     return {
       dataprovinsi: '',
@@ -69689,6 +69701,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(response.data);
         _this4.getSatuanKerja();
         _this4.SatKerjaId = response.data;
+        _this4.nama = null;
+        _this4.alamat = null;
+        _this4.nomor_telepon = null;
+        _this4.provinsi_id = null;
+        _this4.kota_id = null;
       }).catch(function (error) {
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
       });
@@ -69714,127 +69731,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Satuan Kerja")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.SatKerjaId,
-                expression: "SatKerjaId"
-              }
-            ],
-            staticClass: "form-control input-lg",
-            attrs: { name: "satuan_kerja_id", required: "" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.SatKerjaId = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "0" } }, [_vm._v("Buat Baru")]),
-            _vm._v(" "),
-            _c("option", { attrs: { disabled: "" } }, [_vm._v("----------")]),
-            _vm._v(" "),
-            _vm._l(this.datasatkerja, function(datasatkerja) {
-              return _c("option", { domProps: { value: datasatkerja.id } }, [
-                _vm._v(_vm._s(datasatkerja.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.SatKerjaId == 0
-      ? _c("div", [
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "col-md-2 control-label" }, [
-              _vm._v("Nama Satuan Kerja")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.nama,
-                    expression: "nama"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", required: "" },
-                domProps: { value: _vm.nama },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.nama = $event.target.value
-                  }
-                }
-              })
-            ])
+    _vm.show == "field"
+      ? _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "col-md-2 control-label" }, [
+            _vm._v("Satuan Kerja")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "col-md-2 control-label" }, [
-              _vm._v("Alamat")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.alamat,
-                    expression: "alamat"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", required: "" },
-                domProps: { value: _vm.alamat },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.alamat = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "col-md-2 control-label" }, [
-              _vm._v("Provinsi")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
+          _c("div", { staticClass: "col-md-10" }, [
+            _c("div", { staticClass: "input-group" }, [
               _c(
                 "select",
                 {
@@ -69842,68 +69746,12 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.ProvinsiId,
-                      expression: "ProvinsiId"
+                      value: _vm.SatKerjaId,
+                      expression: "SatKerjaId"
                     }
                   ],
                   staticClass: "form-control input-lg",
-                  attrs: { required: "" },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.ProvinsiId = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function($event) {
-                        _vm.showKota(_vm.ProvinsiId)
-                      }
-                    ]
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Provinsi")]),
-                  _vm._v(" "),
-                  _vm._l(this.dataprovinsi, function(dataprovinsi) {
-                    return _c(
-                      "option",
-                      { domProps: { value: dataprovinsi.id } },
-                      [_vm._v(_vm._s(dataprovinsi.nama_provinsi))]
-                    )
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "col-md-2 control-label" }, [
-              _vm._v("Kab/Kota")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.KotaId,
-                      expression: "KotaId"
-                    }
-                  ],
-                  staticClass: "form-control input-lg",
-                  attrs: { required: "" },
+                  attrs: { name: "satuan_kerja_id", required: "" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -69914,78 +69762,318 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.KotaId = $event.target.multiple
+                      _vm.SatKerjaId = $event.target.multiple
                         ? $$selectedVal
                         : $$selectedVal[0]
                     }
                   }
                 },
-                [
-                  _c("option", { attrs: { value: "" } }, [_vm._v("Kota")]),
-                  _vm._v(" "),
-                  _vm._l(this.datakota, function(datakota) {
-                    return _c("option", { domProps: { value: datakota.id } }, [
-                      _vm._v(_vm._s(datakota.nama_kota))
-                    ])
-                  })
-                ],
-                2
-              )
+                _vm._l(this.datasatkerja, function(datasatkerja) {
+                  return _c(
+                    "option",
+                    { domProps: { value: datasatkerja.id } },
+                    [_vm._v(_vm._s(datasatkerja.nama))]
+                  )
+                })
+              ),
+              _vm._v(" "),
+              _vm._m(0)
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { staticClass: "col-md-2 control-label" }, [
-              _vm._v("Nomor Telepon")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-10" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.nomor_telepon,
-                    expression: "nomor_telepon"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", required: "" },
-                domProps: { value: _vm.nomor_telepon },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.nomor_telepon = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "text-center" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info btn-fill",
-                    attrs: { type: "button", name: "button" },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v("Simpan")]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("hr")
+          ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "modalSatuanKerja",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalCenterTitle",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("label", [_vm._v("Nama Satuan Kerja")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.nama,
+                            expression: "nama"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", required: "" },
+                        domProps: { value: _vm.nama },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.nama = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("label", [_vm._v("Alamat")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.alamat,
+                            expression: "alamat"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", required: "" },
+                        domProps: { value: _vm.alamat },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.alamat = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("label", [_vm._v("Provinsi")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.ProvinsiId,
+                              expression: "ProvinsiId"
+                            }
+                          ],
+                          staticClass: "form-control input-lg",
+                          attrs: { required: "" },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.ProvinsiId = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              function($event) {
+                                _vm.showKota(_vm.ProvinsiId)
+                              }
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Provinsi")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(this.dataprovinsi, function(dataprovinsi) {
+                            return _c(
+                              "option",
+                              { domProps: { value: dataprovinsi.id } },
+                              [_vm._v(_vm._s(dataprovinsi.nama_provinsi))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("label", [_vm._v("Kab/Kota")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.KotaId,
+                              expression: "KotaId"
+                            }
+                          ],
+                          staticClass: "form-control input-lg",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.KotaId = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Kota")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(this.datakota, function(datakota) {
+                            return _c(
+                              "option",
+                              { domProps: { value: datakota.id } },
+                              [_vm._v(_vm._s(datakota.nama_kota))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("label", [_vm._v("Nomor Telepon")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.nomor_telepon,
+                            expression: "nomor_telepon"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", required: "" },
+                        domProps: { value: _vm.nomor_telepon },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.nomor_telepon = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info btn-fill",
+                      attrs: {
+                        type: "button",
+                        name: "button",
+                        "data-dismiss": "modal"
+                      },
+                      on: { click: _vm.submit }
+                    },
+                    [_vm._v("Simpan")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "input-group-btn" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#modalSatuanKerja"
+          }
+        },
+        [_vm._v("Tambah Baru")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+      _vm._v(" "),
+      _c("h3", { staticClass: "modal-title" }, [_vm._v("Tambah Satuan Kerja")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

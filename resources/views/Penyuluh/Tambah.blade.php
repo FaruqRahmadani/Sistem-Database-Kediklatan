@@ -7,6 +7,9 @@
 					<button-kembali
 					url = {{ Route('Data-Unit-Kerja') }}
 					></button-kembali>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+						Launch demo modal
+					</button>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Penyuluh') }}" method="POST">
@@ -45,7 +48,7 @@
 									<option value="Katolik">Katolik</option>
 									<option value="Hindu">Hindu</option>
 									<option value="Buddha">Buddha</option>
-				        </select>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -55,7 +58,7 @@
 									<option value="" selected hidden>Jenis Kelamin</option>
 									<option value="Laki-Laki">Laki-Laki</option>
 									<option value="Perempuan">Perempuan</option>
-				        </select>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -65,7 +68,7 @@
 									<option value="" selected hidden>Status Kawin</option>
 									<option value="Belum Kawin">Belum Kawin</option>
 									<option value="Sudah Kawin">Sudah Kawin</option>
-				        </select>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -90,7 +93,7 @@
 									<option value="SMA">SMA</option>
 									<option value="DI/II">DI/II</option>
 									<option value="S1">S1</option>
-				        </select>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -100,10 +103,11 @@
 							</div>
 						</div>
 						<field-satkerja
+							show = 'field'
 							api = {{Auth::User()->api_token}}
 						></field-satkerja>
 						<field-unitkerja
-							api = {{Auth::User()->api_token}}
+						api = {{Auth::User()->api_token}}
 						></field-unitkerja>
 						<div class="row">
 							<div class="text-center">

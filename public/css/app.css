@@ -12994,3 +12994,16 @@ img.login-logo {
 .span-list {
   margin: 3px !important;
 }
+
+.show {
+  opacity: 1;
+}
+
+.modal-dialog {
+  top: 25%;
+}
+
+.input-group-btn > .btn {
+  z-index: 1 !important;
+  margin-left: -5px !important;
+}
