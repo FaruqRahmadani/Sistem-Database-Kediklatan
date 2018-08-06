@@ -4,7 +4,7 @@
       <label class="col-md-2 control-label">Satuan Kerja</label>
       <div class="col-md-10">
         <div class="input-group">
-          <select name="satuan_kerja_id" class="form-control input-lg" v-model="SatKerjaId" required>
+          <select name="satuan_kerja_id" class="form-control input-lg" v-model="SatKerjaId">
             <option v-for="datasatkerja in this.datasatkerja" :value="datasatkerja.id">{{datasatkerja.nama}}</option>
           </select>
           <span class="input-group-btn">
@@ -27,19 +27,19 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <label>Nama Satuan Kerja</label>
-                  <input type="text" v-model="nama" class="form-control" required>
+                  <input type="text" v-model="nama" class="form-control">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-12">
                   <label>Alamat</label>
-                  <input type="text" v-model="alamat" class="form-control" required>
+                  <input type="text" v-model="alamat" class="form-control">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-12">
                   <label>Provinsi</label>
-                  <select class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)" required>
+                  <select class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)">
                     <option value="">Provinsi</option>
                     <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama_provinsi}}</option>
                   </select>
@@ -48,7 +48,7 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <label>Kab/Kota</label>
-                  <select class="form-control input-lg" v-model="KotaId" required>
+                  <select class="form-control input-lg" v-model="KotaId">
                     <option value="">Kota</option>
                     <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama_kota}}</option>
                   </select>
@@ -57,7 +57,7 @@
               <div class="form-group">
                 <div class="col-md-12">
                   <label>Nomor Telepon</label>
-                  <input type="text" v-model="nomor_telepon" class="form-control" required>
+                  <input type="text" v-model="nomor_telepon" class="form-control">
                 </div>
               </div>
             </div>
@@ -156,14 +156,5 @@ export default {
       });
     },
   },
-  watch: {
-    SatKerjaId: function (val){
-      if (val == 0) {
-        $( "#submit" ).prop('disabled', true);
-      }else{
-        $( "#submit" ).prop('disabled', false);
-      }
-    }
-  }
 }
 </script>

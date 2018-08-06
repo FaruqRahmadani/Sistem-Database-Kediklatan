@@ -3,35 +3,45 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Unit Kerja</label>
       <div class="col-md-10">
-        <select name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId" required>
-          <option value="0">Buat Baru</option>
-          <option disabled>----------</option>
-          <option v-for="dataunitkerja in this.dataunitkerja" :value="dataunitkerja.id">{{dataunitkerja.nama}}</option>
-        </select>
+        <div class="input-group">
+          <select name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId" required>
+            <option v-for="dataunitkerja in this.dataunitkerja" :value="dataunitkerja.id">{{dataunitkerja.nama}}</option>
+          </select>
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button" data-toggle="modal" data-target="#modalUnitKerja">Tambah Baru</button>
+          </span>
+        </div>
       </div>
     </div>
-    <div v-if="UnitKerjaId == 0">
-      <hr>
-      <div class="form-group">
-        <label class="col-md-2 control-label">Nama Unit Kerja</label>
-        <div class="col-md-10">
-          <input type="text" v-model="nama" class="form-control" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label">Alamat</label>
-        <div class="col-md-10">
-          <input type="text" v-model="alamat" class="form-control" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="text-center">
-          <div class="col-md-12">
-            <button type="button" name="button" class="btn btn-info btn-fill" @click="submit">Simpan</button>
+    <div class="modal fade" id="modalUnitKerja" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title">Tambah Unit Kerja</h3>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label>Nama Unit Kerja</label>
+                <input type="text" v-model="nama" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label>Alamat</label>
+                <input type="text" v-model="alamat" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" name="button" class="btn btn-info btn-fill" @click="submit" data-dismiss="modal">Simpan</button>
           </div>
         </div>
       </div>
-      <hr>
     </div>
   </div>
 </template>
@@ -78,14 +88,5 @@ export default {
       });
     }
   },
-  watch: {
-    UnitKerjaId: function (val){
-      if (val == 0) {
-        $( "#submit" ).prop('disabled', true);
-      }else{
-        $( "#submit" ).prop('disabled', false);
-      }
-    }
-  }
 }
 </script>
