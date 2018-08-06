@@ -69620,7 +69620,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'satkerja', 'provinsi', 'kota', 'show'],
+  props: ['api', 'satkerja', 'provinsi', 'kota'],
   data: function data() {
     return {
       dataprovinsi: '',
@@ -69731,57 +69731,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.show == "field"
-      ? _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "col-md-2 control-label" }, [
-            _vm._v("Satuan Kerja")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-10" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c(
-                "select",
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "col-md-2 control-label" }, [
+        _vm._v("Satuan Kerja")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c(
+            "select",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.SatKerjaId,
-                      expression: "SatKerjaId"
-                    }
-                  ],
-                  staticClass: "form-control input-lg",
-                  attrs: { name: "satuan_kerja_id", required: "" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.SatKerjaId = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                _vm._l(this.datasatkerja, function(datasatkerja) {
-                  return _c(
-                    "option",
-                    { domProps: { value: datasatkerja.id } },
-                    [_vm._v(_vm._s(datasatkerja.nama))]
-                  )
-                })
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-          ])
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.SatKerjaId,
+                  expression: "SatKerjaId"
+                }
+              ],
+              staticClass: "form-control input-lg",
+              attrs: { name: "satuan_kerja_id", required: "" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.SatKerjaId = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(this.datasatkerja, function(datasatkerja) {
+              return _c("option", { domProps: { value: datasatkerja.id } }, [
+                _vm._v(_vm._s(datasatkerja.nama))
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _vm._m(0)
         ])
-      : _vm._e(),
+      ])
+    ]),
     _vm._v(" "),
     _c("div", [
       _c(

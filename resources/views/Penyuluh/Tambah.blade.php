@@ -100,7 +100,6 @@
 							</div>
 						</div>
 						<field-satkerja
-							show = 'field'
 							api = {{Auth::User()->api_token}}
 						></field-satkerja>
 						<field-unitkerja

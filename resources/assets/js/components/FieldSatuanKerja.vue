@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form-group" v-if="show == 'field'">
+    <div class="form-group">
       <label class="col-md-2 control-label">Satuan Kerja</label>
       <div class="col-md-10">
         <div class="input-group">
@@ -74,7 +74,7 @@
 
 <script>
 export default {
-  props: ['api', 'satkerja', 'provinsi', 'kota', 'show'],
+  props: ['api', 'satkerja', 'provinsi', 'kota'],
   data: function(){
     return {
       dataprovinsi : '',
