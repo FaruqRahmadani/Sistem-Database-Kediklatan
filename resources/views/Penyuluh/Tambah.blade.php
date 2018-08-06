@@ -7,9 +7,6 @@
 					<button-kembali
 					url = {{ Route('Data-Unit-Kerja') }}
 					></button-kembali>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-						Launch demo modal
-					</button>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Penyuluh') }}" method="POST">

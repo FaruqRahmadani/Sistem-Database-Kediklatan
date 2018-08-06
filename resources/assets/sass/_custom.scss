@@ -54,7 +54,9 @@ img.login-logo  {
 }
 
 .modal-dialog{
-  top: 25%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%) !important;
 }
 
 .input-group-btn > .btn{
