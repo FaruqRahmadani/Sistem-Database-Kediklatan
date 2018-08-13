@@ -58,7 +58,7 @@ class KelTaniController extends Controller
   public function Delete($Id){
     $Id = Crypter::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
-    $KelompokTani->Komoditas()->sync($request->komoditas_id);
+    $KelompokTani->Komoditas()->detach();
     $KelompokTani->delete();
 
     return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
