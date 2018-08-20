@@ -19,7 +19,7 @@
 		<div class="panel panel-teal panel-widget border-right">
 			<div class="row no-padding">
 				<em class="fa fa-xl fa-user color-blue"></em>
-				<div class="large">120</div>
+				<div class="large">{{$Penyuluh->count()}}</div>
 				<div class="text-muted">Penyuluh</div>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 		<div class="panel panel-blue panel-widget border-right">
 			<div class="row no-padding">
 				<em class="fa fa-xl fa-users color-orange"></em>
-				<div class="large">52</div>
+				<div class="large">{{$KelompokTani->count()}}</div>
 				<div class="text-muted">Kelompok Tani</div>
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 		<div class="panel panel-orange panel-widget border-right">
 			<div class="row no-padding">
 				<em class="fa fa-xl fa-archive color-teal"></em>
-				<div class="large">24</div>
+				<div class="large">{{$Komoditas->count()}}</div>
 				<div class="text-muted">Komoditas</div>
 			</div>
 		</div>
