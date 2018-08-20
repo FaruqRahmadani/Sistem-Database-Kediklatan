@@ -12,7 +12,7 @@ class SatuanKerjaController extends Controller
 {
   public function Data(){
     $SatKerja = SatuanKerja::all();
-    return view('SatuanKerja.Data', ['SatKerja' => $SatKerja]);
+    return view('SatuanKerja.Data', compact('SatKerja'));
   }
 
   public function Tambah(){
@@ -23,15 +23,13 @@ class SatuanKerjaController extends Controller
     $SatKerja = new SatuanKerja;
     $SatKerja->fill($request->all());
     $SatKerja->save();
-
     return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
     $Id = Crypter::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
-
-    return view('SatuanKerja.Edit', ['SatKerja' => $SatKerja]);
+    return view('SatuanKerja.Edit', compact('SatKerja'));
   }
 
   public function submitEdit(Request $request, $Id){
@@ -39,7 +37,6 @@ class SatuanKerjaController extends Controller
     $SatKerja = SatuanKerja::findOrFail($Id);
     $SatKerja->fill($request->all());
     $SatKerja->save();
-
     return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
@@ -47,7 +44,6 @@ class SatuanKerjaController extends Controller
     $Id = Crypter::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
     $SatKerja->delete();
-
     return redirect()->Route('Data-Satuan-Kerja')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

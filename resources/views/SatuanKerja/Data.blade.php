@@ -12,7 +12,7 @@
 					></button-print>
 				</div>
 				<div class="panel-body">
-					<table id="table_satkerja" class="table table-striped table-advance table-bordered table-custom" style="width:100%">
+					<table id="table_satkerja" class="table table-hover table-custom">
 						<thead>
 							<tr>
 								<th class="text-center"> Nama</th>

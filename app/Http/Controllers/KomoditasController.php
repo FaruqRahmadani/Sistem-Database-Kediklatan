@@ -12,7 +12,7 @@ class KomoditasController extends Controller
 {
   public function Data(){
     $Komoditas = Komoditas::all();
-    return view('Komoditas.Data', ['Komoditas' => $Komoditas]);
+    return view('Komoditas.Data', compact('Komoditas'));
   }
 
   public function Tambah(){
@@ -23,15 +23,13 @@ class KomoditasController extends Controller
     $Komoditas = new Komoditas;
     $Komoditas->fill($request->all());
     $Komoditas->save();
-
     return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
     $Id = Crypter::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
-
-    return view('Komoditas.Edit', ['Komoditas' => $Komoditas]);
+    return view('Komoditas.Edit', compact('Komoditas'));
   }
 
   public function submitEdit(Request $request, $Id){
@@ -39,7 +37,6 @@ class KomoditasController extends Controller
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->fill($request->all());
     $Komoditas->save();
-
     return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
@@ -47,7 +44,6 @@ class KomoditasController extends Controller
     $Id = Crypter::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->delete();
-
     return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }

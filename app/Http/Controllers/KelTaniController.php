@@ -14,15 +14,13 @@ class KelTaniController extends Controller
 {
   public function Data(){
     $KelompokTani = KelompokTani::all();
-
-    return view('KelompokTani.Data', ['KelompokTani' => $KelompokTani]);
+    return view('KelompokTani.Data', compact('KelompokTani'));
   }
 
   public function Tambah(){
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
-
-    return view('KelompokTani.Tambah', ['Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
+    return view('KelompokTani.Tambah', compact('Komoditas', 'Penyuluh'));
   }
 
   public function submitTambah(Request $request){
@@ -32,7 +30,6 @@ class KelTaniController extends Controller
     foreach ($request->komoditas_id as $KomoditasId) {
       $KelompokTani->Komoditas()->attach($KomoditasId);
     }
-
     return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
@@ -41,8 +38,7 @@ class KelTaniController extends Controller
     $KelompokTani = KelompokTani::findOrFail($Id);
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
-
-    return view('KelompokTani.Edit', ['KelompokTani' => $KelompokTani, 'Komoditas' => $Komoditas, 'Penyuluh' => $Penyuluh]);
+    return view('KelompokTani.Edit', compact('KelompokTani', 'Komoditas', 'Penyuluh'));
   }
 
   public function submitEdit(Request $request, $Id){
@@ -51,7 +47,6 @@ class KelTaniController extends Controller
     $KelompokTani->fill($request->all());
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
     $KelompokTani->save();
-
     return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
@@ -60,7 +55,6 @@ class KelTaniController extends Controller
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->Komoditas()->detach();
     $KelompokTani->delete();
-
     return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
   }
 }
