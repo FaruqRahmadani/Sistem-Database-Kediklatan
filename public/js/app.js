@@ -68542,6 +68542,10 @@ $(document).ready(function () {
     language: langDataTable
   });
 
+  $('#table').DataTable({
+    language: langDataTable
+  });
+
   $("#select2").select2();
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))

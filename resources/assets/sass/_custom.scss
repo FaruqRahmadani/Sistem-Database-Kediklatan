@@ -35,8 +35,14 @@ img.login-logo  {
   th:not(:first-child), td:not(:first-child){
     white-space: nowrap;
   }
+}
+
+.table{
   th, td{
     font-size: 14px;
+  }
+  th:last-child, td:last-child{
+    white-space: nowrap;
   }
 }
 

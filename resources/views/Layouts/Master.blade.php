@@ -85,6 +85,11 @@
             <em class="fa fa-calendar">&nbsp;</em> Kelompok Tani
           </a>
         </li>
+        <li {{HRoute::ActiveRoute('Data-P4S')}}>
+          <a href="{{ Route('Data-P4S') }}">
+            <em class="fa fa-calendar">&nbsp;</em> P4S
+          </a>
+        </li>
         <button-logout></button-logout>
       </ul>
     </div>

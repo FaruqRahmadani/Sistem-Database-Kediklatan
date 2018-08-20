@@ -12982,8 +12982,12 @@ img.login-logo {
   white-space: nowrap;
 }
 
-.table-custom th, .table-custom td {
+.table th, .table td {
   font-size: 14px;
+}
+
+.table th:last-child, .table td:last-child {
+  white-space: nowrap;
 }
 
 .select2-container .select2-selection--multiple {

@@ -106,6 +106,10 @@ $(document).ready(function() {
     language: langDataTable,
   });
 
+  $('#table').DataTable({
+    language: langDataTable,
+  });
+
   $("#select2").select2();
 
 });
