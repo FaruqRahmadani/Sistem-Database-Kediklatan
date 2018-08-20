@@ -28,8 +28,8 @@
 								<tr>
 									<td>{{$DataSatKerja->nama}}</td>
 									<td>{{$DataSatKerja->alamat}}</td>
-									<td>{{$DataSatKerja->Provinsi->nama_provinsi}}</td>
-									<td>{{$DataSatKerja->Kota->nama_kota}}</td>
+									<td>{{$DataSatKerja->Provinsi->nama}}</td>
+									<td>{{$DataSatKerja->Kota->nama}}</td>
 									<td>{{$DataSatKerja->nomor_telepon}}</td>
 									<td class="text-center">
 										<button-edit

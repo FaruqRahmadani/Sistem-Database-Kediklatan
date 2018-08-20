@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Seed;
-
 class ProvinsisTableSeeder extends Seeder
 {
   /**
@@ -14,42 +12,43 @@ class ProvinsisTableSeeder extends Seeder
   public function run()
   {
     $Provinsi = [
-      array('id' => '11','nama_provinsi' => 'ACEH'),
-      array('id' => '12','nama_provinsi' => 'SUMATERA UTARA'),
-      array('id' => '13','nama_provinsi' => 'SUMATERA BARAT'),
-      array('id' => '14','nama_provinsi' => 'RIAU'),
-      array('id' => '15','nama_provinsi' => 'JAMBI'),
-      array('id' => '16','nama_provinsi' => 'SUMATERA SELATAN'),
-      array('id' => '17','nama_provinsi' => 'BENGKULU'),
-      array('id' => '18','nama_provinsi' => 'LAMPUNG'),
-      array('id' => '19','nama_provinsi' => 'KEPULAUAN BANGKA BELITUNG'),
-      array('id' => '21','nama_provinsi' => 'KEPULAUAN RIAU'),
-      array('id' => '31','nama_provinsi' => 'DKI JAKARTA'),
-      array('id' => '32','nama_provinsi' => 'JAWA BARAT'),
-      array('id' => '33','nama_provinsi' => 'JAWA TENGAH'),
-      array('id' => '34','nama_provinsi' => 'DI YOGYAKARTA'),
-      array('id' => '35','nama_provinsi' => 'JAWA TIMUR'),
-      array('id' => '36','nama_provinsi' => 'BANTEN'),
-      array('id' => '51','nama_provinsi' => 'BALI'),
-      array('id' => '52','nama_provinsi' => 'NUSA TENGGARA BARAT'),
-      array('id' => '53','nama_provinsi' => 'NUSA TENGGARA TIMUR'),
-      array('id' => '61','nama_provinsi' => 'KALIMANTAN BARAT'),
-      array('id' => '62','nama_provinsi' => 'KALIMANTAN TENGAH'),
-      array('id' => '63','nama_provinsi' => 'KALIMANTAN SELATAN'),
-      array('id' => '64','nama_provinsi' => 'KALIMANTAN TIMUR'),
-      array('id' => '65','nama_provinsi' => 'KALIMANTAN UTARA'),
-      array('id' => '71','nama_provinsi' => 'SULAWESI UTARA'),
-      array('id' => '72','nama_provinsi' => 'SULAWESI TENGAH'),
-      array('id' => '73','nama_provinsi' => 'SULAWESI SELATAN'),
-      array('id' => '74','nama_provinsi' => 'SULAWESI TENGGARA'),
-      array('id' => '75','nama_provinsi' => 'GORONTALO'),
-      array('id' => '76','nama_provinsi' => 'SULAWESI BARAT'),
-      array('id' => '81','nama_provinsi' => 'MALUKU'),
-      array('id' => '82','nama_provinsi' => 'MALUKU UTARA'),
-      array('id' => '91','nama_provinsi' => 'PAPUA BARAT'),
-      array('id' => '94','nama_provinsi' => 'PAPUA')
+      array('id' => '11','nama' => 'Aceh'),
+      array('id' => '12','nama' => 'Sumatera Utara'),
+      array('id' => '13','nama' => 'Sumatera Barat'),
+      array('id' => '14','nama' => 'Riau'),
+      array('id' => '15','nama' => 'Jambi'),
+      array('id' => '16','nama' => 'Sumatera Selatan'),
+      array('id' => '17','nama' => 'Bengkulu'),
+      array('id' => '18','nama' => 'Lampung'),
+      array('id' => '19','nama' => 'Kepulauan Bangka Belitung'),
+      array('id' => '21','nama' => 'Kepulauan Riau'),
+      array('id' => '31','nama' => 'DKI Jakarta'),
+      array('id' => '32','nama' => 'Jawa Barat'),
+      array('id' => '33','nama' => 'Jawa Tengah'),
+      array('id' => '34','nama' => 'DI Yogyakarta'),
+      array('id' => '35','nama' => 'Jawa Timur'),
+      array('id' => '36','nama' => 'Banten'),
+      array('id' => '51','nama' => 'Bali'),
+      array('id' => '52','nama' => 'Nusa Tenggara Barat'),
+      array('id' => '53','nama' => 'Nusa Tenggara Timur'),
+      array('id' => '61','nama' => 'Kalimantan Barat'),
+      array('id' => '62','nama' => 'Kalimantan Tengah'),
+      array('id' => '63','nama' => 'Kalimantan Selatan'),
+      array('id' => '64','nama' => 'Kalimantan Timur'),
+      array('id' => '65','nama' => 'Kalimantan Utara'),
+      array('id' => '71','nama' => 'Sulawesi Utara'),
+      array('id' => '72','nama' => 'Sulawesi Tengah'),
+      array('id' => '73','nama' => 'Sulawesi Selatan'),
+      array('id' => '74','nama' => 'Sulawesi Tenggara'),
+      array('id' => '75','nama' => 'Gorontalo'),
+      array('id' => '76','nama' => 'Sulawesi Barat'),
+      array('id' => '81','nama' => 'Maluku'),
+      array('id' => '82','nama' => 'Maluku Utara'),
+      array('id' => '91','nama' => 'Papua Barat'),
+      array('id' => '94','nama' => 'Papua')
     ];
-
-    DB::table('provinsis')->insert($Provinsi);
+    if (!DB::table('provinsis')->count()) {
+      DB::table('provinsis')->insert($Provinsi);
+    }
   }
 }

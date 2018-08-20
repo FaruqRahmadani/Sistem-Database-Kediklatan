@@ -12,7 +12,7 @@
 					></button-print>
 				</div>
 				<div class="panel-body">
-					<table id="table_kotakomoditas" class="table table-striped table-advance table-bordered table-custom">
+					<table id="table_kotakomoditas" class="table table-hover table-custom">
 						<thead>
 							<tr>
 								<th class="text-center"> Provinsi</th>
@@ -24,11 +24,11 @@
 						<tbody>
 							@foreach ($Kota as $DataKota)
 								<tr>
-									<td>{{$DataKota->Provinsi->nama_provinsi}}</td>
-									<td>{{$DataKota->nama_kota}}</td>
+									<td>{{$DataKota->Provinsi->nama}}</td>
+									<td>{{$DataKota->nama}}</td>
 									<td class="text-center">
 										@foreach ($DataKota->Komoditas as $Komoditas)
-											<span class="btn-default btn-xs span-list">
+											<span class="badge badge-pill">
 										    {{$Komoditas->nama}}
 										  </span>
 										@endforeach

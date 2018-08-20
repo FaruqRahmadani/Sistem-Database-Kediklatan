@@ -41,7 +41,7 @@
                   <label>Provinsi</label>
                   <select class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)">
                     <option value="">Provinsi</option>
-                    <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama_provinsi}}</option>
+                    <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama}}</option>
                   </select>
                 </div>
               </div>
@@ -50,7 +50,7 @@
                   <label>Kab/Kota</label>
                   <select class="form-control input-lg" v-model="KotaId">
                     <option value="">Kota</option>
-                    <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama_kota}}</option>
+                    <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama}}</option>
                   </select>
                 </div>
               </div>

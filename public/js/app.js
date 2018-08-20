@@ -69188,7 +69188,7 @@ var render = function() {
             _vm._v(" "),
             _vm._l(this.dataprovinsi, function(dataprovinsi) {
               return _c("option", { domProps: { value: dataprovinsi.id } }, [
-                _vm._v(_vm._s(dataprovinsi.nama_provinsi))
+                _vm._v(_vm._s(dataprovinsi.nama))
               ])
             })
           ],
@@ -69241,7 +69241,7 @@ var render = function() {
             _vm._v(" "),
             _vm._l(this.datakota, function(datakota) {
               return _c("option", { domProps: { value: datakota.id } }, [
-                _vm._v(_vm._s(datakota.nama_kota))
+                _vm._v(_vm._s(datakota.nama))
               ])
             })
           ],
@@ -69901,7 +69901,7 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: dataprovinsi.id } },
-                              [_vm._v(_vm._s(dataprovinsi.nama_provinsi))]
+                              [_vm._v(_vm._s(dataprovinsi.nama))]
                             )
                           })
                         ],
@@ -69951,7 +69951,7 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: datakota.id } },
-                              [_vm._v(_vm._s(datakota.nama_kota))]
+                              [_vm._v(_vm._s(datakota.nama))]
                             )
                           })
                         ],
