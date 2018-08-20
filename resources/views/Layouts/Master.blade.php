@@ -55,39 +55,39 @@
             </li>
             <li {{HRoute::ActiveRoute('Data-Satuan-Kerja')}}>
               <a href="{{ Route('Data-Satuan-Kerja') }}">
-                <em class="fa fa-calendar">&nbsp;</em> Satuan Kerja
+                <em class="fa fa-building">&nbsp;</em> Satuan Kerja
               </a>
             </li>
             <li {{HRoute::ActiveRoute('Data-Unit-Kerja')}}>
               <a href="{{ Route('Data-Unit-Kerja') }}">
-                <em class="fa fa-calendar">&nbsp;</em> Unit Kerja
+                <em class="fa fa-building-o">&nbsp;</em> Unit Kerja
               </a>
             </li>
             <li {{HRoute::ActiveRoute('Data-Komoditas')}}>
               <a href="{{ Route('Data-Komoditas') }}">
-                <em class="fa fa-calendar">&nbsp;</em> Komoditas
+                <em class="fa fa-archive">&nbsp;</em> Komoditas
               </a>
             </li>
             <li {{HRoute::ActiveRoute('Data-Kota-Komoditas')}}>
               <a href="{{ Route('Data-Kota-Komoditas') }}">
-                <em class="fa fa-calendar">&nbsp;</em> Kota Komoditas
+                <em class="fa fa-map-o">&nbsp;</em> Kota Komoditas
               </a>
             </li>
           </ul>
         </li>
         <li {{HRoute::ActiveRoute('Data-Penyuluh')}}>
           <a href="{{ Route('Data-Penyuluh') }}">
-            <em class="fa fa-calendar">&nbsp;</em> Penyuluh
+            <em class="fa fa-user">&nbsp;</em> Penyuluh
           </a>
         </li>
         <li {{HRoute::ActiveRoute('Data-Kelompok-Tani')}}>
           <a href="{{ Route('Data-Kelompok-Tani') }}">
-            <em class="fa fa-calendar">&nbsp;</em> Kelompok Tani
+            <em class="fa fa-users">&nbsp;</em> Kelompok Tani
           </a>
         </li>
         <li {{HRoute::ActiveRoute('Data-P4S')}}>
           <a href="{{ Route('Data-P4S') }}">
-            <em class="fa fa-calendar">&nbsp;</em> P4S
+            <em class="fa fa-th-large">&nbsp;</em> P4S
           </a>
         </li>
         <button-logout></button-logout>
