@@ -69632,37 +69632,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios({
-      method: 'get',
-      url: '/api/dataprovinsi',
-      headers: { Authorization: 'Bearer ' + this.api }
-    }).then(function (response) {
-      _this.dataprovinsi = response.data;
-      if (_this.kota != null) {
-        _this.searchKey(_this.dataprovinsi, _this.provinsi);
-      }
-    });
+    this.showProvinsi();
+    if (this.KotaId) {
+      this.showKota();
+    }
   },
   methods: {
-    searchKey: function searchKey(data) {
-      var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    showProvinsi: function showProvinsi() {
+      var _this = this;
 
-      var returnData = [];
-      $.each(data, function (index, value) {
-        returnData.push(value.id);
+      axios({
+        method: 'get',
+        url: '/api/dataprovinsi',
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        _this.dataprovinsi = response.data;
       });
-      if (returnData.lastIndexOf(parseInt(key)) != '-1') {
-        this.showKota(this.ProvinsiId);
-      }
     },
-    showKota: function showKota(ProvinsiId) {
+    showKota: function showKota() {
       var _this2 = this;
 
       axios({
         method: 'get',
-        url: '/api/datakota/' + ProvinsiId,
+        url: '/api/datakota/' + this.ProvinsiId,
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
         _this2.datakota = response.data;
@@ -69718,9 +69710,7 @@ var render = function() {
                     ? $$selectedVal
                     : $$selectedVal[0]
                 },
-                function($event) {
-                  _vm.showKota(_vm.ProvinsiId)
-                }
+                _vm.showKota
               ]
             }
           },

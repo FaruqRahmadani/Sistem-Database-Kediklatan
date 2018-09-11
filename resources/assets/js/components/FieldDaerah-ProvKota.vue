@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Provinsi</label>
       <div class="col-md-10">
-        <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)" :disabled="disable == 1" required>
+        <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota" :disabled="disable == 1" required>
           <option value="">Provinsi</option>
           <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama}}</option>
         </select>
@@ -34,31 +34,25 @@ export default {
     }
   },
   mounted: function(){
-    axios({
-      method: 'get',
-      url: '/api/dataprovinsi',
-      headers: { Authorization: 'Bearer '+this.api },
-    }).then((response) => {
-      this.dataprovinsi = response.data
-      if (this.kota != null) {
-        this.searchKey(this.dataprovinsi, this.provinsi)
-      }
-    })
+    this.showProvinsi()
+    if (this.KotaId) {
+      this.showKota()
+    }
   },
   methods: {
-    searchKey(data, key = null){
-      var returnData = []
-      $.each(data, function(index, value){
-        returnData.push(value.id)
-      })
-      if (returnData.lastIndexOf(parseInt(key)) != '-1') {
-        this.showKota(this.ProvinsiId)
-      }
-    },
-    showKota(ProvinsiId){
+    showProvinsi(){
       axios({
         method: 'get',
-        url: '/api/datakota/'+ProvinsiId,
+        url: '/api/dataprovinsi',
+        headers: { Authorization: 'Bearer '+this.api },
+      }).then((response) => {
+        this.dataprovinsi = response.data
+      })
+    },
+    showKota(){
+      axios({
+        method: 'get',
+        url: '/api/datakota/'+this.ProvinsiId,
         headers: { Authorization: 'Bearer '+this.api },
       }).then((response) => {
         this.datakota = response.data
