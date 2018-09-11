@@ -5,7 +5,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{asset('img/bbpp-logo.png')}}" type="image/gif">
   <title>Sistem Kediklatan - BBPP Binuang Kalimantan Selatan</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -111,7 +110,6 @@
     </div>
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   @if (session('alert'))
     <script type="text/javascript">
     notif('{{session('tipe')}}', '{{session('judul')}}', '{{session('pesan')}}');

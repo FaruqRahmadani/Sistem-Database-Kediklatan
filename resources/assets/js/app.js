@@ -11,5 +11,6 @@ require('./Lumino/dataTables.responsive.min')
 require('./Lumino/dataTables.fixedColumns.min')
 require('./Lumino/jquery.dataTables.min')
 require('./Lumino/jquery.dataTables.bootstrap.min')
+require('./Lumino/select2')
 require('./Lumino/custom');
 require('./custom');
