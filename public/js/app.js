@@ -69653,7 +69653,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       $.each(data, function (index, value) {
         returnData.push(value.id);
       });
-      console.log(returnData.lastIndexOf(parseInt(key)));
       if (returnData.lastIndexOf(parseInt(key)) != '-1') {
         this.showKota(this.ProvinsiId);
       }
@@ -71273,33 +71272,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api'],
+  props: ['api', 'kota', 'provinsi', 'komoditas', 'keltani'],
   components: {
     FieldDaerah: __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default.a
+  },
+  mounted: function mounted() {
+    if (this.kota) {
+      var idKota = this.kota;
+      var idKelTani = this.keltani;
+      $('#kota').ready(function () {
+        $('#komoditas').prop('disabled', false);
+        $("#kota").getKelTaniKomoditas(idKelTani);
+        $("#kota").getKomoditas(idKota);
+      });
+    }
   }
 });
 $(document).ready(function () {
   $(document).ready(function () {
+    var komoditasKelTani;
+    var nilaiReturn;
     $("#komoditas").select2();
     $('#kota').change(function () {
       if (this.value) {
-        var $komoditas = $('#komoditas');
-        $komoditas.find('option').remove().end();
-        $komoditas.prop('disabled');
-        axios({
-          method: 'get',
-          url: '/api/daerahkomoditas/' + this.value
-        }).then(function (response) {
-          $.each(response.data, function (index, value) {
-            $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
-          });
-          $komoditas.prop('disabled', false);
-        });
+        $("#kota").getKomoditas(this.value);
       }
     });
+    $.fn.getKomoditas = function (idKota) {
+      var $komoditas = $('#komoditas');
+      $komoditas.find('option').remove().end();
+      $komoditas.prop('disabled');
+      axios({
+        method: 'get',
+        url: '/api/daerahkomoditas/' + idKota
+      }).then(function (response) {
+        $.each(response.data, function (index, value) {
+          nilaiReturn = null;
+          $.each(komoditasKelTani, function (indexKomoditas, valueKomoditas) {
+            if (index == indexKomoditas) {
+              nilaiReturn = true;
+            }
+          });
+          if (nilaiReturn) {
+            $komoditas.append('<option value="' + value.id + '" selected>' + value.nama + '</option>');
+          } else {
+            $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+          }
+        });
+        $komoditas.prop('disabled', false);
+      });
+    };
+    $.fn.getKelTaniKomoditas = function (idKelTani) {
+      axios({
+        method: 'get',
+        url: '/api/keltanikomoditas/' + idKelTani
+      }).then(function (response) {
+        komoditasKelTani = response.data;
+      });
+    };
   });
 });
 
@@ -71313,7 +71348,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("FieldDaerah", { attrs: { api: this.api } }), _vm._v(" "), _vm._m(0)],
+    [
+      _c("FieldDaerah", {
+        attrs: { api: this.api, kota: this.kota, provinsi: this.provinsi }
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
     1
   )
 }

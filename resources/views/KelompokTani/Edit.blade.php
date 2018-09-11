@@ -46,22 +46,13 @@
 								<input type="text" name="alamat" class="form-control" value="{{$KelompokTani->alamat}}" required>
 							</div>
 						</div>
-						<field-daerah-provkota
+						<daerah-komoditas
 							provinsi = {{$KelompokTani->provinsi_id}}
 							kota = {{$KelompokTani->kota_id}}
 							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
-						<div class="form-group">
-							<label class="col-md-2 control-label">Komoditas</label>
-							<div class="col-md-10">
-								<select id="select2" name="komoditas_id[]" class="form-control input-lg" multiple required>
-									@foreach ($Komoditas as $DataKomoditas)
-										<option value="{{$DataKomoditas->id}}" {{$KelompokTani->Komoditas->pluck('id')->search($DataKomoditas->id) !== false ? 'selected' : ''}}>{{$DataKomoditas->nama}}</option>
-									@endforeach
-				        </select>
-							</div>
-						</div>
-
+							komoditas = {{$KelompokTani->Komoditas->pluck('id')}}
+							keltani = {{$KelompokTani->id}}
+						></daerah-komoditas>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

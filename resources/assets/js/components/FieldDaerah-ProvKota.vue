@@ -51,7 +51,6 @@ export default {
       $.each(data, function(index, value){
         returnData.push(value.id)
       })
-      console.log(returnData.lastIndexOf(parseInt(key)))
       if (returnData.lastIndexOf(parseInt(key)) != '-1') {
         this.showKota(this.ProvinsiId)
       }
