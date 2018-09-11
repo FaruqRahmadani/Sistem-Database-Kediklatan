@@ -12,7 +12,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Kab/Kota</label>
       <div class="col-md-10">
-        <select name="kota_id" class="form-control input-lg" v-model="KotaId" :disabled="disable == 1" required>
+        <select name="kota_id" id="kota" class="form-control input-lg" v-model="KotaId" :disabled="disable == 1" required>
           <option value="">Kota</option>
           <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama}}</option>
         </select>

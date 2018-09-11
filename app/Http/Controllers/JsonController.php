@@ -64,4 +64,8 @@ class JsonController extends Controller
 
     return $UnitKerja->id;
   }
+
+  public function DataDaerahKomoditas($Id){
+    return Kota::findOrFail($Id)->Komoditas;
+  }
 }

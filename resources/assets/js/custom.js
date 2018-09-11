@@ -10,6 +10,7 @@ Vue.component('button-delete', require('./components/ButtonDelete.vue'));
 Vue.component('field-satkerja', require('./components/FieldSatuanKerja.vue'));
 Vue.component('field-unitkerja', require('./components/FieldUnitKerja.vue'));
 Vue.component('field-komoditas', require('./components/FieldKomoditas.vue'));
+Vue.component('daerah-komoditas', require('./components/DaerahKomoditasField.vue'));
 
 window.notif = function (tipe, judul, pesan){
   swal({
