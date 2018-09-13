@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\KelompokTani;
 use App\SatuanKerja;
 use App\UnitKerja;
 use App\Komoditas;
@@ -63,5 +64,12 @@ class JsonController extends Controller
     $UnitKerja->save();
 
     return $UnitKerja->id;
+  }
+
+  public function DataDaerahKomoditas($Id){
+    return Kota::findOrFail($Id)->Komoditas;
+  }
+  public function KelTaniKomoditas($Id){
+    return KelompokTani::findOrFail($Id)->Komoditas->pluck('id');
   }
 }

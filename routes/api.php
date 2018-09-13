@@ -15,3 +15,5 @@ Route::group(['middleware' => ['auth:api']], function () {
   Route::POST('unitkerja/tambah', 'JsonController@TambahUnitKerja');
   Route::GET('datakomoditas/{Id?}', 'JsonController@DataKomoditas');
 });
+Route::GET('daerahkomoditas/{Id?}', 'JsonController@DataDaerahKomoditas');
+Route::GET('keltanikomoditas/{Id?}', 'JsonController@KelTaniKomoditas');
