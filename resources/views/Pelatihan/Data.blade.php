@@ -5,7 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-tambah
-						url = {{ Route('Tambah-Penyuluh') }}
+						url = {{ Route('Tambah-Pelatihan') }}
 					></button-tambah>
 				</div>
 				<div class="panel-body">
@@ -17,6 +17,7 @@
 								<th>Tanggal Pelatihan</th>
 								<th>Tipe</th>
 								<th>Keterangan</th>
+								<th>Peserta</th>
 								<th class="text-center">Action</th>
 							</tr>
 						</thead>
@@ -28,6 +29,7 @@
 									<td>{{Tanggal::Format($DataPelatihan->tanggal)}}</td>
 									<td>{{$DataPelatihan->TipeText}}</td>
 									<td>{!!nl2br($DataPelatihan->keterangan)!!}</td>
+									<td><button class="btn btn-xs btn-primary">Lihat</button></td>
 									<td class="text-center">
 										<button-edit
 											url = {{ Route('Edit-Pelatihan', ['id' => Crypter::Encrypt($DataPelatihan->id)]) }}
