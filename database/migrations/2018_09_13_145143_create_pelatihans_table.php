@@ -17,7 +17,7 @@ class CreatePelatihansTable extends Migration
       $table->increments('id');
       $table->string('nama');
       $table->date('tanggal');
-      $table->string('keterangan');
+      $table->text('keterangan');
       $table->tinyInteger('tipe');
       $table->timestamps();
     });
