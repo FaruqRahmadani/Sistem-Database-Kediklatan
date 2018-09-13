@@ -89,6 +89,11 @@
             <em class="fa fa-th-large">&nbsp;</em> P4S
           </a>
         </li>
+        <li {{HRoute::ActiveRoute('Data-Pelatihan')}}>
+          <a href="{{ Route('Data-Pelatihan') }}">
+            <em class="fa fa-ellipsis-h">&nbsp;</em> Pelatihan
+          </a>
+        </li>
         <button-logout></button-logout>
       </ul>
     </div>

@@ -78,6 +78,15 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('delete/{id}', 'P4SController@Delete')->Name('Delete-P4S');
   });
 
+  Route::prefix('pelatihan')->group(function () {
+    Route::GET('', 'PelatihanController@Data')->Name('Data-Pelatihan');
+    Route::GET('tambah', 'PelatihanController@Tambah')->Name('Tambah-Pelatihan');
+    Route::POST('tambah', 'PelatihanController@submitTambah')->Name('submit-Tambah-Pelatihan');
+    Route::GET('edit/{id}', 'PelatihanController@Edit')->Name('Edit-Pelatihan');
+    Route::POST('edit/{id}', 'PelatihanController@submitEdit')->Name('submit-Edit-Pelatihan');
+    Route::GET('delete/{id}', 'PelatihanController@Delete')->Name('Delete-Pelatihan');
+  });
+
   Route::prefix('cetak')->group(function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('Cetak-Satuan-Kerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('Cetak-Unit-Kerja');
