@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Tanggal Pelatihan</label>
 							<div class="col-md-10">
-								<input type="date" name="tanggal" class="form-control" value="{{Tanggal::now()}}" max="{{Tanggal::now()}}" required>
+								<input type="date" name="tanggal" class="form-control" value="{{Tanggal::now()}}" min="{{Tanggal::now()}}" required>
 							</div>
 						</div>
 						<div class="form-group">

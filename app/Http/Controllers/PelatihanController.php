@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pelatihan;
+use Crypter;
 
 class PelatihanController extends Controller
 {
@@ -18,6 +19,20 @@ class PelatihanController extends Controller
 
   public function submitTambah(Request $request){
     $Pelatihan = new Pelatihan;
+    $Pelatihan->fill($request->all());
+    $Pelatihan->save();
+    return redirect()->Route('Data-Pelatihan')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+  }
+
+  public function Edit($Id){
+    $Id = Crypter::Decrypt($Id);
+    $Pelatihan = Pelatihan::findOrFail($Id);
+    return view('Pelatihan.Edit', compact('Pelatihan'));
+  }
+
+  public function submitEdit(Request $request, $Id){
+    $Id = Crypter::Decrypt($Id);
+    $Pelatihan = Pelatihan::findOrFail($Id);
     $Pelatihan->fill($request->all());
     $Pelatihan->save();
     return redirect()->Route('Data-Pelatihan')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);

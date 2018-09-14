@@ -17,4 +17,8 @@ class Pelatihan extends Model
     ];
     return $array[$this->tipe-1];
   }
+
+  public function getUUIDAttribute($value){
+    return Crypter::Encrypt($this->id);
+  }
 }

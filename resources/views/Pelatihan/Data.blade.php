@@ -32,10 +32,10 @@
 									<td><button class="btn btn-xs btn-primary">Lihat</button></td>
 									<td class="text-center">
 										<button-edit
-											url = {{ Route('Edit-Pelatihan', ['id' => Crypter::Encrypt($DataPelatihan->id)]) }}
+											url = {{ Route('Edit-Pelatihan', ['id' => $DataPelatihan->UUID]) }}
 										></button-edit>
 										<button-delete
-											url = {{ Route('Delete-Pelatihan', ['id' => Crypter::Encrypt($DataPelatihan->id)]) }}
+											url = {{ Route('Delete-Pelatihan', ['id' => $DataPelatihan->UUID]) }}
 											pesan = "Data Tidak Dapat Dihapus Karena Ada Relasi"
 										></button-delete>
 								</td>
