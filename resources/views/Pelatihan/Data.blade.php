@@ -36,7 +36,6 @@
 										></button-edit>
 										<button-delete
 											url = {{ Route('Delete-Pelatihan', ['id' => $DataPelatihan->UUID]) }}
-											pesan = "Data Tidak Dapat Dihapus Karena Ada Relasi"
 										></button-delete>
 								</td>
 								</tr>

@@ -35,6 +35,13 @@ class PelatihanController extends Controller
     $Pelatihan = Pelatihan::findOrFail($Id);
     $Pelatihan->fill($request->all());
     $Pelatihan->save();
-    return redirect()->Route('Data-Pelatihan')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    return redirect()->Route('Data-Pelatihan')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+  }
+
+  public function Delete($Id){
+    $Id = Crypter::Decrypt($Id);
+    $Pelatihan = Pelatihan::findOrFail($Id);
+    $Pelatihan->delete();
+    return redirect()->Route('Data-Pelatihan')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 }
