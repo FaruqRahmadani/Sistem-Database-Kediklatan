@@ -12986,7 +12986,7 @@ img.login-logo {
   text-align: center;
 }
 
-.table-custom td:last-child {
+.table-custom td:last-child:not(.child) {
   text-align: center;
 }
 

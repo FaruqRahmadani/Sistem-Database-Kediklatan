@@ -14,7 +14,7 @@ class UnitKerjaController extends Controller
     return view('UnitKerja.Data', compact('UnitKerja'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     return view('UnitKerja.Tambah');
   }
 

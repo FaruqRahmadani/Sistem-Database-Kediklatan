@@ -38,7 +38,7 @@ img.login-logo  {
   th{
     text-align: center;
   }
-  td:last-child{
+  td:last-child:not(.child){
     text-align: center;
   }
 }

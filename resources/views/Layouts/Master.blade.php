@@ -48,7 +48,7 @@
           </a>
           <ul class="children collapse" id="sub-item-1">
             <li>
-              <a href="{{ Route('userData') }}">
+              <a href="{{Route('userData')}}">
                 <em class="fa fa-user">&nbsp;</em> Data User
               </a>
             </li>
@@ -57,8 +57,8 @@
                 <em class="fa fa-building">&nbsp;</em> Satuan Kerja
               </a>
             </li>
-            <li {{HRoute::ActiveRoute('Data-Unit-Kerja')}}>
-              <a href="{{ Route('Data-Unit-Kerja') }}">
+            <li>
+              <a href="{{Route('unitKerjaData')}}">
                 <em class="fa fa-building-o">&nbsp;</em> Unit Kerja
               </a>
             </li>
