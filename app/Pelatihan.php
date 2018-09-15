@@ -32,4 +32,8 @@ class Pelatihan extends Model
   public function KelompokTani(){
     return $this->belongsToMany('App\KelompokTani', 'pelatihan_kelompok_tanis');
   }
+
+  public function Penyuluh(){
+    return $this->belongsToMany('App\Penyuluh', 'pelatihan_penyuluhs');
+  }
 }
