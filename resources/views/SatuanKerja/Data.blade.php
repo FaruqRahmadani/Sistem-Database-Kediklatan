@@ -39,7 +39,7 @@
 									<td>{{$DataSatKerja->Kota->nama}}</td>
 									<td>{{$DataSatKerja->nomor_telepon}}</td>
 									<td>
-										<a href="{{Route('userEditForm', ['id' => $DataSatKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<a href="{{Route('satuanKerjaEditForm', ['id' => $DataSatKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
 										<button data={{$DataSatKerja->UUID}} href={{Route('userHapus')}} {!!$DataSatKerja->Penyuluh->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>

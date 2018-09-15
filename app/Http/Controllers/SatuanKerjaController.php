@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Datatables;
-use Crypter;
+use HCrypt;
 
 use Illuminate\Http\Request;
 use App\SatuanKerja;
@@ -27,13 +27,13 @@ class SatuanKerjaController extends Controller
   }
 
   public function EditForm($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
     return view('SatuanKerja.Edit', compact('SatKerja'));
   }
 
   public function EditSubmit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
     $SatKerja->fill($request->all());
     $SatKerja->save();
@@ -41,7 +41,7 @@ class SatuanKerjaController extends Controller
   }
 
   public function Hapus($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
     $SatKerja->delete();
     return redirect()->Route('satuanKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
