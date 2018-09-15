@@ -47,8 +47,8 @@
             <em class="fa fa-navicon">&nbsp;</em> Master <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
           </a>
           <ul class="children collapse" id="sub-item-1">
-            <li {{HRoute::ActiveRoute('Data-User')}}>
-              <a href="{{ Route('Data-User') }}">
+            <li>
+              <a href="{{ Route('userData') }}">
                 <em class="fa fa-user">&nbsp;</em> Data User
               </a>
             </li>
@@ -93,27 +93,15 @@
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-      <div class="row">
-        <ol class="breadcrumb">
-          <li><a href="#">
-            <em class="fa fa-home"></em>
-          </a></li>
-          <li class="active">{{HRoute::JudulRoute()}}</li>
-        </ol>
-      </div>
-      <div class="row row-header">
-        <div class="col-lg-12">
-          <h3 class="page-header">{{HRoute::JudulRoute()}}</h3>
-        </div>
-      </div>
       @yield('content')
     </div>
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
   @if (session('alert'))
-    <script type="text/javascript">
-    notif('{{session('tipe')}}', '{{session('judul')}}', '{{session('pesan')}}');
-    </script>
+    <script type="text/javascript">notif('{{session('tipe')}}', '{{session('judul')}}', '{{session('pesan')}}')</script>
+  @endif
+  @if ($errors->count())
+    <script>notif('error', 'Ada Kesalahan', '{{$errors->first()}}')</script>
   @endif
 </body>
 </html>

@@ -42,6 +42,38 @@ $(document).ready(function() {
     }
   };
 
+  $('.btn-delete').click(function(){
+    var url = $(this).attr('href')
+    var id = $(this).attr('data')
+    swal({
+    title   : "Hapus",
+    text    : "Yakin Ingin Hapus Data?",
+    icon    : "warning",
+    buttons : [
+      "Batal",
+      "Hapus",
+    ],
+  })
+  .then((hapus) => {
+    if (hapus) {
+      swal({
+        title  : "Berhasil",
+        text   : "Data Akan dihapus",
+        icon   : "success",
+        timer  : 2500,
+      });
+      window.location = url+'/'+id+'/verify';
+    } else {
+      swal({
+        title  : "Batal",
+        text   : "Data Batal dihapus",
+        icon   : "info",
+        timer  : 2500,
+      })
+    }
+  });
+  });
+
   $('#table_penyuluh').DataTable({
     scrollX: true,
     language: langDataTable,
