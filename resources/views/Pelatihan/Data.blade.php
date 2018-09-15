@@ -29,7 +29,7 @@
 									<td>{{Tanggal::Format($DataPelatihan->tanggal)}}</td>
 									<td>{{$DataPelatihan->TipeText}}</td>
 									<td>{!!nl2br($DataPelatihan->keterangan)!!}</td>
-									<td><button class="btn btn-xs btn-primary">Lihat</button></td>
+									<td><a href="{{Route('Data-Peserta-Pelatihan', ['id' => $DataPelatihan->UUID])}}" class="btn btn-xs btn-primary">Detail Peserta</a></td>
 									<td class="text-center">
 										<button-edit
 											url = {{ Route('Edit-Pelatihan', ['id' => $DataPelatihan->UUID]) }}

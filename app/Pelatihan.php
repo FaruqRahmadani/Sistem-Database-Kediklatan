@@ -9,7 +9,7 @@ use Crypter;
 class Pelatihan extends Model
 {
   use SoftDeletes;
-  
+
   protected $fillable = ['nama', 'tanggal', 'keterangan', 'tipe'];
 
   public function getTipeTextAttribute($value){
@@ -23,5 +23,9 @@ class Pelatihan extends Model
 
   public function getUUIDAttribute($value){
     return Crypter::Encrypt($this->id);
+  }
+
+  public function P4S(){
+    return $this->belongsToMany('App\P4S', 'pelatihan_p4_s');
   }
 }

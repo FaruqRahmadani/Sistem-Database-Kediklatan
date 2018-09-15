@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Crypter;
 
 class P4S extends Model
 {
@@ -20,5 +21,9 @@ class P4S extends Model
 
   public function Kota(){
     return $this->belongsTo('App\Kota');
+  }
+
+  public function getUUIDAttribute($value){
+    return Crypter::encrypt($this->id);
   }
 }
