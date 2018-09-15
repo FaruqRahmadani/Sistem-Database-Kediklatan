@@ -14,12 +14,14 @@ class PesertaPelatihanController extends Controller
   public function Data($idPelatihan){
     $idPelatihan = Crypter::Decrypt($idPelatihan);
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
-    return view("PesertaPelatihan.{$Pelatihan->TipeText}.Data", compact('Pelatihan'));
+    $Tipe = studly_case($Pelatihan->TipeText);
+    return view("PesertaPelatihan.{$Tipe}.Data", compact('Pelatihan'));
   }
 
   public function Tambah($idPelatihan){
     $idPelatihan = Crypter::Decrypt($idPelatihan);
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
+    $Tipe = studly_case($Pelatihan->TipeText);
     switch ($Pelatihan->tipe) {
       case 1:
         $Peserta = Penyuluh::all();
@@ -34,7 +36,7 @@ class PesertaPelatihanController extends Controller
         $Peserta = null;
         break;
     }
-    return view("PesertaPelatihan.{$Pelatihan->TipeText}.Tambah", compact('Pelatihan', 'Peserta'));
+    return view("PesertaPelatihan.{$Tipe}.Tambah", compact('Pelatihan', 'Peserta'));
   }
 
   public function submitTambah(Request $request, $idPelatihan){
@@ -42,13 +44,13 @@ class PesertaPelatihanController extends Controller
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
     switch ($Pelatihan->tipe) {
       case 1:
-        $Pelatihan->Penyuluh()->sync($request->p4_s_id);
+        $Pelatihan->Penyuluh()->sync($request->id);
         break;
       case 2:
-        $Pelatihan->KelompokTani()->sync($request->p4_s_id);
+        $Pelatihan->KelompokTani()->sync($request->id);
         break;
       case 3:
-        $Pelatihan->P4S()->sync($request->p4_s_id);
+        $Pelatihan->P4S()->sync($request->id);
         break;
       default:
         return abort(404);

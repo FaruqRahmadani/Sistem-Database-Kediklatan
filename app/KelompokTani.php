@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Crypter;
 
 class KelompokTani extends Model
 {
@@ -31,5 +32,9 @@ class KelompokTani extends Model
 
   public function Penyuluh(){
     return $this->belongsTo('App\Penyuluh');
+  }
+
+  public function getUUIDAttribute($value){
+    return Crypter::Encrypt($this->id);
   }
 }

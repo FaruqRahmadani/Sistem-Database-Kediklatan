@@ -28,4 +28,8 @@ class Pelatihan extends Model
   public function P4S(){
     return $this->belongsToMany('App\P4S', 'pelatihan_p4_s');
   }
+
+  public function KelompokTani(){
+    return $this->belongsToMany('App\KelompokTani', 'pelatihan_kelompok_tanis');
+  }
 }

@@ -21,7 +21,7 @@
 									@foreach ($Peserta as $DataPeserta)
 										<tr>
 											<td>
-												<input type="checkbox" name="p4_s_id[]" value="{{$DataPeserta->id}}" {{$Pelatihan->P4S->pluck('id')->search($DataPeserta->id) !== false ? 'checked' : ''}}>
+												<input type="checkbox" name="id[]" value="{{$DataPeserta->id}}" {{$Pelatihan->P4S->pluck('id')->search($DataPeserta->id) !== false ? 'checked' : ''}}>
 											</td>
 											<td>{{$DataPeserta->nama}}</td>
 											<td>{{$DataPeserta->nama_ketua}}</td>
