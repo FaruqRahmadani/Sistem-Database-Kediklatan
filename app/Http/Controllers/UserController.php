@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-
-use Crypter;
-
+use Validator;
 use App\User;
+use HCrypt;
 
 class UserController extends Controller
 {
@@ -15,35 +15,41 @@ class UserController extends Controller
     return view('User.Data', compact('User'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     return view('User.Tambah');
   }
 
-  public function submitTambah(Request $request){
+  public function TambahSubmit(Request $request){
+    Validator::make($request->all(),[
+      'username' => Rule::unique('users'),
+    ])->validate();
     $User = new User;
     $User->fill($request->all());
     $User->save();
-    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
-  }
+    return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    }
 
-  public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
-    $User = User::findOrFail($Id);
-    return view('User.Edit', compact('User'));
-  }
+    public function Edit($Id){
+      $Id = HCrypt::Decrypt($Id);
+      $User = User::findOrFail($Id);
+      return view('User.Edit', compact('User'));
+    }
 
-  public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
-    $User = User::findOrFail($Id);
-    $User->fill($request->all());
-    $User->save();
-    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
-  }
+    public function submitEdit(Request $request, $Id){
+      $Id = HCrypt::Decrypt($Id);
+      $User = User::findOrFail($Id);
+      $User->fill($request->all());
+      $User->save();
+      return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    }
 
-  public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
-    $User = User::findOrFail($Id);
-    $User->delete();
-    return redirect()->Route('Data-User')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+    public function Hapus($Id=null,$Verify=null){
+      if ($Verify) {
+        $Id = HCrypt::Decrypt($Id);
+        $User = User::findOrFail($Id);
+        $User->delete();
+        return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+      }
+      return abort(404);
+    }
   }
-}
