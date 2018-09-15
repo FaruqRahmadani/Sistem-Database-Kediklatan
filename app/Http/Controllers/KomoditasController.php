@@ -30,7 +30,7 @@ class KomoditasController extends Controller
     return view('Komoditas.Edit', compact('Komoditas'));
   }
 
-  public function submitEdit(Request $request, $Id){
+  public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->fill($request->all());
