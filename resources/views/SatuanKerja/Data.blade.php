@@ -1,5 +1,10 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Satuan Kerja</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -29,7 +34,7 @@
 							@foreach ($SatKerja as $Index => $DataSatKerja)
 								<tr>
 									<td>{{$DataSatKerja->nama}}</td>
-									<td>{{$DataSatKerja->alamat}}</td>
+									<td>{!!nl2br($DataSatKerja->alamat)!!}</td>
 									<td>{{$DataSatKerja->Provinsi->nama}}</td>
 									<td>{{$DataSatKerja->Kota->nama}}</td>
 									<td>{{$DataSatKerja->nomor_telepon}}</td>

@@ -16,7 +16,7 @@
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal row-border" action="{{Route('userTambahSubmit')}}" method="POST">
-						{{csrf_field()}}
+						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
 							<div class="col-md-10">
