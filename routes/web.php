@@ -43,13 +43,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('delete/{id}', 'PenyuluhController@Delete')->Name('Delete-Penyuluh');
   });
 
-  Route::prefix('komoditas')->group(function () {
-    Route::GET('', 'KomoditasController@Data')->Name('Data-Komoditas');
-    Route::GET('tambah', 'KomoditasController@Tambah')->Name('Tambah-Data-Komoditas');
-    Route::POST('tambah', 'KomoditasController@submitTambah')->Name('submit-Tambah-Data-Komoditas');
-    Route::GET('edit/{id}', 'KomoditasController@Edit')->Name('Edit-Data-Komoditas');
-    Route::POST('edit/{id}', 'KomoditasController@submitEdit')->Name('submit-Edit-Data-Komoditas');
-    Route::GET('delete/{id}', 'KomoditasController@Delete')->Name('Delete-Data-Komoditas');
+  Route::group(['prefix' => 'komoditas', 'as' => 'komoditas'], function () {
+    Route::GET('', 'KomoditasController@Data')->Name('Data');
+    Route::GET('tambah', 'KomoditasController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'KomoditasController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'KomoditasController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'KomoditasController@EditSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'KomoditasController@Hapus')->Name('Hapus');
   });
 
   Route::prefix('kota_komoditas')->group(function () {

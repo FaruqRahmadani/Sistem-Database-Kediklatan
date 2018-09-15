@@ -62,8 +62,8 @@
                 <em class="fa fa-building-o">&nbsp;</em> Unit Kerja
               </a>
             </li>
-            <li {{HRoute::ActiveRoute('Data-Komoditas')}}>
-              <a href="{{ Route('Data-Komoditas') }}">
+            <li>
+              <a href="{{Route('komoditasData')}}">
                 <em class="fa fa-archive">&nbsp;</em> Komoditas
               </a>
             </li>

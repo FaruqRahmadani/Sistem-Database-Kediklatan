@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Crypter;
-
 use App\Komoditas;
+use HCrypt;
 
 class KomoditasController extends Controller
 {
@@ -15,7 +13,7 @@ class KomoditasController extends Controller
     return view('Komoditas.Data', compact('Komoditas'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     return view('Komoditas.Tambah');
   }
 
@@ -27,13 +25,13 @@ class KomoditasController extends Controller
   }
 
   public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     return view('Komoditas.Edit', compact('Komoditas'));
   }
 
   public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->fill($request->all());
     $Komoditas->save();
@@ -41,7 +39,7 @@ class KomoditasController extends Controller
   }
 
   public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->delete();
     return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);

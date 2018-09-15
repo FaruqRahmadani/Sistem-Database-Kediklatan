@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use HCrypt;
-
 use App\UnitKerja;
+use HCrypt;
 
 class UnitKerjaController extends Controller
 {
