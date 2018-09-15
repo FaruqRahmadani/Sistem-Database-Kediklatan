@@ -4,23 +4,25 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Satuan-Kerja') }}
-					></button-tambah>
-					<button-print
-						url = {{ Route('Cetak-Satuan-Kerja') }}
-					></button-print>
+					<a href="{{Route('satuanKerjaTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
+					<a href="{{Route('cetakSatuanKerja')}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
 				</div>
 				<div class="panel-body">
-					<table id="table_satkerja" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Nama</th>
-								<th class="text-center"> Alamat</th>
-								<th class="text-center"> Provinsi</th>
-								<th class="text-center"> Kota</th>
-								<th class="text-center"> Nomor Telepon</th>
-								<th class="text-center" style="width:115px"> Action</th>
+								<th>Nama</th>
+								<th>Alamat</th>
+								<th>Provinsi</th>
+								<th>Kota</th>
+								<th>Nomor Telepon</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -31,16 +33,10 @@
 									<td>{{$DataSatKerja->Provinsi->nama}}</td>
 									<td>{{$DataSatKerja->Kota->nama}}</td>
 									<td>{{$DataSatKerja->nomor_telepon}}</td>
-									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
-										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Satuan-Kerja', ['id' => Crypter::Encrypt($DataSatKerja->id)]) }}
-											status = {{ $DataSatKerja->Penyuluh->Count() }}
-											pesan = "Data Tidak Dapat Dihapus Karena Ada Relasi"
-										></button-delete>
-								</td>
+									<td>
+										<a href="{{Route('userEditForm', ['id' => $DataSatKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataSatKerja->UUID}} href={{Route('userHapus')}} {!!$DataSatKerja->Penyuluh->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

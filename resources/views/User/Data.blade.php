@@ -15,13 +15,13 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<table id="table" class="table table-striped table-advance table-custom">
+					<table id="myTable" class="table table-striped table-advance table-custom">
 						<thead>
 							<tr>
-								<th class="text-center">#</th>
-								<th class="text-center">Nama</th>
-								<th class="text-center">Username</th>
-								<th class="text-center">Action</th>
+								<th>#</th>
+								<th>Nama</th>
+								<th>Username</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -30,7 +30,7 @@
 									<td>{{$Index+1}}</td>
 									<td>{{$DataUser->nama}}</td>
 									<td>{{$DataUser->username}}</td>
-									<td class="text-center">
+									<td>
 										<a href="{{Route('userEditForm', ['id' => $DataUser->UUID])}}" class="btn btn-info btn-xs">Edit</a>
 										<button data={{$DataUser->UUID}} href={{Route('userHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>

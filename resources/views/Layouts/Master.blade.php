@@ -52,8 +52,8 @@
                 <em class="fa fa-user">&nbsp;</em> Data User
               </a>
             </li>
-            <li {{HRoute::ActiveRoute('Data-Satuan-Kerja')}}>
-              <a href="{{ Route('Data-Satuan-Kerja') }}">
+            <li>
+              <a href="{{Route('satuanKerjaData')}}">
                 <em class="fa fa-building">&nbsp;</em> Satuan Kerja
               </a>
             </li>

@@ -69089,32 +69089,46 @@ $(document).ready(function () {
     }
   };
 
-  $('.btn-delete').click(function () {
+  $('#myTable').DataTable({
+    responsive: true
+  });
+
+  $('#myTable').on('click', '.btn-delete', function () {
+    var status = $(this).attr('status');
     var url = $(this).attr('href');
     var id = $(this).attr('data');
-    __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
-      title: "Hapus",
-      text: "Yakin Ingin Hapus Data?",
-      icon: "warning",
-      buttons: ["Batal", "Hapus"]
-    }).then(function (hapus) {
-      if (hapus) {
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
-          title: "Berhasil",
-          text: "Data Akan dihapus",
-          icon: "success",
-          timer: 2500
-        });
-        window.location = url + '/' + id + '/verify';
-      } else {
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
-          title: "Batal",
-          text: "Data Batal dihapus",
-          icon: "info",
-          timer: 2500
-        });
-      }
-    });
+    if (!status) {
+      __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+        title: "Hapus",
+        text: "Yakin Ingin Hapus Data?",
+        icon: "warning",
+        buttons: ["Batal", "Hapus"]
+      }).then(function (hapus) {
+        if (hapus) {
+          __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+            title: "Berhasil",
+            text: "Data Akan dihapus",
+            icon: "success",
+            timer: 2500
+          });
+          window.location = url + '/' + id + '/verify';
+        } else {
+          __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+            title: "Batal",
+            text: "Data Batal dihapus",
+            icon: "info",
+            timer: 2500
+          });
+        }
+      });
+    } else {
+      __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+        title: "Hapus",
+        text: status,
+        icon: "warning",
+        buttons: "OK"
+      });
+    }
   });
 
   $('#table_penyuluh').DataTable({

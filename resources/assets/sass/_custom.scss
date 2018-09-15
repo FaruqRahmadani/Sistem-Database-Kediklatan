@@ -35,6 +35,12 @@ img.login-logo  {
   th:not(:first-child), td:not(:first-child){
     white-space: nowrap;
   }
+  th{
+    text-align: center;
+  }
+  td:last-child{
+    text-align: center;
+  }
 }
 
 .table{

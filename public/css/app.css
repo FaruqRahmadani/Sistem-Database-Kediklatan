@@ -12982,6 +12982,14 @@ img.login-logo {
   white-space: nowrap;
 }
 
+.table-custom th {
+  text-align: center;
+}
+
+.table-custom td:last-child {
+  text-align: center;
+}
+
 .table th, .table td {
   font-size: 14px;
 }

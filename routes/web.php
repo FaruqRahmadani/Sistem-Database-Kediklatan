@@ -16,13 +16,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'UserController@Hapus')->Name('Hapus');
   });
 
-  Route::prefix('satuankerja')->group(function () {
-    Route::GET('', 'SatuanKerjaController@Data')->Name('Data-Satuan-Kerja');
-    Route::GET('tambah', 'SatuanKerjaController@Tambah')->Name('Tambah-Satuan-Kerja');
-    Route::POST('tambah', 'SatuanKerjaController@submitTambah')->Name('submit-Tambah-Satuan-Kerja');
-    Route::GET('edit/{id}', 'SatuanKerjaController@Edit')->Name('Edit-Satuan-Kerja');
-    Route::POST('edit/{id}', 'SatuanKerjaController@submitEdit')->Name('submit-Edit-Satuan-Kerja');
-    Route::GET('delete/{id}', 'SatuanKerjaController@Delete')->Name('Delete-Satuan-Kerja');
+  Route::group(['prefix' => 'satuankerja', 'as' => 'satuanKerja'], function () {
+    Route::GET('', 'SatuanKerjaController@Data')->Name('Data');
+    Route::GET('tambah', 'SatuanKerjaController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'SatuanKerjaController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'SatuanKerjaController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'SatuanKerjaController@EditSubmit')->Name('EditSubmit');
+    Route::GET('delete/{id}', 'SatuanKerjaController@Hapus')->Name('Hapus');
   });
 
   Route::prefix('unitkerja')->group(function () {
@@ -78,9 +78,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('delete/{id}', 'P4SController@Delete')->Name('Delete-P4S');
   });
 
-  Route::prefix('cetak')->group(function () {
-    Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('Cetak-Satuan-Kerja');
-    Route::GET('unitkerja', 'CetakController@UnitKerja')->name('Cetak-Unit-Kerja');
-    Route::GET('penyuluh', 'CetakController@Penyuluh')->name('Cetak-Penyuluh');
+  Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
+    Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('SatuanKerja');
+    Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');
+    Route::GET('penyuluh', 'CetakController@Penyuluh')->name('Penyuluh');
   });
 });

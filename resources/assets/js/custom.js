@@ -42,7 +42,11 @@ $(document).ready(function() {
     }
   };
 
-  $('.btn-delete').click(function(){
+  $('#myTable').DataTable({
+    responsive: true,
+  });
+
+  $('#myTable').on('click','.btn-delete', function(){
     var status = $(this).attr('status')
     var url = $(this).attr('href')
     var id = $(this).attr('data')
