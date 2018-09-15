@@ -22,7 +22,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::POST('tambah', 'SatuanKerjaController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'SatuanKerjaController@EditForm')->Name('EditForm');
     Route::POST('edit/{id}', 'SatuanKerjaController@EditSubmit')->Name('EditSubmit');
-    Route::GET('delete/{id}', 'SatuanKerjaController@Hapus')->Name('Hapus');
+    Route::GET('hapus/{id?}/{verify?}', 'SatuanKerjaController@Hapus')->Name('Hapus');
   });
 
   Route::prefix('unitkerja')->group(function () {

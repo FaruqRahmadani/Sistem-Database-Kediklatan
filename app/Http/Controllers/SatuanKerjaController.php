@@ -40,10 +40,13 @@ class SatuanKerjaController extends Controller
     return redirect()->Route('satuanKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Hapus($Id){
-    $Id = HCrypt::Decrypt($Id);
-    $SatKerja = SatuanKerja::findOrFail($Id);
-    $SatKerja->delete();
-    return redirect()->Route('satuanKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+  public function Hapus($Id=null,$Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $SatKerja = SatuanKerja::findOrFail($Id);
+      $SatKerja->delete();
+      return redirect()->Route('satuanKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    }
+    return abort(404);
   }
 }
