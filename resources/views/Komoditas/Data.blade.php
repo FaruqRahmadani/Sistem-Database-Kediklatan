@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row row-header">
 		<div class="col-lg-12">
-			<h3 class="page-header">Data Satuan Kerja</h3>
+			<h3 class="page-header">Data Komoditas</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -31,9 +31,8 @@
 									<td>{{$DataKomoditas->nama}}</td>
 									<td>{!!nl2br($DataKomoditas->keterangan)!!}</td>
 									<td class="text-center">
-										{{-- <button-edit
-											url = {{ Route('Edit-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
-										></button-edit>
+										<a href="{{Route('komoditasEditForm', ['id' => $DataKomoditas->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										{{--
 										<button-delete
 											url = {{ Route('Delete-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
 										></button-delete> --}}

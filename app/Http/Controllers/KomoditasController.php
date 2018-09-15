@@ -17,14 +17,14 @@ class KomoditasController extends Controller
     return view('Komoditas.Tambah');
   }
 
-  public function submitTambah(Request $request){
+  public function TambahSubmit(Request $request){
     $Komoditas = new Komoditas;
     $Komoditas->fill($request->all());
     $Komoditas->save();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
+  public function EditForm($Id){
     $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     return view('Komoditas.Edit', compact('Komoditas'));
@@ -35,13 +35,13 @@ class KomoditasController extends Controller
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->fill($request->all());
     $Komoditas->save();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
     $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->delete();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+    return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
   }
 }
