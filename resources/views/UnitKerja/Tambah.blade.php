@@ -26,7 +26,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<textarea name="alamat" rows="2" class="form-control" required></textarea>
+								<textarea name="alamat" rows="4" class="form-control" required></textarea>
 							</div>
 						</div>
 						<div class="row">

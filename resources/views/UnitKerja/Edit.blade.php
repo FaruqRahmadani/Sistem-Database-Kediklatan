@@ -1,15 +1,21 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit Unit Kerja</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Unit-Kerja') }}
-					></button-kembali>
+					<a href="{{Route('unitKerjaData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Unit-Kerja', ['id' => Crypter::Encrypt($UnitKerja->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('unitKerjaEditSubmit', ['id' => $UnitKerja->UUID]) }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Unit Kerja</label>
@@ -20,7 +26,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<input type="text" name="alamat" class="form-control" value="{{$UnitKerja->alamat}}" required>
+								<textarea name="alamat" rows="4" class="form-control" required>{{$UnitKerja->alamat}}</textarea>
 							</div>
 						</div>
 						<div class="row">

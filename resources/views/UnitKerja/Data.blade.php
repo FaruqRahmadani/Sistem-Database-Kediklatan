@@ -35,8 +35,8 @@
 									<td>{{$DataUnitKerja->nama}}</td>
 									<td>{!!nl2br($DataUnitKerja->alamat)!!}</td>
 									<td class="text-center">
-										<a href="{{Route('satuanKerjaEditForm', ['id' => $DataUnitKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<button data={{$DataUnitKerja->UUID}} href={{Route('satuanKerjaHapus')}} {!!$DataUnitKerja->Penyuluh->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										<a href="{{Route('unitKerjaEditForm', ['id' => $DataUnitKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataUnitKerja->UUID}} href={{Route('unitKerjaHapus')}} {!!$DataUnitKerja->Penyuluh->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach

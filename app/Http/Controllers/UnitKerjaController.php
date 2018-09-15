@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Crypter;
+use HCrypt;
 
 use App\UnitKerja;
 
@@ -25,14 +25,14 @@ class UnitKerjaController extends Controller
     return redirect()->Route('unitKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditForm($Id){
+    $Id = HCrypt::Decrypt($Id);
     $UnitKerja = UnitKerja::findOrFail($Id);
     return view('UnitKerja.Edit', compact('UnitKerja'));
   }
 
-  public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditSubmit(Request $request, $Id){
+    $Id = HCrypt::Decrypt($Id);
     $UnitKerja = UnitKerja::findOrFail($Id);
     $UnitKerja->fill($request->all());
     $UnitKerja->save();
@@ -40,7 +40,7 @@ class UnitKerjaController extends Controller
   }
 
   public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $UnitKerja = UnitKerja::findOrFail($Id);
     $UnitKerja->delete();
     return redirect()->Route('unitKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
