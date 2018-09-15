@@ -29,14 +29,17 @@ class UserController extends Controller
     return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
     }
 
-    public function Edit($Id){
+    public function EditForm($Id){
       $Id = HCrypt::Decrypt($Id);
       $User = User::findOrFail($Id);
       return view('User.Edit', compact('User'));
     }
 
-    public function submitEdit(Request $request, $Id){
+    public function EditSubmit(Request $request, $Id){
       $Id = HCrypt::Decrypt($Id);
+      Validator::make($request->all(),[
+        'username' => Rule::unique('users')->ignore($Id),
+      ])->validate();
       $User = User::findOrFail($Id);
       $User->fill($request->all());
       $User->save();
