@@ -33,7 +33,7 @@
 								<tr>
 									<td>{{$Index+1}}</td>
 									<td>{{$DataUnitKerja->nama}}</td>
-									<td>{{$DataUnitKerja->alamat}}</td>
+									<td>{!!nl2br($DataUnitKerja->alamat)!!}</td>
 									<td class="text-center">
 										<a href="{{Route('satuanKerjaEditForm', ['id' => $DataUnitKerja->UUID])}}" class="btn btn-info btn-xs">Edit</a>
 										<button data={{$DataUnitKerja->UUID}} href={{Route('satuanKerjaHapus')}} {!!$DataUnitKerja->Penyuluh->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
