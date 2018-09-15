@@ -39,10 +39,13 @@ class UnitKerjaController extends Controller
     return redirect()->Route('unitKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Delete($Id){
-    $Id = HCrypt::Decrypt($Id);
-    $UnitKerja = UnitKerja::findOrFail($Id);
-    $UnitKerja->delete();
-    return redirect()->Route('unitKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+  public function Hapus($Id=null,$Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $UnitKerja = UnitKerja::findOrFail($Id);
+      $UnitKerja->delete();
+      return redirect()->Route('unitKerjaData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+    }
+    return abort(404);
   }
 }
