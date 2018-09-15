@@ -43,35 +43,45 @@ $(document).ready(function() {
   };
 
   $('.btn-delete').click(function(){
+    var status = $(this).attr('status')
     var url = $(this).attr('href')
     var id = $(this).attr('data')
-    swal({
-    title   : "Hapus",
-    text    : "Yakin Ingin Hapus Data?",
-    icon    : "warning",
-    buttons : [
-      "Batal",
-      "Hapus",
-    ],
-  })
-  .then((hapus) => {
-    if (hapus) {
+    if (!status) {
       swal({
-        title  : "Berhasil",
-        text   : "Data Akan dihapus",
-        icon   : "success",
-        timer  : 2500,
+        title   : "Hapus",
+        text    : "Yakin Ingin Hapus Data?",
+        icon    : "warning",
+        buttons : [
+          "Batal",
+          "Hapus",
+        ],
+      })
+      .then((hapus) => {
+        if (hapus) {
+          swal({
+            title  : "Berhasil",
+            text   : "Data Akan dihapus",
+            icon   : "success",
+            timer  : 2500,
+          });
+          window.location = url+'/'+id+'/verify';
+        } else {
+          swal({
+            title  : "Batal",
+            text   : "Data Batal dihapus",
+            icon   : "info",
+            timer  : 2500,
+          })
+        }
       });
-      window.location = url+'/'+id+'/verify';
-    } else {
+    }else{
       swal({
-        title  : "Batal",
-        text   : "Data Batal dihapus",
-        icon   : "info",
-        timer  : 2500,
+        title   : "Hapus",
+        text    : status,
+        icon    : "warning",
+        buttons : "OK",
       })
     }
-  });
   });
 
   $('#table_penyuluh').DataTable({
