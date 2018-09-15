@@ -32,10 +32,7 @@
 									<td>{!!nl2br($DataKomoditas->keterangan)!!}</td>
 									<td class="text-center">
 										<a href="{{Route('komoditasEditForm', ['id' => $DataKomoditas->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										{{--
-										<button-delete
-											url = {{ Route('Delete-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
-										></button-delete> --}}
+										<button data={{$DataKomoditas->UUID}} href={{Route('komoditasHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach
