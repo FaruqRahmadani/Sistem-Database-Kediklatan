@@ -75,7 +75,7 @@
 <script>
 import FieldDaerah from './FieldDaerah-ProvKota'
 export default {
-  props: ['api', 'satkerja', 'provinsi', 'kota'],
+  props: ['api', 'satkerja'],
   components: {
     FieldDaerah
   },

@@ -70201,7 +70201,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'satkerja', 'provinsi', 'kota'],
+  props: ['api', 'satkerja'],
   components: {
     FieldDaerah: __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default.a
   },

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Crypter;
+use HCrypt;
 
 use App\Penyuluh;
 
@@ -25,14 +25,14 @@ class PenyuluhController extends Controller
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditForm($Id){
+    $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
     return view('Penyuluh.Edit', compact('Penyuluh'));
   }
 
-  public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditSubmit(Request $request, $Id){
+    $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->fill($request->all());
     $Penyuluh->save();
@@ -40,7 +40,7 @@ class PenyuluhController extends Controller
   }
 
   public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->delete();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
