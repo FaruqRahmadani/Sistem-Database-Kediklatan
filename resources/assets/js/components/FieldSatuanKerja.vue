@@ -146,14 +146,14 @@ export default {
         this.provinsi_id=null
         this.kota_id=null
       }).catch(error => {
-        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
-      });
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data')
+      })
     },
   },
 }
 $(document).ready(function() {
   $(document).ready(function() {
-    $('#satuankerja').select2();
-  });
-});
+    $('#satuankerja').select2()
+  })
+})
 </script>

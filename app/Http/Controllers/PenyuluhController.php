@@ -39,10 +39,13 @@ class PenyuluhController extends Controller
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Delete($Id){
-    $Id = HCrypt::Decrypt($Id);
-    $Penyuluh = Penyuluh::findOrFail($Id);
-    $Penyuluh->delete();
-    return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+  public function Hapus($Id=null, $Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $Penyuluh = Penyuluh::findOrFail($Id);
+      $Penyuluh->delete();
+      return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+    }
+    return abort(404);
   }
 }

@@ -84,14 +84,14 @@ export default {
         this.getUnitKerja()
         this.UnitKerjaId = response.data
       }).catch(error => {
-        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
-      });
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data')
+      })
     }
   },
 }
 $(document).ready(function() {
   $(document).ready(function() {
-    $('#unitkerja').select2();
-  });
-});
+    $('#unitkerja').select2()
+  })
+})
 </script>
