@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use HCrypt;
 
 class Kota extends Model
 {
@@ -16,5 +17,9 @@ class Kota extends Model
 
   public function Provinsi(){
     return $this->belongsTo('App\Provinsi');
+  }
+
+  public function getUUIDAttribute($value){
+    return HCrypt::Encrypt($this->id);
   }
 }

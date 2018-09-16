@@ -69090,7 +69090,8 @@ $(document).ready(function () {
   };
 
   $('#myTable').DataTable({
-    responsive: true
+    responsive: true,
+    language: langDataTable
   });
 
   $('#myTable').on('click', '.btn-delete', function () {

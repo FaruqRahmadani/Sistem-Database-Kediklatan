@@ -67,8 +67,8 @@
                 <em class="fa fa-archive">&nbsp;</em> Komoditas
               </a>
             </li>
-            <li {{HRoute::ActiveRoute('Data-Kota-Komoditas')}}>
-              <a href="{{ Route('Data-Kota-Komoditas') }}">
+            <li>
+              <a href="{{Route('kotaKomoditasData')}}">
                 <em class="fa fa-map-o">&nbsp;</em> Kota Komoditas
               </a>
             </li>

@@ -12990,6 +12990,10 @@ img.login-logo {
   text-align: center;
 }
 
+.table-custom .nowrap {
+  white-space: nowrap;
+}
+
 .table th, .table td {
   font-size: 14px;
 }
