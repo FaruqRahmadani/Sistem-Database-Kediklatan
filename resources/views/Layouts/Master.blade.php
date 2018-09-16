@@ -74,8 +74,8 @@
             </li>
           </ul>
         </li>
-        <li {{HRoute::ActiveRoute('Data-Penyuluh')}}>
-          <a href="{{ Route('Data-Penyuluh') }}">
+        <li>
+          <a href="{{Route('penyuluhData')}}">
             <em class="fa fa-user">&nbsp;</em> Penyuluh
           </a>
         </li>

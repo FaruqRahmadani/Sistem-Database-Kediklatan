@@ -34,13 +34,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'UnitKerjaController@Hapus')->Name('Hapus');
   });
 
-  Route::prefix('penyuluh')->group(function () {
-    Route::GET('', 'PenyuluhController@Data')->Name('Data-Penyuluh');
-    Route::GET('tambah', 'PenyuluhController@Tambah')->Name('Tambah-Penyuluh');
-    Route::POST('tambah', 'PenyuluhController@submitTambah')->Name('submit-Tambah-Penyuluh');
-    Route::GET('edit/{id}', 'PenyuluhController@Edit')->Name('Edit-Penyuluh');
-    Route::POST('edit/{id}', 'PenyuluhController@submitEdit')->Name('submit-Edit-Penyuluh');
-    Route::GET('delete/{id}', 'PenyuluhController@Delete')->Name('Delete-Penyuluh');
+  Route::group(['prefix' => 'penyuluh', 'as' => 'penyuluh'], function () {
+    Route::GET('', 'PenyuluhController@Data')->Name('Data');
+    Route::GET('tambah', 'PenyuluhController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'PenyuluhController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'PenyuluhController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'PenyuluhController@EditSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'PenyuluhController@Hapus')->Name('Hapus');
   });
 
   Route::group(['prefix' => 'komoditas', 'as' => 'komoditas'], function () {

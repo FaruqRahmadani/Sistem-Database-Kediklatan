@@ -12994,6 +12994,10 @@ img.login-logo {
   white-space: nowrap;
 }
 
+.table-custom .dtr-title {
+  min-width: 100px !important;
+}
+
 .table th, .table td {
   font-size: 14px;
 }

@@ -1,57 +1,57 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Penyuluh</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Penyuluh') }}
-					></button-tambah>
-					<button-print
-						url = {{ Route('Cetak-Penyuluh') }}
-					></button-print>
+					<a href="{{Route('penyuluhTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
+					<a href="{{Route('cetakPenyuluh')}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
 				</div>
 				<div class="panel-body">
-					<table id="table_penyuluh" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Nama</th>
-								<th class="text-center"> Tempat/Tanggal Lahir</th>
-								<th class="text-center"> Agama</th>
-								<th class="text-center"> Jenis Kelamin</th>
-								<th class="text-center"> Pangkat/Jabatan</th>
-								<th class="text-center"> Pendidikan Terakhir</th>
-								<th class="text-center"> Nomor HP</th>
-								<th class="text-center"> Satuan Kerja</th>
-								<th class="text-center"> Unit Kerja</th>
-								<th class="text-center"> Action</th>
+								<th>#</th>
+								<th>Nama</th>
+								<th>Tempat/Tanggal Lahir</th>
+								<th>Agama</th>
+								<th>Jenis Kelamin</th>
+								<th>Pangkat/Jabatan</th>
+								<th>Pendidikan Terakhir</th>
+								<th>Nomor HP</th>
+								<th>Satuan Kerja</th>
+								<th>Unit Kerja</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($Penyuluh as $Index => $DataPenyuluh)
+							@foreach ($Penyuluh as $Index=>$DataPenyuluh)
 								<tr>
-									<td>
-										({{$DataPenyuluh->nip}})<br>
-										{{$DataPenyuluh->nama}}
-									</td>
-									<td>{{$DataPenyuluh->tempat_lahir}}, {{Tanggal::Format($DataPenyuluh->tanggal_lahir)}}</td>
+									<td>{{$Index+1}}</td>
+									<td>{!!$DataPenyuluh->NIPNama!!}</td>
+									<td>{{$DataPenyuluh->TTL}}</td>
 									<td>{{$DataPenyuluh->agama}}</td>
 									<td>{{$DataPenyuluh->jenis_kelamin}}</td>
-									<td>{{$DataPenyuluh->pangkat_golongan}}/{{$DataPenyuluh->jabatan}}</td>
+									<td>{{$DataPenyuluh->PangkatJabatan}}</td>
 									<td>{{$DataPenyuluh->pendidikan_terakhir}}</td>
 									<td>{{$DataPenyuluh->nomor_hp}}</td>
 									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
 									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
-										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Penyuluh', ['id' => Crypter::Encrypt($DataPenyuluh->id)]) }}
-											status = {{ $DataPenyuluh->KelompokTani->count() }}
-											pesan = "Data Tidak Dapat Dihapus Karena Ada Relasi"
-										></button-delete>
-								</td>
+									<td>
+										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} {!!$DataPenyuluh->KelompokTani->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
+									</td>
 								</tr>
 							@endforeach
 						</tbody>
