@@ -28,14 +28,14 @@ class KotaKomoditasController extends Controller
     return redirect()->Route('kotaKomoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
+  public function EditForm($Id){
     $Id = HCrypt::Decrypt($Id);
     $Kota = Kota::findOrFail($Id);
     $Komoditas = Komoditas::all();
     return view('KotaKomoditas.Edit', compact('Kota', 'Komoditas'));
   }
 
-  public function submitEdit(Request $request, $Id){
+  public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $Kota = Kota::findOrFail($Id);
     $Kota->Komoditas()->sync($request->komoditas_id);
