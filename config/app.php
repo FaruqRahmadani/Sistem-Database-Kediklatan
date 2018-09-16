@@ -212,8 +212,7 @@ return [
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
         'HRoute' => App\Helpers\RouteHelper::class,
         'HCrypt' => App\Helpers\CryptHelper::class,
-        'Tanggal' => App\Helpers\TanggalHelper::class,
-
+        'HDate' => App\Helpers\DateHelper::class,
     ],
 
 ];
