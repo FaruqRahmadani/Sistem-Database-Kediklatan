@@ -70122,6 +70122,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota__);
 //
 //
 //
@@ -70197,65 +70199,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['api', 'satkerja', 'provinsi', 'kota'],
+  components: {
+    FieldDaerah: __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default.a
+  },
   data: function data() {
     return {
-      dataprovinsi: '',
-      datakota: '',
-      ProvinsiId: this.provinsi,
-      KotaId: this.kota,
+      dataprovinsi: null,
+      datakota: null,
       datasatkerja: null,
       SatKerjaId: this.satkerja,
       nama: null,
       alamat: null,
-      nomor_telepon: null
+      nomor_telepon: null,
+      ProvinsiId: null,
+      KotaId: null
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.getSatuanKerja(), axios({
-      method: 'get',
-      url: '/api/dataprovinsi',
-      headers: { Authorization: 'Bearer ' + this.api }
-    }).then(function (response) {
-      _this.dataprovinsi = response.data;
-      if (_this.kota != null) {
-        _this.searchKey(_this.dataprovinsi, _this.provinsi);
-      }
-    });
+    this.getSatuanKerja();
+    this.showProvinsi();
   },
   methods: {
     getSatuanKerja: function getSatuanKerja() {
-      var _this2 = this;
+      var _this = this;
 
       axios({
         method: 'get',
         url: '/api/satuankerja/data',
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
-        _this2.datasatkerja = response.data;
+        _this.datasatkerja = response.data;
       });
     },
-    searchKey: function searchKey(data) {
-      var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    showProvinsi: function showProvinsi() {
+      var _this2 = this;
 
-      var returnData = [];
-      $.each(data, function (index, value) {
-        returnData.push(value.id);
+      axios({
+        method: 'get',
+        url: '/api/dataprovinsi',
+        headers: { Authorization: 'Bearer ' + this.api }
+      }).then(function (response) {
+        _this2.dataprovinsi = response.data;
       });
-      console.log(returnData.lastIndexOf(parseInt(key)));
-      if (returnData.lastIndexOf(parseInt(key)) != '-1') {
-        this.showKota(this.ProvinsiId);
-      }
     },
-    showKota: function showKota(ProvinsiId) {
+    showKota: function showKota() {
       var _this3 = this;
 
       axios({
         method: 'get',
-        url: '/api/datakota/' + ProvinsiId,
+        url: '/api/datakota/' + this.ProvinsiId,
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
         _this3.datakota = response.data;
@@ -70290,6 +70285,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 });
+$(document).ready(function () {
+  $(document).ready(function () {
+    $('#satuankerja').select2();
+  });
+});
 
 /***/ }),
 /* 77 */
@@ -70319,7 +70319,11 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: { name: "satuan_kerja_id" },
+              attrs: {
+                id: "satuankerja",
+                name: "satuan_kerja_id",
+                required: ""
+              },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -70365,7 +70369,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "modal-dialog modal-dialog-centered",
+              staticClass: "modal-dialog modal-dialog-centered modal-lg",
               attrs: { role: "document" }
             },
             [
@@ -70374,9 +70378,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("label", [_vm._v("Nama Satuan Kerja")]),
-                      _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "col-md-2 col-sm-12 control-label" },
+                      [_vm._v("Nama Satuan Kerja")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-10 col-sm-12" }, [
                       _c("input", {
                         directives: [
                           {
@@ -70402,9 +70410,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("label", [_vm._v("Alamat")]),
-                      _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "col-md-2 col-sm-12 control-label" },
+                      [_vm._v("Alamat")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-10 col-sm-12" }, [
                       _c("input", {
                         directives: [
                           {
@@ -70430,9 +70442,11 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("label", [_vm._v("Provinsi")]),
-                      _vm._v(" "),
+                    _c("label", { staticClass: "col-md-2 control-label" }, [
+                      _vm._v("Provinsi")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-10" }, [
                       _c(
                         "select",
                         {
@@ -70445,6 +70459,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control input-lg",
+                          attrs: { name: "provinsi_id" },
                           on: {
                             change: [
                               function($event) {
@@ -70460,9 +70475,7 @@ var render = function() {
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               },
-                              function($event) {
-                                _vm.showKota(_vm.ProvinsiId)
-                              }
+                              _vm.showKota
                             ]
                           }
                         },
@@ -70485,9 +70498,11 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("label", [_vm._v("Kab/Kota")]),
-                      _vm._v(" "),
+                    _c("label", { staticClass: "col-md-2 control-label" }, [
+                      _vm._v("Kab/Kota")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-10" }, [
                       _c(
                         "select",
                         {
@@ -70500,6 +70515,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control input-lg",
+                          attrs: { name: "kota_id" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -70535,9 +70551,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("label", [_vm._v("Nomor Telepon")]),
-                      _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "col-md-2 col-sm-12 control-label" },
+                      [_vm._v("Nomor Telepon")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-10 col-sm-12" }, [
                       _c("input", {
                         directives: [
                           {
@@ -70567,7 +70587,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-secondary",
+                      staticClass: "btn btn-warning",
                       attrs: { type: "button", "data-dismiss": "modal" }
                     },
                     [_vm._v("Close")]
@@ -70794,6 +70814,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 });
+$(document).ready(function () {
+  $(document).ready(function () {
+    $('#unitkerja').select2();
+  });
+});
 
 /***/ }),
 /* 80 */
@@ -70823,7 +70848,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: { name: "unit_kerja_id", required: "" },
+              attrs: { id: "unitkerja", name: "unit_kerja_id", required: "" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -70937,7 +70962,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-secondary",
+                    staticClass: "btn btn-warning",
                     attrs: { type: "button", "data-dismiss": "modal" }
                   },
                   [_vm._v("Close")]
