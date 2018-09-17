@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\P4S;
-use Crypter;
+use HCrypt;
 
 class P4SController extends Controller
 {
@@ -24,14 +24,14 @@ class P4SController extends Controller
     return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditForm($Id){
+    $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
     return view('P4S.Edit', compact('P4S'));
   }
 
-  public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditSubmit(Request $request, $Id){
+    $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
     $P4S->fill($request->all());
     $P4S->save();
@@ -39,7 +39,7 @@ class P4SController extends Controller
   }
 
   public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
     $P4S->delete();
     return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
