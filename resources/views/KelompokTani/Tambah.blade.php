@@ -1,15 +1,21 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Tambah Kelompok Tani</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-						url = {{ Route('Data-Kelompok-Tani') }}
-					></button-kembali>
+					<a href="{{Route('kelompokTaniData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Kelompok-Tani') }}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('kelompokTaniTambahSubmit')}}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Kelompok Tani</label>
@@ -47,7 +53,7 @@
 							</div>
 						</div>
 						<daerah-komoditas
-							api = {{Auth::user()->api_token}}
+						api = {{Auth::user()->api_token}}
 						></daerah-komoditas>
 						<div class="row">
 							<div class="text-center">

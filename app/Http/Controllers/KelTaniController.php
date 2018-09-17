@@ -15,13 +15,13 @@ class KelTaniController extends Controller
     return view('KelompokTani.Data', compact('KelompokTani'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
     return view('KelompokTani.Tambah', compact('Komoditas', 'Penyuluh'));
   }
 
-  public function submitTambah(Request $request){
+  public function TambahSubmit(Request $request){
     $KelompokTani = new KelompokTani;
     $KelompokTani->fill($request->all());
     $KelompokTani->save();

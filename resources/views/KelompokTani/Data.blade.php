@@ -18,6 +18,7 @@
 					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
+								<th>#</th>
 								<th>Nama</th>
 								<th>Nama Ketua</th>
 								<th>Penyuluh</th>
@@ -30,8 +31,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($KelompokTani as $DataKelompokTani)
+							@foreach ($KelompokTani as $Index=>$DataKelompokTani)
 								<tr>
+									<td>{{$Index+1}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
 									<td>{{$DataKelompokTani->nama_ketua}}</td>
 									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
