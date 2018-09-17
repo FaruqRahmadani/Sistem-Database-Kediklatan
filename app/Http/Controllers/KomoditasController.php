@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Crypter;
-
 use App\Komoditas;
+use HCrypt;
 
 class KomoditasController extends Controller
 {
@@ -15,35 +13,38 @@ class KomoditasController extends Controller
     return view('Komoditas.Data', compact('Komoditas'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     return view('Komoditas.Tambah');
   }
 
-  public function submitTambah(Request $request){
+  public function TambahSubmit(Request $request){
     $Komoditas = new Komoditas;
     $Komoditas->fill($request->all());
     $Komoditas->save();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditForm($Id){
+    $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     return view('Komoditas.Edit', compact('Komoditas'));
   }
 
-  public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+  public function EditSubmit(Request $request, $Id){
+    $Id = HCrypt::Decrypt($Id);
     $Komoditas = Komoditas::findOrFail($Id);
     $Komoditas->fill($request->all());
     $Komoditas->save();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
-    $Komoditas = Komoditas::findOrFail($Id);
-    $Komoditas->delete();
-    return redirect()->Route('Data-Komoditas')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+  public function Hapus($Id=null,$Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $Komoditas = Komoditas::findOrFail($Id);
+      $Komoditas->delete();
+      return redirect()->Route('komoditasData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
+    }
+    return abort(404);
   }
 }

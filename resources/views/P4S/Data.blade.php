@@ -1,39 +1,43 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data P4S</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-					url = {{ Route('Tambah-P4S') }}
-					></button-tambah>
+					<a href="{{Route('p4sTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table id="table" class="table table-hover">
+						<table id="myTable" class="table table-hover">
 							<thead>
 								<tr>
-									<th class="text-center"> Nama</th>
-									<th class="text-center"> Ketua Kelompok</th>
-									<th class="text-center"> No. HP</th>
-									<th class="text-center"> Alamat</th>
-									<th class="text-center"> Action</th>
+									<th>#</th>
+									<th>Nama</th>
+									<th>Ketua Kelompok</th>
+									<th>No. HP</th>
+									<th>Alamat</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($P4S as $DataP4S)
+								@foreach ($P4S as $Index=>$DataP4S)
 									<tr>
+										<td>{{$Index+1}}</td>
 										<td>{{$DataP4S->nama}}</td>
 										<td>{{$DataP4S->nama_ketua}}</td>
 										<td>{{$DataP4S->nomor_hp}}</td>
 										<td>{!!nl2br($DataP4S->AlamatLengkap)!!}</td>
-										<td class="text-center">
-											<button-edit
-											url = {{ Route('Edit-P4S', ['id' => Crypter::Encrypt($DataP4S->id)]) }}
-											></button-edit>
-											<button-delete
-											url = {{ Route('Delete-P4S', ['id' => Crypter::Encrypt($DataP4S->id)]) }}
-											></button-delete>
+										<td>
+											<a href="{{Route('p4sEditForm', ['id' => $DataP4S->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+											<button data={{$DataP4S->UUID}} href={{Route('p4sHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 										</td>
 									</tr>
 								@endforeach

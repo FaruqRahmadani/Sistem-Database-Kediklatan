@@ -4,12 +4,13 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Komoditas') }}
-					></button-kembali>
+					<a href="{{Route('komoditasData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Data-Komoditas', ['Id' => Crypter::Encrypt($Komoditas->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('komoditasEditSubmit', ['Id' => $Komoditas->UUID])}}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Komoditas</label>
@@ -20,7 +21,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Keterangan</label>
 							<div class="col-md-10">
-								<textarea rows="4" cols="50" name="keterangan" class="form-control" required>{{$Komoditas->keterangan}}</textarea>
+								<textarea rows="4" name="keterangan" class="form-control" required>{{$Komoditas->keterangan}}</textarea>
 							</div>
 						</div>
 						<div class="row">

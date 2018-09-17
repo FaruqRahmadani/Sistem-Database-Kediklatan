@@ -4,7 +4,7 @@
       <label class="col-md-2 control-label">Unit Kerja</label>
       <div class="col-md-10">
         <div class="input-group">
-          <select name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId" required>
+          <select id="unitkerja" name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId" required>
             <option v-for="dataunitkerja in this.dataunitkerja" :value="dataunitkerja.id">{{dataunitkerja.nama}}</option>
           </select>
           <span class="input-group-btn">
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             <button type="button" name="button" class="btn btn-info btn-fill" @click="submit" data-dismiss="modal">Simpan</button>
           </div>
         </div>
@@ -84,9 +84,14 @@ export default {
         this.getUnitKerja()
         this.UnitKerjaId = response.data
       }).catch(error => {
-        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
-      });
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data')
+      })
     }
   },
 }
+$(document).ready(function() {
+  $(document).ready(function() {
+    $('#unitkerja').select2()
+  })
+})
 </script>

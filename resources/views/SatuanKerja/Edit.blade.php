@@ -1,15 +1,21 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit Satuan Kerja</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Satuan-Kerja') }}
-					></button-kembali>
+					<a href="{{Route('satuanKerjaData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Satuan-Kerja', ['id' => Crypter::Encrypt($SatKerja->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('satuanKerjaEditSubmit', ['id' => $SatKerja->UUID]) }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Satuan Kerja</label>
@@ -20,13 +26,13 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<input type="text" name="alamat" class="form-control" value="{{$SatKerja->alamat}}" required>
+								<textarea name="alamat" rows="2" class="form-control" required>{{$SatKerja->alamat}}</textarea>
 							</div>
 						</div>
 						<field-daerah-provkota
-						provinsi = {{$SatKerja->provinsi_id}}
-						kota = {{$SatKerja->kota_id}}
-						api = {{Auth::User()->api_token}}
+							provinsi = {{$SatKerja->provinsi_id}}
+							kota = {{$SatKerja->kota_id}}
+							api = {{Auth::User()->api_token}}
 						></field-daerah-provkota>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor Telepon</label>
