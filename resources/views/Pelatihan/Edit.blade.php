@@ -1,16 +1,22 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit Pelatihan</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Pelatihan') }}
-					></button-kembali>
+					<a href="{{Route('pelatihanData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Pelatihan', ['id' => $Pelatihan->UUID]) }}" method="POST">
-						{{csrf_field()}}
+					<form class="form-horizontal row-border" action="{{Route('pelatihanEditSubmit', ['id' => $Pelatihan->UUID])}}" method="POST">
+						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
 							<div class="col-md-10">
@@ -20,7 +26,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Tanggal Pelatihan</label>
 							<div class="col-md-10">
-								<input type="date" name="tanggal" class="form-control" value="{{$Pelatihan->tanggal}}" min="{{Tanggal::now()}}" required>
+								<input type="date" name="tanggal" class="form-control" value="{{$Pelatihan->tanggal}}" min="{{HDate::now()}}" required>
 							</div>
 						</div>
 						<div class="form-group">
