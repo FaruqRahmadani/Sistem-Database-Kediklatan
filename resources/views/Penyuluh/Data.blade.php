@@ -50,7 +50,7 @@
 									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
 									<td>
 										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} {!!$DataPenyuluh->KelompokTani->Count()? 'status = "Data Tidak Dapat Dihapus Karena Ada Relasi"' : ''!!} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach

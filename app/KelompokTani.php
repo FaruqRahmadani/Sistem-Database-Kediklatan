@@ -9,7 +9,7 @@ use HCrypt;
 class KelompokTani extends Model
 {
   use SoftDeletes;
-  
+
   protected $fillable = [
     'nama',
     'nama_ketua',
@@ -22,7 +22,7 @@ class KelompokTani extends Model
   ];
 
   public function Komoditas(){
-    return $this->belongsToMany('App\Komoditas');
+    return $this->belongsToMany('App\Komoditas')->withTrashed();
   }
 
   public function Provinsi(){
@@ -34,7 +34,7 @@ class KelompokTani extends Model
   }
 
   public function Penyuluh(){
-    return $this->belongsTo('App\Penyuluh');
+    return $this->belongsTo('App\Penyuluh')->withTrashed();
   }
 
   public function getUUIDAttribute($value){
