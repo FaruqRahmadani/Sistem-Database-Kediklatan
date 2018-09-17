@@ -97,8 +97,8 @@ $(document).ready(function() {
         text   : "Anda Telah Logout",
         icon   : "success",
         timer  : 2500,
-      });
-      window.location = "/logout";
+      })
+      window.location = "/logout"
     } else {
       swal({
         title  : "Batal Logout",
@@ -107,6 +107,6 @@ $(document).ready(function() {
         timer  : 2500,
       })
     }
-  });
-});
+  })
+})
 })

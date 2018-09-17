@@ -1,9 +1,10 @@
-@import 'Lumino/bootstrap';
-@import 'Lumino/font-awesome.min';
-@import 'Lumino/datepicker3';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~font-awesome/css/font-awesome';
+// @import 'Lumino/datepicker3';
 @import 'Lumino/styles';
-@import url("https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css");
-@import url("https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css");
-@import url('https://fonts.googleapis.com/css?family=Roboto:300');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css');
+@import '~datatables.net-bs/css/dataTables.bootstrap';
+@import '~datatables.net-responsive-bs/css/responsive.bootstrap';
+@import '~select2/dist/css/select2';
+@import "~sass-google-fonts/src/GoogleFonts.scss";
+@include google-font('Roboto', '300');
 @import 'custom';

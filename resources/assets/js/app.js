@@ -1,7 +1,6 @@
 
 require('./bootstrap');
 window.Vue = require('vue');
-// require('./Lumino/bootstrap.min');
 require('./Lumino/chart.min');
 require('./Lumino/chart-data');
 require('./Lumino/easypiechart');
