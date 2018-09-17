@@ -89,7 +89,11 @@
             <em class="fa fa-th-large">&nbsp;</em> P4S
           </a>
         </li>
-        <button-logout></button-logout>
+        <li>
+          <a href="#" id="logout">
+            <em class="fa fa-power-off">&nbsp;</em> Logout
+          </a>
+        </li>
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">

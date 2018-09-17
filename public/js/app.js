@@ -69047,13 +69047,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert__);
 
 
-Vue.component('button-tambah', __webpack_require__(55));
-Vue.component('button-kembali', __webpack_require__(58));
-Vue.component('button-logout', __webpack_require__(61));
-Vue.component('button-print', __webpack_require__(64));
 Vue.component('field-daerah-provkota', __webpack_require__(6));
-Vue.component('button-edit', __webpack_require__(69));
-Vue.component('button-delete', __webpack_require__(72));
 Vue.component('field-satkerja', __webpack_require__(75));
 Vue.component('field-unitkerja', __webpack_require__(78));
 Vue.component('field-komoditas', __webpack_require__(81));
@@ -69071,27 +69065,24 @@ $(document).ready(function () {
   var vm = new Vue({
     el: '#app'
   });
-
   global.vm = vm;
-
-  var langDataTable = {
-    processing: "Sedang memproses...",
-    search: "Cari Data&nbsp&nbsp;:&nbsp",
-    lengthMenu: "Tampilkan _MENU_ data",
-    info: "(&nbsp Menampilkan _START_ sampai _END_, dari _TOTAL_ data &nbsp)",
-    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
-    infoFiltered: "(disaring dari _MAX_ data keseluruhan)",
-    infoPostFix: "",
-    zeroRecords: "Tidak ditemukan data yang sesuai",
-    paginate: {
-      previous: "Sebelumnya&nbsp",
-      next: "&nbspSelanjutnya"
-    }
-  };
 
   $('#myTable').DataTable({
     responsive: true,
-    language: langDataTable
+    language: {
+      processing: "Sedang memproses...",
+      search: "Cari Data&nbsp&nbsp:&nbsp",
+      lengthMenu: "Tampilkan _MENU_ data",
+      info: "(&nbsp Menampilkan _START_ sampai _END_, dari _TOTAL_ data &nbsp)",
+      infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+      infoFiltered: "(disaring dari _MAX_ data keseluruhan)",
+      infoPostFix: "",
+      zeroRecords: "Tidak ditemukan data yang sesuai",
+      paginate: {
+        previous: "Sebelumnya&nbsp",
+        next: "&nbspSelanjutnya"
+      }
+    }
   });
 
   $('#myTable').on('click', '.btn-delete', function () {
@@ -69131,53 +69122,32 @@ $(document).ready(function () {
       });
     }
   });
-
-  $('#table_penyuluh').DataTable({
-    scrollX: true,
-    language: langDataTable,
-    "autoWidth": true
-  });
-
-  $('#table_satkerja').DataTable({
-    responsive: true,
-    columns: [{ responsivePriority: 1 }, { responsivePriority: 3 }, { responsivePriority: 4 }, { responsivePriority: 5 }, { responsivePriority: 6 }, { responsivePriority: 2 }],
-    language: langDataTable
-  });
-
-  $('#table_unitkerja').DataTable({
-    responsive: true,
-    columns: [{ responsivePriority: 1 }, { responsivePriority: 3 }, { responsivePriority: 2 }],
-    language: langDataTable
-  });
-
-  $('#table_komoditas').DataTable({
-    responsive: true,
-    columns: [{ responsivePriority: 1 }, { responsivePriority: 3 }, { responsivePriority: 2 }],
-    language: langDataTable
-  });
-
-  $('#table_kotakomoditas').DataTable({
-    responsive: true,
-    columns: [{ responsivePriority: 3 }, { responsivePriority: 1 }, { responsivePriority: 4 }, { responsivePriority: 2 }],
-    language: langDataTable
-  });
-
-  $('#table_komoditas_tambah').DataTable({
-    responsive: true,
-    columns: [{ responsivePriority: 1 }, { responsivePriority: 2 }, { responsivePriority: 3 }],
-    language: langDataTable
-  });
-
-  $('#table_kelompoktani').DataTable({
-    scrollX: true,
-    language: langDataTable
-  });
-
-  $('#table').DataTable({
-    language: langDataTable
-  });
-
   $("#select2").select2();
+  $("#logout").click(function () {
+    __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+      title: "Logout",
+      text: "Yakin Ingin Keluar?",
+      icon: "warning",
+      buttons: ["Batal", "Logout"]
+    }).then(function (logout) {
+      if (logout) {
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+          title: "Logout",
+          text: "Anda Telah Logout",
+          icon: "success",
+          timer: 2500
+        });
+        window.location = "/logout";
+      } else {
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
+          title: "Batal Logout",
+          text: "Anda Batal Logout",
+          icon: "info",
+          timer: 2500
+        });
+      }
+    });
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
@@ -69189,450 +69159,18 @@ $(document).ready(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5).setImmediate, __webpack_require__(5).clearImmediate))
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(56)
-/* template */
-var __vue_template__ = __webpack_require__(57)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonTambah.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-aca80b1c", Component.options)
-  } else {
-    hotAPI.reload("data-v-aca80b1c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
-  methods: {
-    redirect: function redirect(link) {
-      window.location = link;
-    }
-  }
-});
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-primary btn-sm",
-      on: {
-        click: function($event) {
-          _vm.redirect(_vm.url)
-        }
-      }
-    },
-    [
-      _c("span", { staticClass: "fa fa-plus img-circle text-default" }),
-      _vm._v("\n  Tambah Data\n")
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-aca80b1c", module.exports)
-  }
-}
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(59)
-/* template */
-var __vue_template__ = __webpack_require__(60)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonKembali.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ae0e816", Component.options)
-  } else {
-    hotAPI.reload("data-v-2ae0e816", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
-  methods: {
-    redirect: function redirect(link) {
-      window.location = link;
-    }
-  }
-});
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary btn-sm",
-        on: {
-          click: function($event) {
-            _vm.redirect(_vm.url)
-          }
-        }
-      },
-      [
-        _c("span", { staticClass: "fa fa-reply img-circle text-default" }),
-        _vm._v("\n    Kembali\n  ")
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2ae0e816", module.exports)
-  }
-}
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(62)
-/* template */
-var __vue_template__ = __webpack_require__(63)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonLogout.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f35b01da", Component.options)
-  } else {
-    hotAPI.reload("data-v-f35b01da", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    logout: function logout() {
-      swal({
-        title: "Logout",
-        text: "Yakin Ingin Keluar?",
-        icon: "warning",
-        buttons: ["Batal", "Logout"]
-      }).then(function (logout) {
-        if (logout) {
-          swal({
-            title: "Logout",
-            text: "Anda Telah Logout",
-            icon: "success",
-            timer: 2500
-          });
-          window.location = "/logout";
-        } else {
-          swal({
-            title: "Batal Logout",
-            text: "Anda Batal Logout",
-            icon: "info",
-            timer: 2500
-          });
-        }
-      });
-    }
-  }
-});
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("li", [
-    _c(
-      "a",
-      {
-        attrs: { href: "#" },
-        on: {
-          click: function($event) {
-            _vm.logout()
-          }
-        }
-      },
-      [
-        _c("em", { staticClass: "fa fa-power-off" }, [_vm._v(" ")]),
-        _vm._v(" Logout\n  ")
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f35b01da", module.exports)
-  }
-}
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(65)
-/* template */
-var __vue_template__ = __webpack_require__(66)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonPrint.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4fcbf8b4", Component.options)
-  } else {
-    hotAPI.reload("data-v-4fcbf8b4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
-  methods: {
-    redirect: function redirect(link) {
-      window.open(link, '_blank');
-    }
-  }
-});
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-info btn-sm",
-      on: {
-        click: function($event) {
-          _vm.redirect(_vm.url)
-        }
-      }
-    },
-    [
-      _c("span", { staticClass: "fa fa-print img-circle text-default" }),
-      _vm._v("\n  Cetak\n")
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4fcbf8b4", module.exports)
-  }
-}
-
-/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
 /* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -69836,240 +69374,12 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(70)
-/* template */
-var __vue_template__ = __webpack_require__(71)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonEdit.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4caddfd3", Component.options)
-  } else {
-    hotAPI.reload("data-v-4caddfd3", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url'],
-  methods: {
-    redirect: function redirect(link) {
-      window.location = link;
-    }
-  }
-});
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-info btn-xs",
-      on: {
-        "&click": function($event) {
-          _vm.redirect(_vm.url)
-        }
-      }
-    },
-    [_vm._v("\n  Edit\n")]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4caddfd3", module.exports)
-  }
-}
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(73)
-/* template */
-var __vue_template__ = __webpack_require__(74)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ButtonDelete.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0d39f6b4", Component.options)
-  } else {
-    hotAPI.reload("data-v-0d39f6b4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['url', 'status', 'pesan'],
-  methods: {
-    hapus: function hapus(link) {
-      var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      var pesan = arguments[2];
-
-      if (status == 0) {
-        swal({
-          title: "Hapus",
-          text: "Yakin Ingin Hapus Data?",
-          icon: "warning",
-          buttons: ["Batal", "Hapus"]
-        }).then(function (hapus) {
-          if (hapus) {
-            swal({
-              title: "Berhasil",
-              text: "Data Akan dihapus",
-              icon: "success",
-              timer: 2500
-            });
-            window.location = link;
-          } else {
-            swal({
-              title: "Batal",
-              text: "Data Batal dihapus",
-              icon: "info",
-              timer: 2500
-            });
-          }
-        });
-      } else {
-        swal({
-          title: "Hapus",
-          text: pesan,
-          icon: "warning",
-          buttons: "OK"
-        });
-      }
-    }
-  }
-});
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-warning btn-xs",
-      on: {
-        click: function($event) {
-          _vm.hapus(_vm.url, _vm.status, _vm.pesan)
-        }
-      }
-    },
-    [_vm._v("\n  Delete\n")]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0d39f6b4", module.exports)
-  }
-}
-
-/***/ }),
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
 /* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
