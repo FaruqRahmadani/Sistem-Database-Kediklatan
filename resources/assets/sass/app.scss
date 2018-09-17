@@ -1,10 +1,10 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~font-awesome/css/font-awesome';
 // @import 'Lumino/datepicker3';
-@import 'Lumino/styles';
 @import '~datatables.net-bs/css/dataTables.bootstrap';
 @import '~datatables.net-responsive-bs/css/responsive.bootstrap';
 @import '~select2/dist/css/select2';
 @import "~sass-google-fonts/src/GoogleFonts.scss";
 @include google-font('Roboto', '300');
+@import 'Lumino/styles';
 @import 'custom';
