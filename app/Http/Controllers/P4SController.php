@@ -13,15 +13,15 @@ class P4SController extends Controller
     return view('P4S.Data', compact('P4S'));
   }
 
-  public function Tambah(){
+  public function TambahForm(){
     return view('P4S.Tambah');
   }
 
-  public function submitTambah(Request $request){
+  public function TambahSubmit(Request $request){
     $P4S = new P4S;
     $P4S->fill($request->all());
     $P4S->save();
-    return redirect()->route('Data-P4S')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
@@ -35,13 +35,13 @@ class P4SController extends Controller
     $P4S = P4S::findOrFail($Id);
     $P4S->fill($request->all());
     $P4S->save();
-    return redirect()->route('Data-P4S')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
     $Id = Crypter::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
     $P4S->delete();
-    return redirect()->route('Data-P4S')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
   }
 }
