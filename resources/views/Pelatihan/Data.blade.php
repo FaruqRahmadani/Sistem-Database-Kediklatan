@@ -1,15 +1,21 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Pelatihan</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Pelatihan') }}
-					></button-tambah>
+					<a href="{{Route('pelatihanTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
 				</div>
 				<div class="panel-body">
-					<table id="table_penyuluh" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
 								<th class="text-center">#</th>
@@ -26,17 +32,13 @@
 								<tr>
 									<td>{{$Index+1}}</td>
 									<td>{{$DataPelatihan->nama}}</td>
-									<td>{{Tanggal::Format($DataPelatihan->tanggal)}}</td>
+									<td>{{HDate::DateFormat($DataPelatihan->tanggal)}}</td>
 									<td>{{$DataPelatihan->TipeText}}</td>
 									<td>{!!nl2br($DataPelatihan->keterangan)!!}</td>
 									<td><button class="btn btn-xs btn-primary">Lihat</button></td>
 									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Pelatihan', ['id' => $DataPelatihan->UUID]) }}
-										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Pelatihan', ['id' => $DataPelatihan->UUID]) }}
-										></button-delete>
+										<a href="{{Route('pelatihanEditForm', ['id' => $DataPelatihan->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataPelatihan->UUID}} href={{Route('pelatihanHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 								</td>
 								</tr>
 							@endforeach
