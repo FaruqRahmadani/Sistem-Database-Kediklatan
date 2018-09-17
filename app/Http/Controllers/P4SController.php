@@ -38,10 +38,13 @@ class P4SController extends Controller
     return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Delete($Id){
-    $Id = HCrypt::Decrypt($Id);
-    $P4S = P4S::findOrFail($Id);
-    $P4S->delete();
-    return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+  public function Hapus($Id=null,$Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $P4S = P4S::findOrFail($Id);
+      $P4S->delete();
+      return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    }
+    return abort(404);
   }
 }
