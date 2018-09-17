@@ -60,13 +60,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::POST('edit/{id}', 'KotaKomoditasController@EditSubmit')->Name('EditSubmit');
   });
 
-  Route::prefix('keltani')->group(function () {
-    Route::GET('', 'KelTaniController@Data')->Name('Data-Kelompok-Tani');
-    Route::GET('tambah', 'KelTaniController@Tambah')->Name('Tambah-Kelompok-Tani');
-    Route::POST('tambah', 'KelTaniController@submitTambah')->Name('submit-Tambah-Kelompok-Tani');
-    Route::GET('edit/{id}', 'KelTaniController@Edit')->Name('Edit-Kelompok-Tani');
-    Route::POST('edit/{id}', 'KelTaniController@submitEdit')->Name('submit-Edit-Kelompok-Tani');
-    Route::GET('delete/{id}', 'KelTaniController@Delete')->Name('Delete-Kelompok-Tani');
+  Route::group(['prefix' => 'kelompoktani', 'as' => 'kelompokTani'], function () {
+    Route::GET('', 'KelTaniController@Data')->Name('Data');
+    Route::GET('tambah', 'KelTaniController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'KelTaniController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'KelTaniController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'KelTaniController@EditSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'KelTaniController@Hapus')->Name('Hapus');
   });
 
   Route::prefix('p4s')->group(function () {

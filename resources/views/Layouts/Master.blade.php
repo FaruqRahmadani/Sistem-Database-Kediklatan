@@ -79,8 +79,8 @@
             <em class="fa fa-user">&nbsp;</em> Penyuluh
           </a>
         </li>
-        <li {{HRoute::ActiveRoute('Data-Kelompok-Tani')}}>
-          <a href="{{ Route('Data-Kelompok-Tani') }}">
+        <li>
+          <a href="{{Route('kelompokTaniData')}}">
             <em class="fa fa-users">&nbsp;</em> Kelompok Tani
           </a>
         </li>

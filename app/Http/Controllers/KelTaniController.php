@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Crypter;
-
 use App\KelompokTani;
 use App\Komoditas;
 use App\Penyuluh;
+use HCrypt;
 
 class KelTaniController extends Controller
 {
@@ -30,11 +28,11 @@ class KelTaniController extends Controller
     foreach ($request->komoditas_id as $KomoditasId) {
       $KelompokTani->Komoditas()->attach($KomoditasId);
     }
-    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+    return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
   public function Edit($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
@@ -42,19 +40,19 @@ class KelTaniController extends Controller
   }
 
   public function submitEdit(Request $request, $Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->fill($request->all());
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
     $KelompokTani->save();
-    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function Delete($Id){
-    $Id = Crypter::Decrypt($Id);
+    $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->Komoditas()->detach();
     $KelompokTani->delete();
-    return redirect()->Route('Data-Kelompok-Tani')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
   }
 }

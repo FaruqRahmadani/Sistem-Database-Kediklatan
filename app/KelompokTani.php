@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use HCrypt;
 
 class KelompokTani extends Model
 {
@@ -31,5 +32,9 @@ class KelompokTani extends Model
 
   public function Penyuluh(){
     return $this->belongsTo('App\Penyuluh');
+  }
+
+  public function getUUIDAttribute($value){
+    return HCrypt::Encrypt($this->id);
   }
 }
