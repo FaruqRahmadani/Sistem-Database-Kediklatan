@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class P4S extends Model
 {
+  use SoftDeletes;
+  
   protected $fillable = [
     'nama',
     'nama_ketua',

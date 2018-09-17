@@ -48,11 +48,14 @@ class KelTaniController extends Controller
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
-  public function Delete($Id){
-    $Id = HCrypt::Decrypt($Id);
-    $KelompokTani = KelompokTani::findOrFail($Id);
-    $KelompokTani->Komoditas()->detach();
-    $KelompokTani->delete();
-    return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+  public function Hapus($Id=null,$Verify=null){
+    if ($Verify) {
+      $Id = HCrypt::Decrypt($Id);
+      $KelompokTani = KelompokTani::findOrFail($Id);
+      $KelompokTani->Komoditas()->detach();
+      $KelompokTani->delete();
+      return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    }
+    return abort(404);
   }
 }

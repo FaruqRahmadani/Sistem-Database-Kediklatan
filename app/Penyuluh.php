@@ -2,12 +2,15 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use HCrypt;
 use HDate;
 
 class Penyuluh extends Model
 {
+  use SoftDeletes;
+  
   protected $fillable = [
     'nip',
     'nama',
