@@ -84,8 +84,8 @@
             <em class="fa fa-users">&nbsp;</em> Kelompok Tani
           </a>
         </li>
-        <li {{HRoute::ActiveRoute('Data-P4S')}}>
-          <a href="{{ Route('Data-P4S') }}">
+        <li>
+          <a href="{{Route('p4sData')}}">
             <em class="fa fa-th-large">&nbsp;</em> P4S
           </a>
         </li>

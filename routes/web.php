@@ -69,13 +69,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'KelTaniController@Hapus')->Name('Hapus');
   });
 
-  Route::prefix('p4s')->group(function () {
-    Route::GET('', 'P4SController@Data')->Name('Data-P4S');
-    Route::GET('tambah', 'P4SController@Tambah')->Name('Tambah-P4S');
-    Route::POST('tambah', 'P4SController@submitTambah')->Name('submit-Tambah-P4S');
-    Route::GET('edit/{id}', 'P4SController@Edit')->Name('Edit-P4S');
-    Route::POST('edit/{id}', 'P4SController@submitEdit')->Name('submit-Edit-P4S');
-    Route::GET('delete/{id}', 'P4SController@Delete')->Name('Delete-P4S');
+  Route::group(['prefix' => 'p4s', 'as' => 'p4s'], function () {
+    Route::GET('', 'P4SController@Data')->Name('Data');
+    Route::GET('tambah', 'P4SController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'P4SController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'P4SController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'P4SController@EditSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'P4SController@Hapus')->Name('Hapus');
   });
 
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
