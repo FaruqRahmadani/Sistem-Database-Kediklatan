@@ -1,15 +1,21 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit Kelompok Tani</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-						url = {{ Route('Data-Kelompok-Tani') }}
-					></button-kembali>
+					<a href="{{Route('kelompokTaniData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Kelompok-Tani', ['id' => Crypter::Encrypt($KelompokTani->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('kelompokTaniEditSubmit', ['id' => $KelompokTani->UUID]) }}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Kelompok Tani</label>

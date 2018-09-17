@@ -31,7 +31,7 @@ class KelTaniController extends Controller
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Edit($Id){
+  public function EditForm($Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $Komoditas = Komoditas::all();
@@ -39,7 +39,7 @@ class KelTaniController extends Controller
     return view('KelompokTani.Edit', compact('KelompokTani', 'Komoditas', 'Penyuluh'));
   }
 
-  public function submitEdit(Request $request, $Id){
+  public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->fill($request->all());
