@@ -29,8 +29,4 @@ class P4S extends Model
   public function Kota(){
     return $this->belongsTo('App\Kota');
   }
-
-  public function getUUIDAttribute($value){
-    return Crypter::encrypt($this->id);
-  }
 }

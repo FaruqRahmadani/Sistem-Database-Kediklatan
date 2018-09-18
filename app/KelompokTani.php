@@ -40,8 +40,4 @@ class KelompokTani extends Model
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
   }
-
-  public function getUUIDAttribute($value){
-    return Crypter::Encrypt($this->id);
-  }
 }
