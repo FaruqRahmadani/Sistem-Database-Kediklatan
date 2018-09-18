@@ -1,16 +1,22 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Tambah Komoditas</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Komoditas') }}
-					></button-kembali>
+					<a href="{{Route('komoditasData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Tambah-Data-Komoditas') }}" method="POST">
-						{{csrf_field()}}
+					<form class="form-horizontal row-border" action="{{Route('komoditasTambahSubmit')}}" method="POST">
+						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Komoditas</label>
 							<div class="col-md-10">
@@ -20,7 +26,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Keterangan</label>
 							<div class="col-md-10">
-								<textarea rows="4" cols="50" name="keterangan" class="form-control" required></textarea>
+								<textarea rows="4" name="keterangan" class="form-control" required></textarea>
 							</div>
 						</div>
 						<div class="row">

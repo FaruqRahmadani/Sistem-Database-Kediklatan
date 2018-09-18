@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use Crypter;
+use HCrypt;
 
 class Pelatihan extends Model
 {
@@ -22,7 +22,7 @@ class Pelatihan extends Model
   }
 
   public function getUUIDAttribute($value){
-    return Crypter::Encrypt($this->id);
+    return HCrypt::Encrypt($this->id);
   }
 
   public function P4S(){

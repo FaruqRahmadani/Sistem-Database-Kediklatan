@@ -4,7 +4,7 @@
       <label class="col-md-2 control-label">Satuan Kerja</label>
       <div class="col-md-10">
         <div class="input-group">
-          <select name="satuan_kerja_id" class="form-control input-lg" v-model="SatKerjaId">
+          <select id="satuankerja" name="satuan_kerja_id" class="form-control input-lg" v-model="SatKerjaId" required>
             <option v-for="datasatkerja in this.datasatkerja" :value="datasatkerja.id">{{datasatkerja.nama}}</option>
           </select>
           <span class="input-group-btn">
@@ -15,7 +15,7 @@
     </div>
     <div>
       <div class="modal fade" id="modalSatuanKerja" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -25,44 +25,44 @@
             </div>
             <div class="modal-body">
               <div class="form-group">
-                <div class="col-md-12">
-                  <label>Nama Satuan Kerja</label>
+                  <label class="col-md-2 col-sm-12 control-label">Nama Satuan Kerja</label>
+                  <div class="col-md-10 col-sm-12">
                   <input type="text" v-model="nama" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-md-12">
-                  <label>Alamat</label>
+                  <label class="col-md-2 col-sm-12 control-label">Alamat</label>
+                  <div class="col-md-10 col-sm-12">
                   <input type="text" v-model="alamat" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-md-12">
-                  <label>Provinsi</label>
-                  <select class="form-control input-lg" v-model="ProvinsiId" @change="showKota(ProvinsiId)">
+                <label class="col-md-2 control-label">Provinsi</label>
+                <div class="col-md-10">
+                  <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota">
                     <option value="">Provinsi</option>
                     <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-md-12">
-                  <label>Kab/Kota</label>
-                  <select class="form-control input-lg" v-model="KotaId">
+                <label class="col-md-2 control-label">Kab/Kota</label>
+                <div class="col-md-10">
+                  <select name="kota_id" class="form-control input-lg" v-model="KotaId">
                     <option value="">Kota</option>
                     <option v-for="datakota in this.datakota" :value="datakota.id">{{datakota.nama}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-md-12">
-                  <label>Nomor Telepon</label>
+                  <label class="col-md-2 col-sm-12 control-label">Nomor Telepon</label>
+                  <div class="col-md-10 col-sm-12">
                   <input type="text" v-model="nomor_telepon" class="form-control">
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
               <button type="button" name="button" class="btn btn-info btn-fill" @click="submit" data-dismiss="modal">Simpan</button>
             </div>
           </div>
@@ -73,33 +73,28 @@
 </template>
 
 <script>
+import FieldDaerah from './FieldDaerah-ProvKota'
 export default {
-  props: ['api', 'satkerja', 'provinsi', 'kota'],
+  props: ['api', 'satkerja'],
+  components: {
+    FieldDaerah
+  },
   data: function(){
     return {
-      dataprovinsi : '',
-      datakota : '',
-      ProvinsiId : this.provinsi,
-      KotaId : this.kota,
+      dataprovinsi: null,
+      datakota: null,
       datasatkerja : null,
       SatKerjaId : this.satkerja,
       nama : null,
       alamat : null,
       nomor_telepon : null,
+      ProvinsiId : null,
+      KotaId : null,
     }
   },
   mounted: function(){
-    this.getSatuanKerja(),
-    axios({
-      method: 'get',
-      url: '/api/dataprovinsi',
-      headers: { Authorization: 'Bearer '+this.api },
-    }).then((response) => {
-      this.dataprovinsi = response.data
-      if (this.kota != null) {
-        this.searchKey(this.dataprovinsi, this.provinsi)
-      }
-    })
+    this.getSatuanKerja()
+    this.showProvinsi()
   },
   methods: {
     getSatuanKerja(){
@@ -111,20 +106,19 @@ export default {
         this.datasatkerja = response.data
       })
     },
-    searchKey(data, key = null){
-      var returnData = []
-      $.each(data, function(index, value){
-        returnData.push(value.id)
-      })
-      console.log(returnData.lastIndexOf(parseInt(key)))
-      if (returnData.lastIndexOf(parseInt(key)) != '-1') {
-        this.showKota(this.ProvinsiId)
-      }
-    },
-    showKota(ProvinsiId){
+    showProvinsi(){
       axios({
         method: 'get',
-        url: '/api/datakota/'+ProvinsiId,
+        url: '/api/dataprovinsi',
+        headers: { Authorization: 'Bearer '+this.api },
+      }).then((response) => {
+        this.dataprovinsi = response.data
+      })
+    },
+    showKota(){
+      axios({
+        method: 'get',
+        url: '/api/datakota/'+this.ProvinsiId,
         headers: { Authorization: 'Bearer '+this.api },
       }).then((response) => {
         this.datakota = response.data
@@ -152,9 +146,14 @@ export default {
         this.provinsi_id=null
         this.kota_id=null
       }).catch(error => {
-        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
-      });
+        notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data')
+      })
     },
   },
 }
+$(document).ready(function() {
+  $(document).ready(function() {
+    $('#satuankerja').select2()
+  })
+})
 </script>

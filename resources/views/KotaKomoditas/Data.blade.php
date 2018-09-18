@@ -1,42 +1,45 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Kota Komoditas</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Kota-Komoditas') }}
-					></button-tambah>
-					<button-print
-						url = {{ Route('Cetak-Unit-Kerja') }}
-					></button-print>
+					<a href="{{Route('kotaKomoditasTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
 				</div>
 				<div class="panel-body">
-					<table id="table_kotakomoditas" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Provinsi</th>
-								<th class="text-center"> Kota</th>
-								<th class="text-center"> Komoditas</th>
-								<th class="text-center" style="width:15%"> Action</th>
+								<th>#</th>
+								<th>Provinsi</th>
+								<th>Kota</th>
+								<th>Komoditas</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($Kota as $DataKota)
+							@foreach ($Kota as $Index=>$DataKota)
 								<tr>
+									<td>{{$Index+1}}</td>
 									<td>{{$DataKota->Provinsi->nama}}</td>
 									<td>{{$DataKota->nama}}</td>
-									<td class="text-center">
+									<td class="nowrap">
 										@foreach ($DataKota->Komoditas as $Komoditas)
-											<span class="badge badge-pill">
+											<span class="badge">
 										    {{$Komoditas->nama}}
 										  </span>
 										@endforeach
 									</td>
 									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Kota-Komoditas', ['id' => Crypter::Encrypt($DataKota->id)]) }}
-										></button-edit>
+										<a href="{{Route('kotaKomoditasEditForm', ['id' => $DataKota->UUID])}}" class="btn btn-info btn-xs">Edit</a>
 									</td>
 								</tr>
 							@endforeach

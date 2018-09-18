@@ -1,16 +1,22 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit Penyuluh</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('Data-Penyuluh') }}
-					></button-kembali>
+					<a href="{{Route('penyuluhData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-Penyuluh', ['id' => Crypter::Encrypt($Penyuluh->id)]) }}" method="POST">
-						{{csrf_field()}}
+					<form class="form-horizontal row-border" action="{{Route('penyuluhEditSubmit', ['id' => $Penyuluh->UUID])}}" method="POST">
+						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIP</label>
 							<div class="col-md-10">
@@ -32,7 +38,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Tanggal Lahir</label>
 							<div class="col-md-10">
-								<input type="date" name="tanggal_lahir" class="form-control" value="{{$Penyuluh->tanggal_lahir}}" max="{{Tanggal::now()}}" required>
+								<input type="date" name="tanggal_lahir" class="form-control" value="{{$Penyuluh->tanggal_lahir}}" max="{{HDate::now()}}" required>
 							</div>
 						</div>
 						<div class="form-group">

@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -211,9 +211,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
         'HRoute' => App\Helpers\RouteHelper::class,
-        'Crypter' => App\Helpers\CryptHelper::class,
-        'Tanggal' => App\Helpers\TanggalHelper::class,
-
+        'HCrypt' => App\Helpers\CryptHelper::class,
+        'HDate' => App\Helpers\DateHelper::class,
     ],
 
 ];
