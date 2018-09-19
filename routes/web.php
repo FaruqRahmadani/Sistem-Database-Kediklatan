@@ -87,11 +87,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'PelatihanController@Hapus')->Name('Hapus');
   });
 
-  Route::prefix('peserta-pelatihan')->group(function () {
-    Route::GET('{idPelatihan}', 'PesertaPelatihanController@Data')->Name('Data-Peserta-Pelatihan');
-    Route::GET('{idPelatihan}/tambah', 'PesertaPelatihanController@Tambah')->Name('Tambah-Peserta-Pelatihan');
-    Route::POST('{idPelatihan}/tambah', 'PesertaPelatihanController@submitTambah')->Name('submit-Tambah-Peserta-Pelatihan');
-    Route::GET('{idPelatihan}/{id}/hapus', 'PesertaPelatihanController@Hapus')->Name('Hapus-Peserta-Pelatihan');
+  Route::group(['prefix' => 'pesertapelatihan/{idPelatihan}', 'as' => 'pesertaPelatihan'], function () {
+    Route::GET('', 'PesertaPelatihanController@Data')->Name('Data');
+    Route::GET('tambah', 'PesertaPelatihanController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'PesertaPelatihanController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'PesertaPelatihanController@Hapus')->Name('Hapus');
   });
 
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {

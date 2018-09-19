@@ -1,19 +1,20 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Tambah Peserta Pelatihan <small>Kelompok Tani</small></h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<button-tambah
-					url = {{ Route('Tambah-Peserta-Pelatihan', ['idPelatihan' => $Pelatihan->UUID]) }}
-					></button-tambah>
-				</div>
-				<form action="{{Route('submit-Tambah-Peserta-Pelatihan', ['id' => $Pelatihan->UUID])}}" method="post">
+				<form action="{{Route('pesertaPelatihanTambahSubmit', ['id' => $Pelatihan->UUID])}}" method="post">
 					@csrf
 					<div class="panel-body">
-						<table id="table_kelompoktani" class="table table-hover table-custom">
+						<table id="myTable" class="table table-hover table-custom">
 							<thead>
 								<tr>
+									<th class="text-center">#</th>
 									<th class="text-center"></th>
 									<th class="text-center">Nama</th>
 									<th class="text-center">Nama Ketua</th>
@@ -26,8 +27,9 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($Peserta as $DataPeserta)
+								@foreach ($Peserta as $Index=>$DataPeserta)
 									<tr>
+										<td>{{$Index+1}}</td>
 										<td>
 											<input type="checkbox" name="id[]" value="{{$DataPeserta->id}}" {{$Pelatihan->KelompokTani->pluck('id')->search($DataPeserta->id) !== false ? 'checked' : ''}}>
 										</td>

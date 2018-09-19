@@ -1,20 +1,25 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Tambah Peserta Pelatihan <small>P4S</small></h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<form action="{{Route('submit-Tambah-Peserta-Pelatihan', ['id' => $Pelatihan->UUID])}}" method="post">
+				<form action="{{Route('pesertaPelatihanTambahSubmit', ['id' => $Pelatihan->UUID])}}" method="post">
 					@csrf
 					<div class="panel-body">
 						<div class="table-responsive">
-							<table id="table" class="table table-hover">
+							<table id="myTable" class="table table-hover">
 								<thead>
 									<tr>
-										<th class="text-center"></th>
-										<th class="text-center"> Nama</th>
-										<th class="text-center"> Ketua Kelompok</th>
-										<th class="text-center"> No. HP</th>
-										<th class="text-center"> Alamat</th>
+										<th></th>
+										<th> Nama</th>
+										<th> Ketua Kelompok</th>
+										<th> No. HP</th>
+										<th> Alamat</th>
 									</tr>
 								</thead>
 								<tbody>

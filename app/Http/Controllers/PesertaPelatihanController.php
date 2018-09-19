@@ -7,19 +7,19 @@ use App\KelompokTani;
 use App\Pelatihan;
 use App\Penyuluh;
 use App\P4S;
-use Crypter;
+use HCrypt;
 
 class PesertaPelatihanController extends Controller
 {
   public function Data($idPelatihan){
-    $idPelatihan = Crypter::Decrypt($idPelatihan);
+    $idPelatihan = HCrypt::Decrypt($idPelatihan);
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
     $Tipe = studly_case($Pelatihan->TipeText);
     return view("PesertaPelatihan.{$Tipe}.Data", compact('Pelatihan'));
   }
 
-  public function Tambah($idPelatihan){
-    $idPelatihan = Crypter::Decrypt($idPelatihan);
+  public function TambahForm($idPelatihan){
+    $idPelatihan = HCrypt::Decrypt($idPelatihan);
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
     $Tipe = studly_case($Pelatihan->TipeText);
     switch ($Pelatihan->tipe) {
@@ -39,8 +39,8 @@ class PesertaPelatihanController extends Controller
     return view("PesertaPelatihan.{$Tipe}.Tambah", compact('Pelatihan', 'Peserta'));
   }
 
-  public function submitTambah(Request $request, $idPelatihan){
-    $idPelatihan = Crypter::Decrypt($idPelatihan);
+  public function TambahSubmit(Request $request, $idPelatihan){
+    $idPelatihan = HCrypt::Decrypt($idPelatihan);
     $Pelatihan = Pelatihan::findOrFail($idPelatihan);
     switch ($Pelatihan->tipe) {
       case 1:
@@ -56,27 +56,30 @@ class PesertaPelatihanController extends Controller
         return abort(404);
         break;
     }
-  return redirect()->Route('Data-Peserta-Pelatihan', ['id' => $Pelatihan->UUID])->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
+  return redirect()->Route('pesertaPelatihanData', ['id' => $Pelatihan->UUID])->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
-  public function Hapus($idPelatihan, $Id){
-    $idPelatihan = Crypter::Decrypt($idPelatihan);
-    $Id = Crypter::Decrypt($Id);
-    $Pelatihan = Pelatihan::findOrFail($idPelatihan);
-    switch ($Pelatihan->tipe) {
-      case 1:
+  public function Hapus($idPelatihan, $Id=null, $Verify=null){
+    if ($Verify) {
+      $idPelatihan = HCrypt::Decrypt($idPelatihan);
+      $Id = HCrypt::Decrypt($Id);
+      $Pelatihan = Pelatihan::findOrFail($idPelatihan);
+      switch ($Pelatihan->tipe) {
+        case 1:
         $Pelatihan->Penyuluh()->detach($Id);
         break;
-      case 2:
+        case 2:
         $Pelatihan->KelompokTani()->detach($Id);
         break;
-      case 3:
+        case 3:
         $Pelatihan->P4S()->detach($Id);
         break;
-      default:
+        default:
         return abort(404);
         break;
+      }
+      return redirect()->Route('pesertaPelatihanData', ['id' => $Pelatihan->UUID])->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
     }
-    return redirect()->Route('Data-Peserta-Pelatihan', ['id' => $Pelatihan->UUID])->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+    return abort(404);
   }
 }

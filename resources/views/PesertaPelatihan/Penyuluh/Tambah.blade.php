@@ -1,40 +1,44 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Tambah Peserta Pelatihan <small>Penyuluh</small></h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<form action="{{Route('submit-Tambah-Peserta-Pelatihan', ['id' => $Pelatihan->UUID])}}" method="post">
+				<form action="{{Route('pesertaPelatihanTambahSubmit', ['id' => $Pelatihan->UUID])}}" method="post">
 					@csrf
 					<div class="panel-body">
-						<table id="table_penyuluh" class="table table-hover table-custom">
+						<table id="myTable" class="table table-hover table-custom">
 							<thead>
 								<tr>
-									<th class="text-center"></th>
-									<th class="text-center"> Nama</th>
-									<th class="text-center"> Tempat/Tanggal Lahir</th>
-									<th class="text-center"> Agama</th>
-									<th class="text-center"> Jenis Kelamin</th>
-									<th class="text-center"> Pangkat/Jabatan</th>
-									<th class="text-center"> Pendidikan Terakhir</th>
-									<th class="text-center"> Nomor HP</th>
-									<th class="text-center"> Satuan Kerja</th>
-									<th class="text-center"> Unit Kerja</th>
+									<th>#</th>
+									<th></th>
+									<th>Nama</th>
+									<th>Tempat/Tanggal Lahir</th>
+									<th>Agama</th>
+									<th>Jenis Kelamin</th>
+									<th>Pangkat/Jabatan</th>
+									<th>Pendidikan Terakhir</th>
+									<th>Nomor HP</th>
+									<th>Satuan Kerja</th>
+									<th>Unit Kerja</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($Peserta as $Index => $DataPeserta)
+								@foreach ($Peserta as $Index=>$DataPeserta)
 									<tr>
+										<td>{{$Index+1}}</td>
 										<td>
 											<input type="checkbox" name="id[]" value="{{$DataPeserta->id}}" {{$Pelatihan->Penyuluh->pluck('id')->search($DataPeserta->id) !== false ? 'checked' : ''}}>
 										</td>
-										<td>
-											({{$DataPeserta->nip}})<br>
-											{{$DataPeserta->nama}}
-										</td>
-										<td>{{$DataPeserta->tempat_lahir}}, {{Tanggal::Format($DataPeserta->tanggal_lahir)}}</td>
+										<td>{!!$DataPeserta->NIPNama!!}</td>
+										<td>{{$DataPeserta->TTL}}</td>
 										<td>{{$DataPeserta->agama}}</td>
 										<td>{{$DataPeserta->jenis_kelamin}}</td>
-										<td>{{$DataPeserta->pangkat_golongan}}/{{$DataPeserta->jabatan}}</td>
+										<td>{{$DataPeserta->PangkatJabatan}}</td>
 										<td>{{$DataPeserta->pendidikan_terakhir}}</td>
 										<td>{{$DataPeserta->nomor_hp}}</td>
 										<td>{{$DataPeserta->SatuanKerja->nama}}</td>
