@@ -24,4 +24,16 @@ class Pelatihan extends Model
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
   }
+
+  public function P4S(){
+    return $this->belongsToMany('App\P4S', 'pelatihan_p4_s');
+  }
+
+  public function KelompokTani(){
+    return $this->belongsToMany('App\KelompokTani', 'pelatihan_kelompok_tanis');
+  }
+
+  public function Penyuluh(){
+    return $this->belongsToMany('App\Penyuluh', 'pelatihan_penyuluhs');
+  }
 }

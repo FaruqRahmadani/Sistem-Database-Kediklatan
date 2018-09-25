@@ -18,13 +18,13 @@
 					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center">#</th>
+								<th>#</th>
 								<th>Nama</th>
 								<th>Tanggal Pelatihan</th>
 								<th>Tipe</th>
 								<th>Keterangan</th>
 								<th>Peserta</th>
-								<th class="text-center">Action</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -35,8 +35,10 @@
 									<td>{{HDate::DateFormat($DataPelatihan->tanggal)}}</td>
 									<td>{{$DataPelatihan->TipeText}}</td>
 									<td>{!!nl2br($DataPelatihan->keterangan)!!}</td>
-									<td><button class="btn btn-xs btn-primary">Lihat</button></td>
-									<td class="text-center">
+									<td>
+										<a href="{{Route('pesertaPelatihanData', ['id' => $DataPelatihan->UUID])}}" class="btn btn-xs btn-primary">Detail Peserta</a>
+									</td>
+									<td>
 										<a href="{{Route('pelatihanEditForm', ['id' => $DataPelatihan->UUID])}}" class="btn btn-info btn-xs">Edit</a>
 										<button data={{$DataPelatihan->UUID}} href={{Route('pelatihanHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 								</td>
