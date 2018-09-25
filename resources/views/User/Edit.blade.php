@@ -1,15 +1,20 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Edit User</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<button-kembali
-					url = {{ Route('Data-User') }}
+					url = {{ Route('userData') }}
 					></button-kembali>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('submit-Edit-User', ['Id' => Crypter::Encrypt($User->id)]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('userEditSubmit', ['Id' => $User->UUID])}}" method="POST">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>

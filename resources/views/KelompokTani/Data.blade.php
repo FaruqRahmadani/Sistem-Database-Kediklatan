@@ -1,34 +1,39 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Kelompok Tani</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Kelompok-Tani') }}
-					></button-tambah>
-					<button-print
-						url = {{ Route('Cetak-Unit-Kerja') }}
-					></button-print>
+					<a href="{{Route('kelompokTaniTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
 				</div>
 				<div class="panel-body">
-					<table id="table_kelompoktani" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center">Nama</th>
-								<th class="text-center">Nama Ketua</th>
-								<th class="text-center">Penyuluh</th>
-								<th class="text-center">Nomor HP</th>
-								<th class="text-center">Alamat</th>
-								<th class="text-center">Provinsi</th>
-								<th class="text-center">Kota</th>
-								<th class="text-center">Komoditas</th>
-								<th class="text-center" style="width:115px"> Action</th>
+								<th>#</th>
+								<th>Nama</th>
+								<th>Nama Ketua</th>
+								<th>Penyuluh</th>
+								<th>Nomor HP</th>
+								<th>Alamat</th>
+								<th>Provinsi</th>
+								<th>Kota</th>
+								<th>Komoditas</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($KelompokTani as $DataKelompokTani)
+							@foreach ($KelompokTani as $Index=>$DataKelompokTani)
 								<tr>
+									<td>{{$Index+1}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
 									<td>{{$DataKelompokTani->nama_ketua}}</td>
 									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
@@ -44,12 +49,8 @@
 										@endforeach
 									</td>
 									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Kelompok-Tani', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}
-										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Kelompok-Tani', ['id' => Crypter::Encrypt($DataKelompokTani->id)]) }}
-										></button-delete>
+										<a href="{{Route('kelompokTaniEditForm', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataKelompokTani->UUID}} href={{Route('kelompokTaniHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach

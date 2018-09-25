@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use HCrypt;
 
 class UnitKerja extends Model
 {
@@ -13,5 +14,9 @@ class UnitKerja extends Model
 
   public function Penyuluh(){
     return $this->hasMany('App\Penyuluh');
+  }
+
+  public function getUUIDAttribute($value){
+    return HCrypt::Encrypt($this->id);
   }
 }

@@ -1,37 +1,38 @@
 @extends('Layouts.Master')
 @section('content')
+	<div class="row row-header">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Komoditas</h3>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-tambah
-						url = {{ Route('Tambah-Data-Komoditas') }}
-					></button-tambah>
-					<button-print
-						url = {{ Route('Cetak-Unit-Kerja') }}
-					></button-print>
+					<a href="{{Route('komoditasTambahForm')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-plus img-circle text-default"></span>
+						Tambah Data
+					</a>
 				</div>
 				<div class="panel-body">
-					<table id="table_komoditas" class="table table-hover table-custom">
+					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
-								<th class="text-center"> Nama</th>
-								<th class="text-center"> Keterangan</th>
-								<th class="text-center" style="width:15%"> Action</th>
+								<th>#</th>
+								<th>Nama</th>
+								<th>Keterangan</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($Komoditas as $Index => $DataKomoditas)
+							@foreach ($Komoditas as $Index=>$DataKomoditas)
 								<tr>
+									<td>{{$Index+1}}</td>
 									<td>{{$DataKomoditas->nama}}</td>
 									<td>{!!nl2br($DataKomoditas->keterangan)!!}</td>
 									<td class="text-center">
-										<button-edit
-											url = {{ Route('Edit-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
-										></button-edit>
-										<button-delete
-											url = {{ Route('Delete-Data-Komoditas', ['id' => Crypter::Encrypt($DataKomoditas->id)]) }}
-										></button-delete>
+										<a href="{{Route('komoditasEditForm', ['id' => $DataKomoditas->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataKomoditas->UUID}} href={{Route('komoditasHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach

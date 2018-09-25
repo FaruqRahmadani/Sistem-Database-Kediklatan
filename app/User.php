@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use HCrypt;
 
 class User extends Authenticatable
 {
@@ -21,5 +22,9 @@ class User extends Authenticatable
     if ($value) {
       $this->attributes['password'] = bcrypt($value);
     }
+  }
+
+  public function getUUIDAttribute($value){
+    return HCrypt::Encrypt($this->id);
   }
 }
