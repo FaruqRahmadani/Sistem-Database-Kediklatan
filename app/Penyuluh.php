@@ -10,7 +10,7 @@ use HDate;
 class Penyuluh extends Model
 {
   use SoftDeletes;
-  
+
   protected $fillable = [
     'nip',
     'nama',

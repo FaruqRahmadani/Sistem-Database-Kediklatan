@@ -78,6 +78,22 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'P4SController@Hapus')->Name('Hapus');
   });
 
+  Route::group(['prefix' => 'pelatihan', 'as' => 'pelatihan'], function () {
+    Route::GET('', 'PelatihanController@Data')->Name('Data');
+    Route::GET('tambah', 'PelatihanController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'PelatihanController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'PelatihanController@EditForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'PelatihanController@EditSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'PelatihanController@Hapus')->Name('Hapus');
+  });
+
+  Route::group(['prefix' => 'pesertapelatihan/{idPelatihan}', 'as' => 'pesertaPelatihan'], function () {
+    Route::GET('', 'PesertaPelatihanController@Data')->Name('Data');
+    Route::GET('tambah', 'PesertaPelatihanController@TambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'PesertaPelatihanController@TambahSubmit')->Name('TambahSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'PesertaPelatihanController@Hapus')->Name('Hapus');
+  });
+
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('SatuanKerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');

@@ -90,6 +90,11 @@
           </a>
         </li>
         <li>
+          <a href="{{Route('pelatihanData')}}">
+            <em class="fa fa-ellipsis-h">&nbsp;</em> Pelatihan
+          </a>
+        </li>
+        <li>
           <a href="#" id="logout">
             <em class="fa fa-power-off">&nbsp;</em> Logout
           </a>
