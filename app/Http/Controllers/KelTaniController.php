@@ -46,6 +46,12 @@ class KelTaniController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
+    $Kota = Kota::findOrFail($request->kota_id);
+    foreach ($request->komoditas_id as $KomoditasId) {
+      if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
+        $Kota->Komoditas()->attach($KomoditasId);
+      }
+    }
     $KelompokTani->fill($request->all());
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
     $KelompokTani->save();
