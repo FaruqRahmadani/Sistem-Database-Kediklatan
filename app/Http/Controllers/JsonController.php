@@ -67,7 +67,9 @@ class JsonController extends Controller
   }
 
   public function DataDaerahKomoditas($Id){
-    return Kota::findOrFail($Id)->Komoditas;
+    $Data['Selected'] = Kota::findOrFail($Id)->Komoditas;
+    $Data['notSelected'] = Komoditas::whereNotIn('id', $Data['Selected']->pluck('id'))->get();
+    return $Data;
   }
   public function KelTaniKomoditas($Id){
     return KelompokTani::findOrFail($Id)->Komoditas->pluck('id');
