@@ -19,10 +19,11 @@
 				  </a>
 				</div>
 				<div class="panel-body">
-					<table id="myTable" class="table table-hover table-custom">
+					<table id="myTable" data-order-disable="[1]" class="table table-hover table-custom">
 						<thead>
 							<tr>
 								<th>#</th>
+								<th></th>
 								<th>Nama</th>
 								<th>Tempat/Tanggal Lahir</th>
 								<th>Agama</th>
@@ -39,6 +40,9 @@
 							@foreach ($Penyuluh as $Index=>$DataPenyuluh)
 								<tr>
 									<td>{{$Index+1}}</td>
+									<td>
+										<img src="{{asset("Img/User/{$DataPenyuluh->foto}")}}" alt="{{$DataPenyuluh->nama}}" class="img-circle img img-35 img-thumbnail">
+									</td>
 									<td>{!!$DataPenyuluh->NIPNama!!}</td>
 									<td>{{$DataPenyuluh->TTL}}</td>
 									<td>{{$DataPenyuluh->agama}}</td>
