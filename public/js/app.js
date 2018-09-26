@@ -87508,8 +87508,7 @@ var staticRenderFns = [
             id: "komoditas",
             name: "komoditas_id[]",
             multiple: "",
-            disabled: "",
-            required: ""
+            disabled: ""
           }
         })
       ])

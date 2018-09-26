@@ -12403,6 +12403,10 @@ img.login-logo {
   text-align: center;
 }
 
+.table-custom td {
+  vertical-align: middle !important;
+}
+
 .table-custom .nowrap {
   white-space: nowrap;
 }
@@ -12459,5 +12463,9 @@ img.login-logo {
 .img-45 {
   max-width: 45px;
   max-height: 45px;
+}
+
+input[type="file"] {
+  padding: 13px 6px;
 }
 

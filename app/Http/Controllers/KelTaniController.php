@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\KelompokTani;
 use App\Komoditas;
 use App\Penyuluh;
+use Storage;
 use HCrypt;
 
 class KelTaniController extends Controller
@@ -24,10 +25,9 @@ class KelTaniController extends Controller
   public function TambahSubmit(Request $request){
     $KelompokTani = new KelompokTani;
     $KelompokTani->fill($request->all());
+    $KelompokTani->foto = $request->foto->store('public/img/kelompokTani');
     $KelompokTani->save();
-    foreach ($request->komoditas_id as $KomoditasId) {
-      $KelompokTani->Komoditas()->attach($KomoditasId);
-    }
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
@@ -43,8 +43,14 @@ class KelTaniController extends Controller
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
     $KelompokTani->fill($request->all());
-    $KelompokTani->Komoditas()->sync($request->komoditas_id);
+    if ($request->foto) {
+      if ($KelompokTani->foto != 'default.png') {
+        Storage::delete($KelompokTani->foto);
+      }
+      $KelompokTani->foto = $request->foto->store('public/img/kelompokTani');
+    }
     $KelompokTani->save();
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 

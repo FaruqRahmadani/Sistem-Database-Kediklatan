@@ -8,7 +8,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Komoditas</label>
       <div class="col-md-10">
-        <select id="komoditas" name="komoditas_id[]" class="form-control input-lg"  multiple disabled required>
+        <select id="komoditas" name="komoditas_id[]" class="form-control input-lg"  multiple disabled>
         </select>
       </div>
     </div>

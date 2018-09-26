@@ -15,11 +15,12 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<table id="myTable" class="table table-hover table-custom">
+					<table id="myTable" data-order-disable="[2]" class="table table-hover table-custom">
 						<thead>
 							<tr>
 								<th>#</th>
 								<th>Nama</th>
+								<th></th>
 								<th>Nama Ketua</th>
 								<th>Penyuluh</th>
 								<th>Nomor HP</th>
@@ -35,6 +36,9 @@
 								<tr>
 									<td>{{$Index+1}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
+									<td align="center">
+										<img src="{{(Storage::url($DataKelompokTani->foto))}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">
+									</td>
 									<td>{{$DataKelompokTani->nama_ketua}}</td>
 									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
 									<td>{{$DataKelompokTani->nomor_hp}}</td>
