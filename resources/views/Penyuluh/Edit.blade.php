@@ -115,8 +115,7 @@
 							<label class="col-md-2 control-label">Foto</label>
 							<div class="col-md-10">
 								<input type="file" name="foto" class="form-control">
-								<small>*Ukuran Foto 1:1</small>
-								<small>*Isi hanya jika ganti foto</small>
+								<small>*Ukuran Foto 1:1 *Isi hanya jika ganti foto</small>
 							</div>
 						</div>
 						<div class="row">

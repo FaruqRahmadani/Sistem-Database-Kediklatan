@@ -18,7 +18,6 @@ class KelompokTani extends Model
     'provinsi_id',
     'kota_id',
     'penyuluh_id',
-    'foto',
   ];
 
   public function Komoditas(){
