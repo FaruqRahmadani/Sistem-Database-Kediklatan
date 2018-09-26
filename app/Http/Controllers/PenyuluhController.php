@@ -37,6 +37,12 @@ class PenyuluhController extends Controller
     $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->fill($request->all());
+    if ($request->foto) {
+      if ($Penyuluh->foto != 'default.png') {
+        Storage::delete($Penyuluh->foto);
+      }
+      $Penyuluh->foto = $request->foto->store('public/img/penyuluh');
+    }
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
