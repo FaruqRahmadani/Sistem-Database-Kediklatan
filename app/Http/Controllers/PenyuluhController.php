@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use HCrypt;
 
 use App\Penyuluh;
@@ -21,6 +22,7 @@ class PenyuluhController extends Controller
   public function TambahSubmit(Request $request){
     $Penyuluh = new Penyuluh;
     $Penyuluh->fill($request->all());
+    $Penyuluh->foto = $request->foto->store('public/img/penyuluh');
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
