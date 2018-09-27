@@ -20,6 +20,7 @@ class P4SController extends Controller
   public function TambahSubmit(Request $request){
     $P4S = new P4S;
     $P4S->fill($request->all());
+    $P4S->foto = $request->foto->store('public/img/P4S');
     $P4S->save();
     return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
