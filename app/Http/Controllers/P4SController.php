@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\P4S;
+use Storage;
 use HCrypt;
 
 class P4SController extends Controller
@@ -35,6 +36,12 @@ class P4SController extends Controller
     $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
     $P4S->fill($request->all());
+    if ($request->foto) {
+      if ($P4S->foto != 'default.png') {
+        Storage::delete($P4S->foto);
+      }
+      $P4S->foto = $request->foto->store('public/img/P4S');
+    }
     $P4S->save();
     return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }

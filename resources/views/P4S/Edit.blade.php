@@ -15,7 +15,7 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
@@ -27,6 +27,13 @@
 							<label class="col-md-2 control-label">Nama Ketua</label>
 							<div class="col-md-10">
 								<input type="text" name="nama_ketua" class="form-control" required value="{{$P4S->nama_ketua}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Foto Ketua Kelompok</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control">
+								<small>*Ukuran Foto 1:1 *Isi hanya jika ganti foto</small>
 							</div>
 						</div>
 						<div class="form-group">
