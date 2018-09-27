@@ -20,7 +20,6 @@
 							<tr>
 								<th>#</th>
 								<th>Nama</th>
-								<th></th>
 								<th>Ketua Kelompok</th>
 								<th>No. HP</th>
 								<th>Alamat</th>
@@ -34,8 +33,11 @@
 									<td>{{$DataP4S->nama}}</td>
 									<td align="center">
 										<img src="{{(Storage::url($DataP4S->foto))}}" alt="{{$DataP4S->nama}}" class="img-circle img img-45 img-thumbnail">
+										<br>
+										<span class="nowrap">
+											{{$DataP4S->nama_ketua}}
+										</span>
 									</td>
-									<td>{{$DataP4S->nama_ketua}}</td>
 									<td>{{$DataP4S->nomor_hp}}</td>
 									<td>{!!nl2br($DataP4S->AlamatLengkap)!!}</td>
 									<td>
