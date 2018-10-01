@@ -32,7 +32,7 @@
 									<td>{{$Index+1}}</td>
 									<td>{{$DataP4S->nama}}</td>
 									<td align="center">
-										<img src="{{(Storage::url($DataP4S->foto))}}" alt="{{$DataP4S->nama}}" class="img-circle img img-45 img-thumbnail">
+										<img src="{{asset($DataP4S->foto)}}" alt="{{$DataP4S->nama}}" class="img-circle img img-45 img-thumbnail">
 										<br>
 										<span class="nowrap">
 											{{$DataP4S->nama_ketua}}

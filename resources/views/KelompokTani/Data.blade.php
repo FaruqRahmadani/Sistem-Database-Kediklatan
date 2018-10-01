@@ -36,7 +36,7 @@
 									<td>{{$Index+1}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
 									<td class="text-center">
-										<img src="{{(Storage::url($DataKelompokTani->foto))}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">
+										<img src="{{asset($DataKelompokTani->foto)}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">
 										<br>
 										<span class="nowrap">
 											{{$DataKelompokTani->nama_ketua}}
