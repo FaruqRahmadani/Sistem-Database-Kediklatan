@@ -14,6 +14,18 @@ class PenyuluhController extends Controller
     return view('Penyuluh.Data', compact('Penyuluh'));
   }
 
+  public function DataFilter(Request $request){
+    $Penyuluh = new Penyuluh;
+    if ($request->satuanKerja) {
+      $Penyuluh = $Penyuluh->whereSatuanKerjaId($request->satuanKerja);
+    }
+    if ($request->unitKerja) {
+      $Penyuluh = $Penyuluh->whereUnitKerjaId($request->unitKerja);
+    }
+    $Penyuluh = $Penyuluh->get();
+    return view('Penyuluh.Data', compact('Penyuluh'));
+  }
+
   public function TambahForm(){
     return view('Penyuluh.Tambah');
   }

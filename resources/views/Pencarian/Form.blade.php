@@ -18,13 +18,13 @@
               <div class="tab-content">
                 <div class="tab-pane fade active in" id="Penyuluh">
                   <h4>Pencarian Data Penyuluh</h4>
-                  <form class="form-horizontal row-border" action="{{Route('penyuluhData')}}" method="GET">
+                  <form class="form-horizontal row-border" action="{{Route('penyuluhDataFilter')}}" method="POST">
                     @csrf
                     <div class="form-group">
         							<label class="col-md-2 control-label">Satuan Kerja</label>
                       <div class="col-md-10">
-        								<select class="form-control input-lg" name="satuanKerja" required>
-        									<option value="semua">Semua</option>
+        								<select class="form-control input-lg" name="satuanKerja">
+        									<option value=>Semua</option>
                           @foreach ($SatuanKerja as $DataSatuanKerja)
                             <option value="{{$DataSatuanKerja->id}}">{{$DataSatuanKerja->nama}}</option>
                           @endforeach
@@ -34,8 +34,8 @@
                     <div class="form-group">
         							<label class="col-md-2 control-label">Unit Kerja</label>
                       <div class="col-md-10">
-        								<select class="form-control input-lg" name="unitKerja" required>
-        									<option value="semua">Semua</option>
+        								<select class="form-control input-lg" name="unitKerja">
+        									<option value=>Semua</option>
                           @foreach ($UnitKerja as $DataUnitKerja)
                             <option value="{{$DataUnitKerja->id}}">{{$DataUnitKerja->nama}}</option>
                           @endforeach
