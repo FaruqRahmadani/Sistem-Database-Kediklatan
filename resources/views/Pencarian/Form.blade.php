@@ -45,8 +45,7 @@
                     <div class="row">
         							<div class="text-center">
         								<div class="col-md-12">
-        									<button type="submit" class="btn btn-info btn-fill">Simpan</button>
-        									<button type="reset" class="btn btn-warning btn-fill">Batal</button>
+        									<button type="submit" class="btn btn-info btn-fill">Pencarian</button>
         								</div>
         							</div>
         						</div>
@@ -54,10 +53,11 @@
                 </div>
                 <div class="tab-pane fade" id="kelompokTani">
                   <h4>Pencarian Kelompok Tani</h4>
-                  <form class="form-horizontal row-border" action="{{Route('kelompokTaniTambahSubmit')}}" method="POST">
+                  <form class="form-horizontal row-border" action="{{Route('kelompokTaniDataFilter')}}" method="POST">
                     @csrf
                     <field-daerah-provkota
         							api = {{Auth::User()->api_token}}
+                      required = disable
         						></field-daerah-provkota>
                     <div class="form-group">
                       <label class="col-md-2 control-label">Komoditas</label>
@@ -72,8 +72,7 @@
                     <div class="row">
         							<div class="text-center">
         								<div class="col-md-12">
-        									<button type="submit" class="btn btn-info btn-fill">Simpan</button>
-        									<button type="reset" class="btn btn-warning btn-fill">Batal</button>
+        									<button type="submit" class="btn btn-info btn-fill">Pencarian</button>
         								</div>
         							</div>
         						</div>
