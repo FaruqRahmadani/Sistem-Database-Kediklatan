@@ -40,4 +40,25 @@ class DashboardController extends Controller
     $Selected = $request;
     return view('Pencarian.Form', compact('Penyuluh', 'SatuanKerja', 'UnitKerja', 'Komoditas', 'Selected'));
   }
+
+  public function DataKelTaniFilter(Request $request){
+    $KelompokTani = new KelompokTani;
+    if ($request->provinsi_id) {
+      $KelompokTani = $KelompokTani->whereProvinsiId($request->provinsi_id);
+    }
+    if ($request->kota_id) {
+      $KelompokTani = $KelompokTani->whereKotaId($request->kota_id);
+    }
+    if ($request->komoditas_id) {
+      $KelompokTani = $KelompokTani->whereHas('Komoditas', function($query) use ($request){
+        $query->whereKomoditasId($request->komoditas_id);
+      });
+    }
+    $KelompokTani = $KelompokTani->get();
+    $SatuanKerja = SatuanKerja::all();
+    $UnitKerja = UnitKerja::all();
+    $Komoditas = Komoditas::all();
+    $Selected = $request;
+    return view('Pencarian.Form', compact('KelompokTani', 'SatuanKerja', 'UnitKerja', 'Komoditas', 'Selected'));
+  }
 }

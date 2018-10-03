@@ -15,23 +15,6 @@ class KelTaniController extends Controller
     return view('KelompokTani.Data', compact('KelompokTani'));
   }
 
-  public function DataFilter(Request $request){
-    $KelompokTani = new KelompokTani;
-    if ($request->provinsi_id) {
-      $KelompokTani = $KelompokTani->whereProvinsiId($request->provinsi_id);
-    }
-    if ($request->kota_id) {
-      $KelompokTani = $KelompokTani->whereKotaId($request->kota_id);
-    }
-    if ($request->komoditas_id) {
-      $KelompokTani = $KelompokTani->whereHas('Komoditas', function($query) use ($request){
-        $query->whereKomoditasId($request->komoditas_id);
-      });
-    }
-    $KelompokTani = $KelompokTani->get();
-    return view('KelompokTani.Data', compact('KelompokTani'));
-  }
-
   public function TambahForm(){
     $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();

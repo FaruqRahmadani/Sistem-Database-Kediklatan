@@ -62,7 +62,6 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'kelompoktani', 'as' => 'kelompokTani'], function () {
     Route::GET('', 'KelTaniController@Data')->Name('Data');
-    Route::POST('', 'KelTaniController@DataFilter')->Name('DataFilter');
     Route::GET('tambah', 'KelTaniController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'KelTaniController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'KelTaniController@EditForm')->Name('EditForm');
@@ -97,7 +96,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::Group(['prefix' => 'pencarian', 'as' => 'pencarian'], function () {
     Route::GET('', 'DashboardController@FormPencarian')->Name('Form');
-    Route::POST('', 'DashboardController@DataPenyuluhFilter')->Name('Penyuluh');
+    Route::POST('penyuluh', 'DashboardController@DataPenyuluhFilter')->Name('Penyuluh');
+    Route::POST('kelompoktani', 'DashboardController@DataKelTaniFilter')->Name('KelTani');
   });
 
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
