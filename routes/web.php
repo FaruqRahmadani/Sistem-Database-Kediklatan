@@ -94,6 +94,10 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'PesertaPelatihanController@Hapus')->Name('Hapus');
   });
 
+  Route::Group(['prefix' => 'pencarian', 'as' => 'pencarian'], function () {
+    Route::GET('', 'DashboardController@FormPencarian')->Name('Form');
+  });
+
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('SatuanKerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');

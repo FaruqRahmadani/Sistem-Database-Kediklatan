@@ -95,6 +95,11 @@
           </a>
         </li>
         <li>
+          <a href="{{Route('pencarianForm')}}">
+            <em class="fa fa-search">&nbsp;</em> Pencarian Data
+          </a>
+        </li>
+        <li>
           <a href="#" id="logout">
             <em class="fa fa-power-off">&nbsp;</em> Logout
           </a>
