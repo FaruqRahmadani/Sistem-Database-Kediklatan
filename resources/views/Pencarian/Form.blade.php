@@ -50,6 +50,46 @@
         							</div>
         						</div>
                   </form>
+                  @isset($Penyuluh)
+                    <hr>
+                    <table id="myTable" class="table table-hover table-custom">
+          						<thead>
+          							<tr>
+          								<th>#</th>
+          								<th>Nama</th>
+          								<th>Tempat/Tanggal Lahir</th>
+          								<th>Agama</th>
+          								<th>Jenis Kelamin</th>
+          								<th>Pangkat/Jabatan</th>
+          								<th>Pendidikan Terakhir</th>
+          								<th>Nomor HP</th>
+          								<th>Satuan Kerja</th>
+          								<th>Unit Kerja</th>
+          								<th>Action</th>
+          							</tr>
+          						</thead>
+          						<tbody>
+          							@foreach ($Penyuluh as $Index=>$DataPenyuluh)
+          								<tr>
+          									<td>{{$Index+1}}</td>
+          									<td>{!!$DataPenyuluh->NIPNama!!}</td>
+          									<td>{{$DataPenyuluh->TTL}}</td>
+          									<td>{{$DataPenyuluh->agama}}</td>
+          									<td>{{$DataPenyuluh->jenis_kelamin}}</td>
+          									<td>{{$DataPenyuluh->PangkatJabatan}}</td>
+          									<td>{{$DataPenyuluh->pendidikan_terakhir}}</td>
+          									<td>{{$DataPenyuluh->nomor_hp}}</td>
+          									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
+          									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
+          									<td>
+          										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+          										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
+          									</td>
+          								</tr>
+          							@endforeach
+          						</tbody>
+          					</table>
+                  @endisset
                 </div>
                 <div class="tab-pane fade" id="kelompokTani">
                   <h4>Pencarian Kelompok Tani</h4>
@@ -85,51 +125,4 @@
       </div>
     </div>
   </div>
-  @isset ($Penyuluh)
-    <div class="row">
-  		<div class="col-md-12">
-  			<div class="panel panel-default">
-  				<div class="panel-body">
-  					<table id="myTable" class="table table-hover table-custom">
-  						<thead>
-  							<tr>
-  								<th>#</th>
-  								<th>Nama</th>
-  								<th>Tempat/Tanggal Lahir</th>
-  								<th>Agama</th>
-  								<th>Jenis Kelamin</th>
-  								<th>Pangkat/Jabatan</th>
-  								<th>Pendidikan Terakhir</th>
-  								<th>Nomor HP</th>
-  								<th>Satuan Kerja</th>
-  								<th>Unit Kerja</th>
-  								<th>Action</th>
-  							</tr>
-  						</thead>
-  						<tbody>
-  							@foreach ($Penyuluh as $Index=>$DataPenyuluh)
-  								<tr>
-  									<td>{{$Index+1}}</td>
-  									<td>{!!$DataPenyuluh->NIPNama!!}</td>
-  									<td>{{$DataPenyuluh->TTL}}</td>
-  									<td>{{$DataPenyuluh->agama}}</td>
-  									<td>{{$DataPenyuluh->jenis_kelamin}}</td>
-  									<td>{{$DataPenyuluh->PangkatJabatan}}</td>
-  									<td>{{$DataPenyuluh->pendidikan_terakhir}}</td>
-  									<td>{{$DataPenyuluh->nomor_hp}}</td>
-  									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
-  									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-  									<td>
-  										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-  										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
-  									</td>
-  								</tr>
-  							@endforeach
-  						</tbody>
-  					</table>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
-  @endisset
 @endsection
