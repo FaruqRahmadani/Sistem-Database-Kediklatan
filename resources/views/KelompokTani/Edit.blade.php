@@ -53,7 +53,6 @@
 							</div>
 						</div>
 						<daerah-komoditas
-							provinsi = {{$KelompokTani->provinsi_id}}
 							kota = {{$KelompokTani->kota_id}}
 							api = {{Auth::User()->api_token}}
 							komoditas = {{$KelompokTani->Komoditas->pluck('id')}}

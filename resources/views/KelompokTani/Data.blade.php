@@ -24,8 +24,7 @@
 								<th>Penyuluh</th>
 								<th>Nomor HP</th>
 								<th>Alamat</th>
-								<th>Provinsi</th>
-								<th>Kota</th>
+								<th>Kabupaten/Kota</th>
 								<th>Komoditas</th>
 								<th>Action</th>
 							</tr>
@@ -39,7 +38,6 @@
 									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
 									<td>{{$DataKelompokTani->nomor_hp}}</td>
 									<td>{{$DataKelompokTani->alamat}}</td>
-									<td>{{$DataKelompokTani->Provinsi->nama}}</td>
 									<td>{{$DataKelompokTani->Kota->nama}}</td>
 									<td class="text-center">
 										@foreach ($DataKelompokTani->Komoditas as $Komoditas)

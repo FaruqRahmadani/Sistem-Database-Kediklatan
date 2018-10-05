@@ -53,7 +53,7 @@
 							</div>
 						</div>
 						<daerah-komoditas
-						api = {{Auth::user()->api_token}}
+							api = {{Auth::user()->api_token}}
 						></daerah-komoditas>
 						<div class="row">
 							<div class="text-center">

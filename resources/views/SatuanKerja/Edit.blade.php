@@ -29,11 +29,17 @@
 								<textarea name="alamat" rows="2" class="form-control" required>{{$SatKerja->alamat}}</textarea>
 							</div>
 						</div>
-						<field-daerah-provkota
-							provinsi = {{$SatKerja->provinsi_id}}
-							kota = {{$SatKerja->kota_id}}
-							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
+						<div class="form-group">
+				      <label class="col-md-2 control-label">Kota</label>
+				      <div class="col-md-10">
+				        <select name="kota_id" class="form-control input-lg" required>
+									<option value="">Kota</option>
+									@foreach ($Kota as $DataKota)
+										<option value="{{$DataKota->id}}" {{$SatKerja->kota_id==$DataKota->id? 'selected':''}}>{{$DataKota->nama}}</option>
+									@endforeach
+				        </select>
+				      </div>
+				    </div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor Telepon</label>
 							<div class="col-md-10">

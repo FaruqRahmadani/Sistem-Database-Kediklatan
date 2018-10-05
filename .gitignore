@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/img/penyuluh
+/public/img/P4S
+/public/img/kelTani
 /storage/*.key
 /vendor
 /.idea

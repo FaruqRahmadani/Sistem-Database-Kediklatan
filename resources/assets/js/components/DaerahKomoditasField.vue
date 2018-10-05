@@ -1,9 +1,8 @@
 <template>
   <div>
     <FieldDaerah
-    :api ="this.api"
-    :kota ="this.kota"
-    :provinsi ="this.provinsi"
+      :api ="this.api"
+      :kota ="this.kota"
     ></FieldDaerah>
     <div class="form-group">
       <label class="col-md-2 control-label">Komoditas</label>
@@ -18,7 +17,7 @@
 <script>
 import FieldDaerah from './FieldDaerah-ProvKota'
 export default {
-  props: ['api', 'kota', 'provinsi', 'komoditas', 'keltani'],
+  props: ['api', 'kota', 'komoditas', 'keltani'],
   components: {
     FieldDaerah
   },

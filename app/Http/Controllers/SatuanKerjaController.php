@@ -7,6 +7,7 @@ use HCrypt;
 
 use Illuminate\Http\Request;
 use App\SatuanKerja;
+use App\Kota;
 
 class SatuanKerjaController extends Controller
 {
@@ -16,7 +17,8 @@ class SatuanKerjaController extends Controller
   }
 
   public function TambahForm(){
-    return view('SatuanKerja.Tambah');
+    $Kota = Kota::all();
+    return view('SatuanKerja.Tambah', compact('Kota'));
   }
 
   public function TambahSubmit(Request $request){
@@ -27,9 +29,10 @@ class SatuanKerjaController extends Controller
   }
 
   public function EditForm($Id){
+    $Kota = Kota::all();
     $Id = HCrypt::Decrypt($Id);
     $SatKerja = SatuanKerja::findOrFail($Id);
-    return view('SatuanKerja.Edit', compact('SatKerja'));
+    return view('SatuanKerja.Edit', compact('SatKerja', 'Kota'));
   }
 
   public function EditSubmit(Request $request, $Id){
