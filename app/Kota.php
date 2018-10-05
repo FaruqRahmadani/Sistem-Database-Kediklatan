@@ -15,10 +15,6 @@ class Kota extends Model
     return $this->belongsToMany('App\Komoditas', 'kota_komoditas');
   }
 
-  public function Provinsi(){
-    return $this->belongsTo('App\Provinsi');
-  }
-
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
   }
