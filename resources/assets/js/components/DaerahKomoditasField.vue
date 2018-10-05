@@ -3,7 +3,6 @@
     <FieldDaerah
       :api ="this.api"
       :kota ="this.kota"
-      :provinsi ="this.provinsi"
     ></FieldDaerah>
     <div class="form-group">
       <label class="col-md-2 control-label">Komoditas</label>
