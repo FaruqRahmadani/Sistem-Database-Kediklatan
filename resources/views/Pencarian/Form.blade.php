@@ -56,6 +56,7 @@
           						<thead>
           							<tr>
           								<th>#</th>
+                          <th></th>
           								<th>Nama</th>
           								<th>Tempat/Tanggal Lahir</th>
           								<th>Agama</th>
@@ -65,13 +66,15 @@
           								<th>Nomor HP</th>
           								<th>Satuan Kerja</th>
           								<th>Unit Kerja</th>
-          								<th>Action</th>
           							</tr>
           						</thead>
           						<tbody>
           							@foreach ($Penyuluh as $Index=>$DataPenyuluh)
           								<tr>
           									<td>{{$Index+1}}</td>
+                            <td align="center">
+          										<img src="{{asset($DataPenyuluh->foto)}}" alt="{{$DataPenyuluh->nama}}" class="img-circle img img-45 img-thumbnail">
+          									</td>
           									<td>{!!$DataPenyuluh->NIPNama!!}</td>
           									<td>{{$DataPenyuluh->TTL}}</td>
           									<td>{{$DataPenyuluh->agama}}</td>
@@ -81,10 +84,6 @@
           									<td>{{$DataPenyuluh->nomor_hp}}</td>
           									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
           									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-          									<td>
-          										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-          										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
-          									</td>
           								</tr>
           							@endforeach
           						</tbody>
@@ -98,7 +97,6 @@
                     <field-daerah-provkota
         							api = {{Auth::User()->api_token}}
                       required = disable
-                      {{isset($Selected)? "provinsi =  $Selected->provinsi_id":''}}
                       {{isset($Selected)? "kota = $Selected->kota_id":''}}
         						></field-daerah-provkota>
                     <div class="form-group">
@@ -129,10 +127,8 @@
           								<th>Penyuluh</th>
           								<th>Nomor HP</th>
           								<th>Alamat</th>
-          								<th>Provinsi</th>
-          								<th>Kota</th>
+          								<th>Kabupaten/Kota</th>
           								<th>Komoditas</th>
-          								<th>Action</th>
           							</tr>
           						</thead>
           						<tbody>
@@ -140,11 +136,16 @@
           								<tr>
           									<td>{{$Index+1}}</td>
           									<td>{{$DataKelompokTani->nama}}</td>
-          									<td>{{$DataKelompokTani->nama_ketua}}</td>
+                            <td class="text-center">
+          										<img src="{{asset($DataKelompokTani->foto)}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">
+          										<br>
+          										<span class="nowrap">
+          											{{$DataKelompokTani->nama_ketua}}
+          										</span>
+          									</td>
           									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
           									<td>{{$DataKelompokTani->nomor_hp}}</td>
           									<td>{{$DataKelompokTani->alamat}}</td>
-          									<td>{{$DataKelompokTani->Provinsi->nama}}</td>
           									<td>{{$DataKelompokTani->Kota->nama}}</td>
           									<td class="text-center">
           										@foreach ($DataKelompokTani->Komoditas as $Komoditas)
@@ -152,10 +153,6 @@
           										    {{$Komoditas->nama}}
           										  </span>
           										@endforeach
-          									</td>
-          									<td class="text-center">
-          										<a href="{{Route('kelompokTaniEditForm', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-          										<button data={{$DataKelompokTani->UUID}} href={{Route('kelompokTaniHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
           									</td>
           								</tr>
           							@endforeach

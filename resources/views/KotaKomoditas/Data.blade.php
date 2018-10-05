@@ -19,8 +19,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Provinsi</th>
-								<th>Kota</th>
+								<th>Kabupaten/Kota</th>
 								<th>Komoditas</th>
 								<th>Action</th>
 							</tr>
@@ -29,7 +28,6 @@
 							@foreach ($Kota as $Index=>$DataKota)
 								<tr>
 									<td>{{$Index+1}}</td>
-									<td>{{$DataKota->Provinsi->nama}}</td>
 									<td>{{$DataKota->nama}}</td>
 									<td class="nowrap">
 										@foreach ($DataKota->Komoditas as $Komoditas)

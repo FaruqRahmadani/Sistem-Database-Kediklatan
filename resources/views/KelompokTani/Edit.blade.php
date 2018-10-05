@@ -15,7 +15,7 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{ Route('kelompokTaniEditSubmit', ['id' => $KelompokTani->UUID]) }}" method="POST">
+					<form class="form-horizontal row-border" action="{{ Route('kelompokTaniEditSubmit', ['id' => $KelompokTani->UUID]) }}" method="POST" enctype="multipart/form-data">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Kelompok Tani</label>
@@ -27,6 +27,13 @@
 							<label class="col-md-2 control-label">Nama Ketua Kelompok</label>
 							<div class="col-md-10">
 								<input type="text" name="nama_ketua" class="form-control" value="{{$KelompokTani->nama_ketua}}" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Foto Ketua Kelompok</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control">
+								<small>*Ukuran Foto 1:1 *Isi hanya jika ganti foto</small>
 							</div>
 						</div>
 						<div class="form-group">
@@ -53,7 +60,6 @@
 							</div>
 						</div>
 						<daerah-komoditas
-							provinsi = {{$KelompokTani->provinsi_id}}
 							kota = {{$KelompokTani->kota_id}}
 							api = {{Auth::User()->api_token}}
 							komoditas = {{$KelompokTani->Komoditas->pluck('id')}}

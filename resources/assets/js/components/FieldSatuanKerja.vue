@@ -37,15 +37,6 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-2 control-label">Provinsi</label>
-                <div class="col-md-10">
-                  <select name="provinsi_id" class="form-control input-lg" v-model="ProvinsiId" @change="showKota">
-                    <option value="">Provinsi</option>
-                    <option v-for="dataprovinsi in this.dataprovinsi" :value="dataprovinsi.id">{{dataprovinsi.nama}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
                 <label class="col-md-2 control-label">Kab/Kota</label>
                 <div class="col-md-10">
                   <select name="kota_id" class="form-control input-lg" v-model="KotaId">
@@ -81,20 +72,18 @@ export default {
   },
   data: function(){
     return {
-      dataprovinsi: null,
       datakota: null,
       datasatkerja : null,
       SatKerjaId : this.satkerja,
       nama : null,
       alamat : null,
       nomor_telepon : null,
-      ProvinsiId : null,
       KotaId : null,
     }
   },
   mounted: function(){
     this.getSatuanKerja()
-    this.showProvinsi()
+    this.showKota()
   },
   methods: {
     getSatuanKerja(){
@@ -106,19 +95,10 @@ export default {
         this.datasatkerja = response.data
       })
     },
-    showProvinsi(){
-      axios({
-        method: 'get',
-        url: '/api/dataprovinsi',
-        headers: { Authorization: 'Bearer '+this.api },
-      }).then((response) => {
-        this.dataprovinsi = response.data
-      })
-    },
     showKota(){
       axios({
         method: 'get',
-        url: '/api/datakota/'+this.ProvinsiId,
+        url: '/api/datakota/',
         headers: { Authorization: 'Bearer '+this.api },
       }).then((response) => {
         this.datakota = response.data
@@ -143,7 +123,6 @@ export default {
         this.nama=null
         this.alamat=null
         this.nomor_telepon=null
-        this.provinsi_id=null
         this.kota_id=null
       }).catch(error => {
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data')

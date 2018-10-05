@@ -15,7 +15,7 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
@@ -30,6 +30,13 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-md-2 control-label">Foto Ketua Kelompok</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control">
+								<small>*Ukuran Foto 1:1 *Isi hanya jika ganti foto</small>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor HP</label>
 							<div class="col-md-10">
 								<input type="text" name="nomor_hp" class="form-control" required value="{{$P4S->nomor_hp}}">
@@ -41,11 +48,17 @@
 								<textarea name="alamat" class="form-control" rows="4" required>{{$P4S->alamat}}</textarea>
 							</div>
 						</div>
-						<field-daerah-provkota
-							provinsi = {{$P4S->Kota->Provinsi->id}}
-							kota = {{$P4S->kota_id}}
-							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
+						<div class="form-group">
+				      <label class="col-md-2 control-label">Kota</label>
+				      <div class="col-md-10">
+				        <select name="kota_id" class="form-control input-lg" required>
+									<option value="">Kota</option>
+									@foreach ($Kota as $DataKota)
+										<option value="{{$DataKota->id}}" {{$DataKota->id==$P4S->kota_id? 'selected':''}}>{{$DataKota->nama}}</option>
+									@endforeach
+				        </select>
+				      </div>
+				    </div>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

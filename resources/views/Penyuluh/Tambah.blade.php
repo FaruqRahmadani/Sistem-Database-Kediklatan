@@ -15,7 +15,7 @@
 					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('penyuluhTambahForm')}}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('penyuluhTambahForm')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIP</label>
@@ -111,6 +111,13 @@
 						<field-unitkerja
 							api = {{Auth::User()->api_token}}
 						></field-unitkerja>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Foto</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control" required>
+								<small>*Ukuran Foto 1:1</small>
+							</div>
+						</div>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

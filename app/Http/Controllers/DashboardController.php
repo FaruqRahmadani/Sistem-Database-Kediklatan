@@ -7,6 +7,7 @@ use App\KelompokTani;
 use App\SatuanKerja;
 use App\UnitKerja;
 use App\Komoditas;
+use App\Pelatihan;
 use App\Penyuluh;
 
 class DashboardController extends Controller
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     $Penyuluh = Penyuluh::all();
     $Komoditas = Komoditas::all();
     $KelompokTani = KelompokTani::all();
-    return view('Dashboard.Dashboard', compact('Penyuluh', 'Komoditas', 'KelompokTani'));
+    $Pelatihan = Pelatihan::all();
+    return view('Dashboard.Dashboard', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
   }
 
   public function FormPencarian(){

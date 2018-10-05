@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use HCrypt;
+use File;
 
 use App\Penyuluh;
 
@@ -21,6 +23,10 @@ class PenyuluhController extends Controller
   public function TambahSubmit(Request $request){
     $Penyuluh = new Penyuluh;
     $Penyuluh->fill($request->all());
+    $FotoExt = $request->foto->getClientOriginalExtension();
+    $FotoName = "[$request->nip]$request->nama.$request->_token";
+    $Foto = "{$FotoName}.{$FotoExt}";
+    $Penyuluh->foto = $request->foto->move('img/penyuluh', $Foto);
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
@@ -35,6 +41,15 @@ class PenyuluhController extends Controller
     $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->fill($request->all());
+    if ($request->foto) {
+      if ($Penyuluh->foto != 'default.png') {
+        File::delete($Penyuluh->foto);
+      }
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "[$request->nip]$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $Penyuluh->foto = $request->foto->move('img/penyuluh', $Foto);
+    }
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }

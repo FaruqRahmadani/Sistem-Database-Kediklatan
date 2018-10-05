@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\KelompokTani;
 use App\Komoditas;
 use App\Penyuluh;
+use App\Kota;
 use HCrypt;
+use File;
 
 class KelTaniController extends Controller
 {
@@ -16,18 +18,26 @@ class KelTaniController extends Controller
   }
 
   public function TambahForm(){
-    $Komoditas = Komoditas::all();
     $Penyuluh = Penyuluh::all();
-    return view('KelompokTani.Tambah', compact('Komoditas', 'Penyuluh'));
+    return view('KelompokTani.Tambah', compact('Penyuluh'));
   }
 
   public function TambahSubmit(Request $request){
+    $Kota = Kota::findOrFail($request->kota_id);
     $KelompokTani = new KelompokTani;
     $KelompokTani->fill($request->all());
+    $FotoExt = $request->foto->getClientOriginalExtension();
+    $FotoName = "$request->nama.$request->_token";
+    $Foto = "{$FotoName}.{$FotoExt}";
+    $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
     $KelompokTani->save();
     foreach ($request->komoditas_id as $KomoditasId) {
+      if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
+        $Kota->Komoditas()->attach($KomoditasId);
+      }
       $KelompokTani->Komoditas()->attach($KomoditasId);
     }
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
 
@@ -42,9 +52,24 @@ class KelTaniController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
+    $Kota = Kota::findOrFail($request->kota_id);
+    foreach ($request->komoditas_id as $KomoditasId) {
+      if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
+        $Kota->Komoditas()->attach($KomoditasId);
+      }
+    }
     $KelompokTani->fill($request->all());
-    $KelompokTani->Komoditas()->sync($request->komoditas_id);
+    if ($request->foto) {
+      if ($KelompokTani->foto != 'default.png') {
+        File::delete($KelompokTani->foto);
+      }
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    }
     $KelompokTani->save();
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 

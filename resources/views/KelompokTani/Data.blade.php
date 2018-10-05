@@ -20,12 +20,11 @@
 							<tr>
 								<th>#</th>
 								<th>Nama</th>
-								<th>Nama Ketua</th>
+								<th>Ketua Kelompok</th>
 								<th>Penyuluh</th>
 								<th>Nomor HP</th>
 								<th>Alamat</th>
-								<th>Provinsi</th>
-								<th>Kota</th>
+								<th>Kabupaten/Kota</th>
 								<th>Komoditas</th>
 								<th>Action</th>
 							</tr>
@@ -35,11 +34,16 @@
 								<tr>
 									<td>{{$Index+1}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
-									<td>{{$DataKelompokTani->nama_ketua}}</td>
+									<td class="text-center">
+										<img src="{{asset($DataKelompokTani->foto)}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">
+										<br>
+										<span class="nowrap">
+											{{$DataKelompokTani->nama_ketua}}
+										</span>
+									</td>
 									<td>{{$DataKelompokTani->Penyuluh->nama}}</td>
 									<td>{{$DataKelompokTani->nomor_hp}}</td>
 									<td>{{$DataKelompokTani->alamat}}</td>
-									<td>{{$DataKelompokTani->Provinsi->nama}}</td>
 									<td>{{$DataKelompokTani->Kota->nama}}</td>
 									<td class="text-center">
 										@foreach ($DataKelompokTani->Komoditas as $Komoditas)
