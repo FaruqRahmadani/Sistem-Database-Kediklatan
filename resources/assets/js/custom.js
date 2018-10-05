@@ -20,7 +20,16 @@ $(document).ready(function() {
   })
   global.vm = vm
 
+  var columnData = []
+  var orderDisabled = $('#myTable').attr('data-order-disable')
+  if (orderDisabled) {
+    $.each(JSON.parse(orderDisabled), function( index, value ) {
+      columnData.push({ "orderable": false, "targets": +value })
+    });
+  }
+
   $('#myTable').DataTable({
+    columnDefs: columnData,
     responsive: true,
     language: {
       processing: "Sedang memproses...",
@@ -81,32 +90,32 @@ $(document).ready(function() {
   })
   $("#select2").select2()
   $("#logout").click(function(){
-  swal({
-    title   : "Logout",
-    text    : "Yakin Ingin Keluar?",
-    icon    : "warning",
-    buttons : [
-      "Batal",
-      "Logout",
-    ],
+    swal({
+      title   : "Logout",
+      text    : "Yakin Ingin Keluar?",
+      icon    : "warning",
+      buttons : [
+        "Batal",
+        "Logout",
+      ],
+    })
+    .then((logout) => {
+      if (logout) {
+        swal({
+          title  : "Logout",
+          text   : "Anda Telah Logout",
+          icon   : "success",
+          timer  : 2500,
+        })
+        window.location = "/logout"
+      } else {
+        swal({
+          title  : "Batal Logout",
+          text   : "Anda Batal Logout",
+          icon   : "info",
+          timer  : 2500,
+        })
+      }
+    })
   })
-  .then((logout) => {
-    if (logout) {
-      swal({
-        title  : "Logout",
-        text   : "Anda Telah Logout",
-        icon   : "success",
-        timer  : 2500,
-      })
-      window.location = "/logout"
-    } else {
-      swal({
-        title  : "Batal Logout",
-        text   : "Anda Batal Logout",
-        icon   : "info",
-        timer  : 2500,
-      })
-    }
-  })
-})
 })

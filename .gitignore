@@ -2,8 +2,8 @@
 /public/hot
 /public/storage
 /public/img/penyuluh
-/public/img/P4S
 /public/img/kelTani
+/public/img/P4S
 /storage/*.key
 /vendor
 /.idea
