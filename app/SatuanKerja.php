@@ -11,7 +11,6 @@ class SatuanKerja extends Model
     'nama',
     'alamat',
     'nomor_telepon',
-    'provinsi_id',
     'kota_id',
   ];
 

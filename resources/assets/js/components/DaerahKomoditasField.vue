@@ -3,7 +3,6 @@
     <FieldDaerah
       :api ="this.api"
       :kota ="this.kota"
-      :provinsi ="this.provinsi"
     ></FieldDaerah>
     <div class="form-group">
       <label class="col-md-2 control-label">Komoditas</label>
@@ -18,7 +17,7 @@
 <script>
 import FieldDaerah from './FieldDaerah-ProvKota'
 export default {
-  props: ['api', 'kota', 'provinsi', 'komoditas', 'keltani'],
+  props: ['api', 'kota', 'komoditas', 'keltani'],
   components: {
     FieldDaerah
   },
@@ -36,46 +35,52 @@ export default {
 }
 $(document).ready(function() {
   $(document).ready(function() {
-    var komoditasKelTani;
-    var nilaiReturn;
-    $("#komoditas").select2();
+    var komoditasKelTani
+    var selectedStatus
+    $("#komoditas").select2()
     $('#kota').change(function(){
       if (this.value) {
         $("#kota").getKomoditas(this.value)
       }
     })
     $.fn.getKomoditas = function(idKota) {
-      var $komoditas = $('#komoditas');
-      $komoditas.find('option').remove().end();
-      $komoditas.prop('disabled');
+      var $komoditas = $('#komoditas')
+      $komoditas.find('option').remove().end()
+      $komoditas.find('optgroup').remove().end()
+      $komoditas.prop('disabled')
       axios({
         method: 'get',
         url: '/api/daerahkomoditas/'+idKota,
       }).then((response) => {
-        $.each(response.data, function(index, value) {
-          nilaiReturn = null
-          $.each(komoditasKelTani, function(indexKomoditas, valueKomoditas) {
-            if (index == indexKomoditas) {
-              nilaiReturn = true;
-            }
-          })
-          if (nilaiReturn) {
-            $komoditas.append('<option value="' + value.id + '" selected>' + value.nama + '</option>');
-          }else{
-            $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+        $komoditas.append('<optgroup label="Komoditas Daerah Terpilih">')
+        $.each(response.data.Selected, function(index, value) {
+          if (komoditasKelTani) {
+            selectedStatus = ""
+            $.each(komoditasKelTani, function(indexKomoditas, valueKomoditas) {
+              if (index == indexKomoditas) {
+                selectedStatus = "selected"
+              }
+            })
           }
-        });
-        $komoditas.prop('disabled', false);
-      });
-    };
+          $komoditas.append('<option value="' + value.id + '" '+selectedStatus+'>' + value.nama + '</option>')
+        })
+        $komoditas.append('</optgroup>')
+        $komoditas.append('<optgroup label="Komoditas Lainnya">')
+        $.each(response.data.notSelected, function(index, value) {
+          $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>')
+        })
+        $komoditas.append('</optgroup>')
+        $komoditas.prop('disabled', false)
+      })
+    }
     $.fn.getKelTaniKomoditas = function(idKelTani) {
       axios({
         method: 'get',
         url: '/api/keltanikomoditas/'+idKelTani,
       }).then((response) => {
         komoditasKelTani = response.data
-      });
-    };
+      })
+    }
   })
-});
+})
 </script>

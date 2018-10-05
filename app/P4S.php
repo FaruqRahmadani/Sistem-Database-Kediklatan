@@ -19,7 +19,7 @@ class P4S extends Model
   ];
 
   public function getAlamatLengkapAttribute($value){
-    return "{$this->alamat} {$this->Kota->nama}, {$this->Kota->Provinsi->nama}";
+    return "{$this->alamat}, {$this->Kota->nama}";
   }
 
   public function getUUIDAttribute($value){

@@ -48,9 +48,17 @@
 								<input type="text" name="alamat" class="form-control" required>
 							</div>
 						</div>
-						<field-daerah-provkota
-							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
+						<div class="form-group">
+				      <label class="col-md-2 control-label">Kota</label>
+				      <div class="col-md-10">
+				        <select name="kota_id" class="form-control input-lg" required>
+									<option value="">Kota</option>
+									@foreach ($Kota as $DataKota)
+										<option value="{{$DataKota->id}}">{{$DataKota->nama}}</option>
+									@endforeach
+				        </select>
+				      </div>
+				    </div>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

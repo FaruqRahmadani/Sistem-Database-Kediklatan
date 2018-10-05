@@ -22,10 +22,10 @@
 					<table id="myTable" class="table table-hover table-custom">
 						<thead>
 							<tr>
+								<th>#</th>
 								<th>Nama</th>
 								<th>Alamat</th>
-								<th>Provinsi</th>
-								<th>Kota</th>
+								<th>Kabupaten/Kota</th>
 								<th>Nomor Telepon</th>
 								<th>Action</th>
 							</tr>
@@ -33,9 +33,9 @@
 						<tbody>
 							@foreach ($SatKerja as $Index => $DataSatKerja)
 								<tr>
+									<td>{{$Index+1}}</td>
 									<td>{{$DataSatKerja->nama}}</td>
 									<td>{!!nl2br($DataSatKerja->alamat)!!}</td>
-									<td>{{$DataSatKerja->Provinsi->nama}}</td>
 									<td>{{$DataSatKerja->Kota->nama}}</td>
 									<td>{{$DataSatKerja->nomor_telepon}}</td>
 									<td>

@@ -85972,54 +85972,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'provinsi', 'kota', 'disabled'],
+  props: ['api', 'kota', 'disabled'],
   data: function data() {
     return {
-      dataprovinsi: '',
       datakota: '',
-      ProvinsiId: this.provinsi,
       KotaId: this.kota,
       disable: this.disabled
     };
   },
   mounted: function mounted() {
-    this.showProvinsi();
-    if (this.KotaId) {
-      this.showKota();
-    }
+    this.showKota();
   },
   methods: {
-    showProvinsi: function showProvinsi() {
+    showKota: function showKota() {
       var _this = this;
 
       axios({
         method: 'get',
-        url: '/api/dataprovinsi',
+        url: '/api/datakota/',
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
-        _this.dataprovinsi = response.data;
-      });
-    },
-    showKota: function showKota() {
-      var _this2 = this;
-
-      axios({
-        method: 'get',
-        url: '/api/datakota/' + this.ProvinsiId,
-        headers: { Authorization: 'Bearer ' + this.api }
-      }).then(function (response) {
-        _this2.datakota = response.data;
+        _this.datakota = response.data;
       });
     }
   }
@@ -86034,62 +86009,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { staticClass: "col-md-2 control-label" }, [
-        _vm._v("Provinsi")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.ProvinsiId,
-                expression: "ProvinsiId"
-              }
-            ],
-            staticClass: "form-control input-lg",
-            attrs: {
-              name: "provinsi_id",
-              disabled: _vm.disable == 1,
-              required: ""
-            },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.ProvinsiId = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.showKota
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [_vm._v("Provinsi")]),
-            _vm._v(" "),
-            _vm._l(this.dataprovinsi, function(dataprovinsi) {
-              return _c("option", { domProps: { value: dataprovinsi.id } }, [
-                _vm._v(_vm._s(dataprovinsi.nama))
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "col-md-2 control-label" }, [
         _vm._v("Kab/Kota")
@@ -86275,15 +86194,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -86293,20 +86203,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      dataprovinsi: null,
       datakota: null,
       datasatkerja: null,
       SatKerjaId: this.satkerja,
       nama: null,
       alamat: null,
       nomor_telepon: null,
-      ProvinsiId: null,
       KotaId: null
     };
   },
   mounted: function mounted() {
     this.getSatuanKerja();
-    this.showProvinsi();
+    this.showKota();
   },
   methods: {
     getSatuanKerja: function getSatuanKerja() {
@@ -86320,30 +86228,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.datasatkerja = response.data;
       });
     },
-    showProvinsi: function showProvinsi() {
+    showKota: function showKota() {
       var _this2 = this;
 
       axios({
         method: 'get',
-        url: '/api/dataprovinsi',
+        url: '/api/datakota/',
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
-        _this2.dataprovinsi = response.data;
-      });
-    },
-    showKota: function showKota() {
-      var _this3 = this;
-
-      axios({
-        method: 'get',
-        url: '/api/datakota/' + this.ProvinsiId,
-        headers: { Authorization: 'Bearer ' + this.api }
-      }).then(function (response) {
-        _this3.datakota = response.data;
+        _this2.datakota = response.data;
       });
     },
     submit: function submit() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios({
         method: 'post',
@@ -86358,13 +86255,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         headers: { Authorization: 'Bearer ' + this.api }
       }).then(function (response) {
         console.log(response.data);
-        _this4.getSatuanKerja();
-        _this4.SatKerjaId = response.data;
-        _this4.nama = null;
-        _this4.alamat = null;
-        _this4.nomor_telepon = null;
-        _this4.provinsi_id = null;
-        _this4.kota_id = null;
+        _this3.getSatuanKerja();
+        _this3.SatKerjaId = response.data;
+        _this3.nama = null;
+        _this3.alamat = null;
+        _this3.nomor_telepon = null;
+        _this3.kota_id = null;
       }).catch(function (error) {
         notif('error', 'Data Kosong', 'Mohon Isi Seluruh Data');
       });
@@ -86524,62 +86420,6 @@ var render = function() {
                           }
                         }
                       })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "col-md-2 control-label" }, [
-                      _vm._v("Provinsi")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.ProvinsiId,
-                              expression: "ProvinsiId"
-                            }
-                          ],
-                          staticClass: "form-control input-lg",
-                          attrs: { name: "provinsi_id" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.ProvinsiId = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.showKota
-                            ]
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Provinsi")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(this.dataprovinsi, function(dataprovinsi) {
-                            return _c(
-                              "option",
-                              { domProps: { value: dataprovinsi.id } },
-                              [_vm._v(_vm._s(dataprovinsi.nama))]
-                            )
-                          })
-                        ],
-                        2
-                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -87406,11 +87246,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'kota', 'provinsi', 'komoditas', 'keltani'],
+  props: ['api', 'kota', 'komoditas', 'keltani'],
   components: {
     FieldDaerah: __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default.a
   },
@@ -87429,7 +87268,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 $(document).ready(function () {
   $(document).ready(function () {
     var komoditasKelTani;
-    var nilaiReturn;
+    var selectedStatus;
     $("#komoditas").select2();
     $('#kota').change(function () {
       if (this.value) {
@@ -87439,24 +87278,30 @@ $(document).ready(function () {
     $.fn.getKomoditas = function (idKota) {
       var $komoditas = $('#komoditas');
       $komoditas.find('option').remove().end();
+      $komoditas.find('optgroup').remove().end();
       $komoditas.prop('disabled');
       axios({
         method: 'get',
         url: '/api/daerahkomoditas/' + idKota
       }).then(function (response) {
-        $.each(response.data, function (index, value) {
-          nilaiReturn = null;
-          $.each(komoditasKelTani, function (indexKomoditas, valueKomoditas) {
-            if (index == indexKomoditas) {
-              nilaiReturn = true;
-            }
-          });
-          if (nilaiReturn) {
-            $komoditas.append('<option value="' + value.id + '" selected>' + value.nama + '</option>');
-          } else {
-            $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+        $komoditas.append('<optgroup label="Komoditas Daerah Terpilih">');
+        $.each(response.data.Selected, function (index, value) {
+          if (komoditasKelTani) {
+            selectedStatus = "";
+            $.each(komoditasKelTani, function (indexKomoditas, valueKomoditas) {
+              if (index == indexKomoditas) {
+                selectedStatus = "selected";
+              }
+            });
           }
+          $komoditas.append('<option value="' + value.id + '" ' + selectedStatus + '>' + value.nama + '</option>');
         });
+        $komoditas.append('</optgroup>');
+        $komoditas.append('<optgroup label="Komoditas Lainnya">');
+        $.each(response.data.notSelected, function (index, value) {
+          $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+        });
+        $komoditas.append('</optgroup>');
         $komoditas.prop('disabled', false);
       });
     };
@@ -87482,9 +87327,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("FieldDaerah", {
-        attrs: { api: this.api, kota: this.kota, provinsi: this.provinsi }
-      }),
+      _c("FieldDaerah", { attrs: { api: this.api, kota: this.kota } }),
       _vm._v(" "),
       _vm._m(0)
     ],
