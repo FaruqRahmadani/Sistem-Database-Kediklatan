@@ -46,7 +46,7 @@
 		<div class="panel panel-red panel-widget ">
 			<div class="row no-padding">
 				<em class="fa fa-xl fa-book color-red"></em>
-				<div class="large">23</div>
+				<div class="large">{{$Pelatihan->count()}}</div>
 				<div class="text-muted">Pelatihan</div>
 			</div>
 		</div>
