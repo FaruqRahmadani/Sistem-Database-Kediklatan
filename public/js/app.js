@@ -87240,7 +87240,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['api', 'kota', 'provinsi', 'komoditas', 'keltani'],
+  props: ['api', 'kota', 'komoditas', 'keltani'],
   components: {
     FieldDaerah: __WEBPACK_IMPORTED_MODULE_0__FieldDaerah_ProvKota___default.a
   },
@@ -87259,7 +87259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 $(document).ready(function () {
   $(document).ready(function () {
     var komoditasKelTani;
-    var nilaiReturn;
+    var selectedStatus;
     $("#komoditas").select2();
     $('#kota').change(function () {
       if (this.value) {
@@ -87269,24 +87269,30 @@ $(document).ready(function () {
     $.fn.getKomoditas = function (idKota) {
       var $komoditas = $('#komoditas');
       $komoditas.find('option').remove().end();
+      $komoditas.find('optgroup').remove().end();
       $komoditas.prop('disabled');
       axios({
         method: 'get',
         url: '/api/daerahkomoditas/' + idKota
       }).then(function (response) {
-        $.each(response.data, function (index, value) {
-          nilaiReturn = null;
-          $.each(komoditasKelTani, function (indexKomoditas, valueKomoditas) {
-            if (index == indexKomoditas) {
-              nilaiReturn = true;
-            }
-          });
-          if (nilaiReturn) {
-            $komoditas.append('<option value="' + value.id + '" selected>' + value.nama + '</option>');
-          } else {
-            $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+        $komoditas.append('<optgroup label="Komoditas Daerah Terpilih">');
+        $.each(response.data.Selected, function (index, value) {
+          if (komoditasKelTani) {
+            selectedStatus = "";
+            $.each(komoditasKelTani, function (indexKomoditas, valueKomoditas) {
+              if (index == indexKomoditas) {
+                selectedStatus = "selected";
+              }
+            });
           }
+          $komoditas.append('<option value="' + value.id + '" ' + selectedStatus + '>' + value.nama + '</option>');
         });
+        $komoditas.append('</optgroup>');
+        $komoditas.append('<optgroup label="Komoditas Lainnya">');
+        $.each(response.data.notSelected, function (index, value) {
+          $komoditas.append('<option value="' + value.id + '">' + value.nama + '</option>');
+        });
+        $komoditas.append('</optgroup>');
         $komoditas.prop('disabled', false);
       });
     };
