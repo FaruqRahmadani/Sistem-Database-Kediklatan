@@ -41,11 +41,17 @@
 								<textarea name="alamat" class="form-control" rows="4" required>{{$P4S->alamat}}</textarea>
 							</div>
 						</div>
-						<field-daerah-provkota
-							provinsi = {{$P4S->Kota->Provinsi->id}}
-							kota = {{$P4S->kota_id}}
-							api = {{Auth::User()->api_token}}
-						></field-daerah-provkota>
+						<div class="form-group">
+				      <label class="col-md-2 control-label">Kota</label>
+				      <div class="col-md-10">
+				        <select name="kota_id" class="form-control input-lg" required>
+									<option value="">Kota</option>
+									@foreach ($Kota as $DataKota)
+										<option value="{{$DataKota->id}}" {{$DataKota->id==$P4S->kota_id? 'selected':''}}>{{$DataKota->nama}}</option>
+									@endforeach
+				        </select>
+				      </div>
+				    </div>
 						<div class="row">
 							<div class="text-center">
 								<div class="col-md-12">

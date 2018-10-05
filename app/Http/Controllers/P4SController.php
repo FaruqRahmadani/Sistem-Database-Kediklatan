@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kota;
 use App\P4S;
 use HCrypt;
 
@@ -14,7 +15,8 @@ class P4SController extends Controller
   }
 
   public function TambahForm(){
-    return view('P4S.Tambah');
+    $Kota = Kota::all();
+    return view('P4S.Tambah', compact('Kota'));
   }
 
   public function TambahSubmit(Request $request){
@@ -25,9 +27,10 @@ class P4SController extends Controller
   }
 
   public function EditForm($Id){
+    $Kota = Kota::all();
     $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
-    return view('P4S.Edit', compact('P4S'));
+    return view('P4S.Edit', compact('P4S', 'Kota'));
   }
 
   public function EditSubmit(Request $request, $Id){
