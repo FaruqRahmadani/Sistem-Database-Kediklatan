@@ -94,6 +94,12 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('hapus/{id?}/{verify?}', 'PesertaPelatihanController@Hapus')->Name('Hapus');
   });
 
+  Route::Group(['prefix' => 'pencarian', 'as' => 'pencarian'], function () {
+    Route::GET('', 'DashboardController@FormPencarian')->Name('Form');
+    Route::POST('penyuluh', 'DashboardController@DataPenyuluhFilter')->Name('Penyuluh');
+    Route::POST('kelompoktani', 'DashboardController@DataKelTaniFilter')->Name('KelTani');
+  });
+
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('SatuanKerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');
