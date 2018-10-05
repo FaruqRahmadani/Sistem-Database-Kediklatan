@@ -12442,6 +12442,10 @@ img.login-logo {
   margin-left: 0.25em;
 }
 
+.table-custom .dtr-details :last-child .dtr-data {
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 576px) {
   .dataTables_wrapper .row:first-child div {
     width: 100% !important;
