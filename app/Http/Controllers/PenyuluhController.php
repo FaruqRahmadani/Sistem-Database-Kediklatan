@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\PenyuluhExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Penyuluh;
 use Storage;
 use HCrypt;
 use File;
-
-use App\Penyuluh;
 
 class PenyuluhController extends Controller
 {
@@ -62,5 +63,9 @@ class PenyuluhController extends Controller
       return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
     }
     return abort(404);
+  }
+
+  public function exportData(Excel $excel, PenyuluhExport $export){
+    return Excel::download(new PenyuluhExport(), 'Data Penyuluh.xlsx');
   }
 }

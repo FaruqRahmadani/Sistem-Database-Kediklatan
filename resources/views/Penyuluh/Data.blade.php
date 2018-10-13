@@ -17,6 +17,10 @@
 				    <span class="fa fa-print img-circle text-default"></span>
 				    Cetak
 				  </a>
+					<a href="{{Route('penyuluhExport')}}" class="btn btn-default btn-sm text-right">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Export Excel
+				  </a>
 				</div>
 				<div class="panel-body">
 					<table id="myTable" data-order-disable="[1]" class="table table-hover table-custom">

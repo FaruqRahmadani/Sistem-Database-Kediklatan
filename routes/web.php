@@ -36,6 +36,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'penyuluh', 'as' => 'penyuluh'], function () {
     Route::GET('', 'PenyuluhController@Data')->Name('Data');
+    Route::GET('export', 'PenyuluhController@exportData')->Name('Export');
     Route::GET('tambah', 'PenyuluhController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'PenyuluhController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'PenyuluhController@EditForm')->Name('EditForm');
