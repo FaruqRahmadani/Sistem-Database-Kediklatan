@@ -12412,6 +12412,10 @@ img.login-logo {
   white-space: nowrap;
 }
 
+.table-custom .dtr-details {
+  min-width: 35%;
+}
+
 @media screen and (max-width: 576px) {
   .table-custom .dtr-details {
     width: 100%;
@@ -12498,6 +12502,14 @@ img.login-logo {
 .img-45 {
   max-width: 45px;
   max-height: 45px;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+dl {
+  padding: 0.5rem 0;
 }
 
 input[type="file"] {

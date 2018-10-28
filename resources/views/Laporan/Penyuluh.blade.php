@@ -15,6 +15,9 @@
   .text-center{
     text-align: center;
   }
+  .nowrap{
+    white-space: nowrap;
+  }
   th{
     text-align: center;
   }
@@ -49,7 +52,7 @@
       @foreach ($Penyuluh as $DataPenyuluh)
         <tr>
           <td class="text-center">{{$loop->iteration}}</td>
-          <td>
+          <td class="nowrap">
             ({{$DataPenyuluh->nip}})<br>
             {{$DataPenyuluh->nama}}
           </td>

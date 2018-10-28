@@ -58,6 +58,7 @@
 									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
 									<td>
 										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<a href="{{Route('penyuluhDetail', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
 										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>

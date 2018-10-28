@@ -17,6 +17,12 @@ class PenyuluhController extends Controller
     return view('Penyuluh.Data', compact('Penyuluh'));
   }
 
+  public function detail($Id){
+    $Id = HCrypt::Decrypt($Id);
+    $Penyuluh = Penyuluh::findOrFail($Id);
+    return view('Penyuluh.Detail', compact('Penyuluh'));
+  }
+
   public function TambahForm(){
     return view('Penyuluh.Tambah');
   }
