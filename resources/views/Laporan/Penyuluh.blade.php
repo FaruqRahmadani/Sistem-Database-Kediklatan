@@ -3,52 +3,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    .table{
-      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    .table > * > * > *{
-      border: 1px solid #000000;
-      padding: 8px;
-    }
-    .text-center{
-      text-align: center;
-    }
+  .table{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .table > * > * > *{
+    border: 1px solid #000000;
+    padding: 8px;
+  }
+  .text-center{
+    text-align: center;
+  }
+  th{
+    text-align: center;
+  }
   </style>
-  <title>Print Data Unit Kerja</title>
+  <title>HEADER DATABASE PENYULUH</title>
 </head>
 <body>
-  <div class="text-center">
-    <h1>Laporan Data Unit Kerja</h1>
-  </div>
-  <hr style="margin-bottom: 15px">
+  <header>
+    <div class="text-center">
+      <h1>HEADER DATABASE PENYULUH</h1>
+    </div>
+    <hr style="margin-bottom: 15px">
+  </header>
   <table class="table">
     <thead class="thead-light">
       <tr>
-        <th class="text-center"> #</th>
-        <th class="text-center"> Nama</th>
-        <th class="text-center"> Tempat / Tanggal Lahir</th>
-        <th class="text-center"> Agama</th>
-        <th class="text-center"> Jenis Kelamin</th>
-        <th class="text-center"> Pangkat / Jabatan</th>
-        <th class="text-center"> Pendidikan Terakhir</th>
-        <th class="text-center"> Nomor HP</th>
-        <th class="text-center"> Satuan Kerja</th>
-        <th class="text-center"> Unit Kerja</th>
-        <th class="text-center"> Komoditas Unggulan</th>
-        <th class="text-center"> Pelatihan</th>
+        <th>#</th>
+        <th>Nama</th>
+        <th>Tempat / Tanggal Lahir</th>
+        <th>Agama</th>
+        <th>Jenis Kelamin</th>
+        <th>Pangkat / Jabatan</th>
+        <th>Pendidikan Terakhir</th>
+        <th>Nomor HP</th>
+        <th>Satuan Kerja</th>
+        <th>Unit Kerja</th>
+        <th>Pelatihan</th>
+        <th>Pas Photo</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($Penyuluh as $Index => $DataPenyuluh)
+      @foreach ($Penyuluh as $DataPenyuluh)
         <tr>
-          <td class="text-center">{{$Index+=1}}</td>
+          <td class="text-center">{{$loop->iteration}}</td>
           <td>
             ({{$DataPenyuluh->nip}})<br>
             {{$DataPenyuluh->nama}}
           </td>
-          <td>{{$DataPenyuluh->tempat_lahir}}, {{Tanggal::Format($DataPenyuluh->tanggal_lahir)}}</td>
+          <td>{{$DataPenyuluh->TTL}}</td>
           <td>{{$DataPenyuluh->agama}}</td>
           <td>{{$DataPenyuluh->jenis_kelamin}}</td>
           <td>{{$DataPenyuluh->pangkat_golongan}} / {{$DataPenyuluh->jabatan}}</td>
@@ -56,11 +61,18 @@
           <td>{{$DataPenyuluh->nomor_hp}}</td>
           <td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
           <td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-          <td>{{$DataPenyuluh->komoditas_unggulan}}</td>
-          <td>{{$DataPenyuluh->pelatihan}}</td>
-        </tr>
-      @endforeach
-    </tbody>
-  </table>
-</body>
-</html>
+          <td>
+            @foreach ($DataPenyuluh->Pelatihan as $Pelatihan)
+              {{$loop->iteration}}. {{$Pelatihan->nama}}
+              @unless ($loop->last)<br>@endunless
+              @endforeach
+            </td>
+            <td class="text-center">
+              <img src="{{$DataPenyuluh->foto}}" style="max-height: 150px">
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </body>
+  </html>
