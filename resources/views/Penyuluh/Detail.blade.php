@@ -13,6 +13,10 @@
             <span class="fa fa-reply img-circle text-default"></span>
             Kembali
           </a>
+          <a href="{{Route('cetakPenyuluhDetail', ['id' => $Penyuluh->UUID])}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
         </div>
         <div class="panel-body">
           <dl class="col-lg-9 col-sm-12">
