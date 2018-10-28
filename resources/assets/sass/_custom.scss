@@ -48,6 +48,7 @@ img.login-logo  {
     white-space: nowrap;
   }
   .dtr-details{
+    min-width: 35%;
     @media screen and (max-width: $media-sm){
       width: 100%;
     }
