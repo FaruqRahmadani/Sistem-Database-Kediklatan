@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exports\PenyuluhExport;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Penyuluh;
 use Storage;
 use HCrypt;
+use Excel;
 use File;
 
 class PenyuluhController extends Controller

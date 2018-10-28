@@ -63,6 +63,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'kelompoktani', 'as' => 'kelompokTani'], function () {
     Route::GET('', 'KelTaniController@Data')->Name('Data');
+    Route::GET('export', 'KelTaniController@exportData')->Name('Export');
     Route::GET('tambah', 'KelTaniController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'KelTaniController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'KelTaniController@EditForm')->Name('EditForm');
