@@ -13,6 +13,10 @@
 						<span class="fa fa-plus img-circle text-default"></span>
 						Tambah Data
 					</a>
+					<a href="{{Route('p4sExport')}}" class="btn btn-default btn-sm text-right">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Export Excel
+				  </a>
 				</div>
 				<div class="panel-body">
 					<table id="myTable" data-order-disable="[2]" class="table table-hover table-custom">

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\P4SExport;
 use App\Kota;
 use App\P4S;
 use Storage;
 use HCrypt;
+use Excel;
 use File;
 
 class P4SController extends Controller
@@ -64,5 +66,9 @@ class P4SController extends Controller
       return redirect()->route('p4sData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
     }
     return abort(404);
+  }
+
+  public function exportData(){
+    return Excel::download(new P4SExport(), 'Data P4S.xlsx');
   }
 }

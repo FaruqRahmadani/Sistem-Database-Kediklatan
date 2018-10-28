@@ -65,7 +65,7 @@ class PenyuluhController extends Controller
     return abort(404);
   }
 
-  public function exportData(Excel $excel, PenyuluhExport $export){
+  public function exportData(){
     return Excel::download(new PenyuluhExport(), 'Data Penyuluh.xlsx');
   }
 }
