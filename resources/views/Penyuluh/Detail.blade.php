@@ -58,7 +58,7 @@
               <dd class="col-sm-9 col-lg-8">{{$Penyuluh->nomor_hp}}</dd>
             </dl>
           </dl>
-          <dl class="col-lg-3 hidden-sm">
+          <dl class="col-lg-3 visible-lg visible-xl">
             <legend class="text-center">FOTO</legend>
             <img src="{{asset($Penyuluh->foto)}}" class="w-100">
           </dl>
