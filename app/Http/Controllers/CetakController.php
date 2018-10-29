@@ -58,4 +58,11 @@ class CetakController extends Controller
     $pdf = PDF::loadview('Cetak.p4s', compact('p4s'));
     return $pdf->setPaper('a4', 'landscape')->stream();
   }
+
+  public function p4sDetail($id){
+    $id = HCrypt::Decrypt($id);
+    $p4s = P4S::findOrFail($id);
+    $pdf = PDF::loadview('Cetak.detailP4s', compact('p4s'));
+    return $pdf->setPaper('a4', 'potrait')->stream();
+  }
 }
