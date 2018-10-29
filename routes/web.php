@@ -110,8 +110,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');
     Route::Group(['prefix' => 'penyuluh', 'as' => 'Penyuluh'], function () {
       Route::GET('', 'CetakController@Penyuluh');
-      Route::GET('detail/{id}/cetak', 'CetakController@penyuluhDetail')->Name('Detail');
+      Route::GET('detail/{id}', 'CetakController@penyuluhDetail')->Name('Detail');
     });
-    Route::GET('kelompoktani', 'CetakController@kelompokTani')->name('KelompokTani');
+    Route::Group(['prefix' => 'kelompoktani', 'as' => 'KelompokTani'], function () {
+      Route::GET('', 'CetakController@kelompokTani');
+      Route::GET('detail/{id}', 'CetakController@kelompokTaniDetail')->Name('Detail');
+    });
   });
 });

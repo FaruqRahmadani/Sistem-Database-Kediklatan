@@ -13,7 +13,7 @@
             <span class="fa fa-reply img-circle text-default"></span>
             Kembali
           </a>
-          <a href="" class="btn btn-info btn-sm" target="_blank">
+          <a href="{{Route('cetakKelompokTaniDetail', ['id' => $KelompokTani->UUID])}}" class="btn btn-info btn-sm" target="_blank">
 				    <span class="fa fa-print img-circle text-default"></span>
 				    Cetak
 				  </a>

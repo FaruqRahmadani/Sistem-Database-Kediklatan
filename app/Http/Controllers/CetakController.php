@@ -44,4 +44,11 @@ class CetakController extends Controller
     $pdf = PDF::loadview('Cetak.kelompokTani', compact('kelompokTani'));
     return $pdf->setPaper('a4', 'landscape')->stream();
   }
+
+  public function kelompokTaniDetail($id){
+    $id = HCrypt::Decrypt($id);
+    $KelompokTani = KelompokTani::findOrFail($id);
+    $pdf = PDF::loadview('Cetak.detailKelompokTani', compact('KelompokTani'));
+    return $pdf->setPaper('a4', 'potrait')->stream();
+  }
 }
