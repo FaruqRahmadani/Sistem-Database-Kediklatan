@@ -71,7 +71,7 @@
               @endforeach
             </td>
             <td class="text-center">
-              <img src="{{$DataPenyuluh->foto}}" style="max-height: 150px">
+              <img src="{{$DataPenyuluh->foto}}" style="max-height: 100px">
             </td>
           </tr>
         @endforeach
