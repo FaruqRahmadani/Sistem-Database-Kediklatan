@@ -35,6 +35,10 @@ class KelompokTani extends Model
     return $this->belongsTo('App\Penyuluh')->withTrashed();
   }
 
+  public function Pelatihan(){
+    return $this->belongsToMany('App\Pelatihan', 'pelatihan_kelompok_tanis');
+  }
+
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
   }

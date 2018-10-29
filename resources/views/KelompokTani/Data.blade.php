@@ -13,6 +13,10 @@
 						<span class="fa fa-plus img-circle text-default"></span>
 						Tambah Data
 					</a>
+					<a href="{{Route('cetakKelompokTani')}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
 					<a href="{{Route('kelompokTaniExport')}}" class="btn btn-default btn-sm text-right">
 				    <span class="fa fa-print img-circle text-default"></span>
 				    Export Excel

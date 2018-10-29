@@ -111,5 +111,6 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
       Route::GET('', 'CetakController@Penyuluh');
       Route::GET('detail/{id}/cetak', 'CetakController@penyuluhDetail')->Name('Detail');
     });
+    Route::GET('kelompoktani', 'CetakController@kelompokTani')->name('KelompokTani');
   });
 });
