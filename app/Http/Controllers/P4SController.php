@@ -18,6 +18,12 @@ class P4SController extends Controller
     return view('P4S.Data', compact('P4S'));
   }
 
+  public function detail($id){
+    $id = HCrypt::Decrypt($id);
+    $p4s = P4S::findOrFail($id);
+    return view('P4S.Detail', compact('p4s'));
+  }
+
   public function TambahForm(){
     $Kota = Kota::all();
     return view('P4S.Tambah', compact('Kota'));

@@ -76,6 +76,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::group(['prefix' => 'p4s', 'as' => 'p4s'], function () {
     Route::GET('', 'P4SController@Data')->Name('Data');
     Route::GET('export', 'P4SController@exportData')->Name('Export');
+    Route::GET('detail/{id}', 'P4SController@detail')->Name('Detail');
     Route::GET('tambah', 'P4SController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'P4SController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'P4SController@EditForm')->Name('EditForm');

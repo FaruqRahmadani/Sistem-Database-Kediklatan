@@ -50,6 +50,7 @@
 									<td>{!!nl2br($DataP4S->AlamatLengkap)!!}</td>
 									<td>
 										<a href="{{Route('p4sEditForm', ['id' => $DataP4S->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<a href="{{Route('p4sDetail', ['id' => $DataP4S->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
 										<button data={{$DataP4S->UUID}} href={{Route('p4sHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>

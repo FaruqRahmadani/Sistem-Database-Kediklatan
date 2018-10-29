@@ -20,7 +20,7 @@
         </div>
         <div class="panel-body">
           <dl class="col-lg-9 col-sm-12">
-            <legend>Data Penyuluh</legend>
+            <legend>Data Kelompok Tani</legend>
             <dl>
               <dt class="col-sm-3 col-lg-4">Nama</dt>
               <dd class="col-sm-9 col-lg-8">{{$KelompokTani->nama}}</dd>
