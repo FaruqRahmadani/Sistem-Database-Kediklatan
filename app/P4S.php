@@ -29,4 +29,8 @@ class P4S extends Model
   public function Kota(){
     return $this->belongsTo('App\Kota');
   }
+
+  public function Pelatihan(){
+    return $this->belongsToMany('App\Pelatihan', 'pelatihan_p4_s');
+  }
 }

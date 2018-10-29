@@ -116,5 +116,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
       Route::GET('', 'CetakController@kelompokTani');
       Route::GET('detail/{id}', 'CetakController@kelompokTaniDetail')->Name('Detail');
     });
+    Route::Group(['prefix' => 'p4s', 'as' => 'P4s'], function () {
+      Route::GET('', 'CetakController@p4s');
+      Route::GET('detail/{id}', 'CetakController@p4sDetail')->Name('Detail');
+    });
   });
 });

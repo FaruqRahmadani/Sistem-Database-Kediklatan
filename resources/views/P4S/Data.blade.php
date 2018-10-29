@@ -13,6 +13,10 @@
 						<span class="fa fa-plus img-circle text-default"></span>
 						Tambah Data
 					</a>
+					<a href="{{Route('cetakP4s')}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
 					<a href="{{Route('p4sExport')}}" class="btn btn-default btn-sm text-right">
 				    <span class="fa fa-print img-circle text-default"></span>
 				    Export Excel

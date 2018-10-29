@@ -8,6 +8,7 @@ use App\KelompokTani;
 use App\SatuanKerja;
 use App\UnitKerja;
 use App\Penyuluh;
+use App\P4S;
 use HCrypt;
 
 use PDF;
@@ -50,5 +51,11 @@ class CetakController extends Controller
     $KelompokTani = KelompokTani::findOrFail($id);
     $pdf = PDF::loadview('Cetak.detailKelompokTani', compact('KelompokTani'));
     return $pdf->setPaper('a4', 'potrait')->stream();
+  }
+
+  public function p4s(){
+    $p4s = P4S::all();
+    $pdf = PDF::loadview('Cetak.p4s', compact('p4s'));
+    return $pdf->setPaper('a4', 'landscape')->stream();
   }
 }
