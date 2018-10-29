@@ -34,10 +34,12 @@ class KelTaniController extends Controller
     $Kota = Kota::findOrFail($request->kota_id);
     $KelompokTani = new KelompokTani;
     $KelompokTani->fill($request->all());
-    $FotoExt = $request->foto->getClientOriginalExtension();
-    $FotoName = "$request->nama.$request->_token";
-    $Foto = "{$FotoName}.{$FotoExt}";
-    $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    if ($request->foto) {
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    }
     $KelompokTani->save();
     foreach ($request->komoditas_id as $KomoditasId) {
       if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
@@ -68,7 +70,7 @@ class KelTaniController extends Controller
     }
     $KelompokTani->fill($request->all());
     if ($request->foto) {
-      if ($KelompokTani->foto != 'default.png') {
+      if (!str_is('*default.png', $KelompokTani->foto)) {
         File::delete($KelompokTani->foto);
       }
       $FotoExt = $request->foto->getClientOriginalExtension();
