@@ -62,6 +62,7 @@
 									</td>
 									<td class="text-center">
 										<a href="{{Route('kelompokTaniEditForm', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<a href="{{Route('kelompokTaniDetail', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
 										<button data={{$DataKelompokTani->UUID}} href={{Route('kelompokTaniHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>

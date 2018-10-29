@@ -19,6 +19,12 @@ class KelTaniController extends Controller
     return view('KelompokTani.Data', compact('KelompokTani'));
   }
 
+  public function detail($id){
+    $id = HCrypt::Decrypt($id);
+    $KelompokTani = KelompokTani::findOrFail($id);
+    return view('KelompokTani.Detail', compact('KelompokTani'));
+  }
+
   public function TambahForm(){
     $Penyuluh = Penyuluh::all();
     return view('KelompokTani.Tambah', compact('Penyuluh'));
