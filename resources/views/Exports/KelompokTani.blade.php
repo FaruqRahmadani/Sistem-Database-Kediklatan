@@ -9,35 +9,28 @@
       <th>Alamat</th>
       <th>Kabupaten/Kota</th>
       <th>Komoditas</th>
+      <th>Pelatihan</th>
     </tr>
   </thead>
   <tbody>
     @foreach ($KelompokTani as $DataKelompokTani)
       <tr>
-        <td valign="middle">
-          {{$loop->iteration}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->nama}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->nama_ketua}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->Penyuluh->nama}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->nomor_hp}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->alamat}}
-        </td>
-        <td valign="middle">
-          {{$DataKelompokTani->Kota->nama}}
-        </td>
-        <td valign="middle">
+        <td>{{$loop->iteration}}</td>
+        <td>{{$DataKelompokTani->nama}}</td>
+        <td>{{$DataKelompokTani->nama_ketua}}</td>
+        <td>{{$DataKelompokTani->Penyuluh->nama}}</td>
+        <td>{{$DataKelompokTani->nomor_hp}}</td>
+        <td>{{$DataKelompokTani->alamat}}</td>
+        <td>{{$DataKelompokTani->Kota->nama}}</td>
+        <td>
           @foreach ($DataKelompokTani->Komoditas as $Komoditas)
-            {{$Komoditas->nama}}
+            {{$loop->iteration}}. {{$Komoditas->nama}}
+            @unless ($loop->last)<br>@endunless
+          @endforeach
+        </td>
+        <td>
+          @foreach ($DataKelompokTani->Pelatihan as $pelatihan)
+            {{$loop->iteration}}. {{$pelatihan->nama}}
             @unless ($loop->last)<br>@endunless
           @endforeach
         </td>
