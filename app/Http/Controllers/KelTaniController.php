@@ -71,12 +71,11 @@ class KelTaniController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
-    $Kota = Kota::findOrFail($request->kota_id);
-    foreach ($request->komoditas_id as $KomoditasId) {
-      if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
-        $Kota->Komoditas()->attach($KomoditasId);
-      }
-    }
+    $validate = User::whereUsername($KelompokTani->nip)->where('id', '!=', $KelompokTani->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $KelompokTani->user_id]);
+    $user->username = $request->nip;
+    $user->save();
     $KelompokTani->fill($request->all());
     if ($request->foto) {
       if (!str_is('*default.png', $KelompokTani->foto)) {
@@ -88,6 +87,14 @@ class KelTaniController extends Controller
       $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
     }
     $KelompokTani->save();
+    if ($request->kota_id) {
+      $Kota = Kota::findOrFail($request->kota_id);
+      foreach ($request->komoditas_id as $KomoditasId) {
+        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
+          $Kota->Komoditas()->attach($KomoditasId);
+        }
+      }
+    }
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
     return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }

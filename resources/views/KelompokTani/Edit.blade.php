@@ -16,7 +16,13 @@
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal row-border" action="{{ Route('kelompokTaniEditSubmit', ['id' => $KelompokTani->UUID]) }}" method="POST" enctype="multipart/form-data">
-						{{csrf_field()}}
+						@csrf
+						<div class="form-group">
+							<label class="col-md-2 control-label">NIK/NIP</label>
+							<div class="col-md-10">
+								<input type="text" name="nip" value="{{$KelompokTani->nip}}" class="form-control" required>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Kelompok Tani</label>
 							<div class="col-md-10">
@@ -26,7 +32,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Ketua Kelompok</label>
 							<div class="col-md-10">
-								<input type="text" name="nama_ketua" class="form-control" value="{{$KelompokTani->nama_ketua}}" required>
+								<input type="text" name="nama_ketua" class="form-control" value="{{$KelompokTani->nama_ketua}}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -39,7 +45,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Penyuluh</label>
 							<div class="col-md-10">
-								<select name="penyuluh_id" class="form-control input-lg" required>
+								<select name="penyuluh_id" class="form-control input-lg">
 									<option value="">Penyuluh</option>
 									@foreach ($Penyuluh as $DataPenyuluh)
 										<option value="{{$DataPenyuluh->id}}" {{$KelompokTani->penyuluh_id == $DataPenyuluh->id ? 'selected' : ''}}>{{$DataPenyuluh->nip}} - {{$DataPenyuluh->nama}}</option>
@@ -50,17 +56,17 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor HP</label>
 							<div class="col-md-10">
-								<input type="text" name="nomor_hp" class="form-control" value="{{$KelompokTani->nomor_hp}}" required>
+								<input type="text" name="nomor_hp" class="form-control" value="{{$KelompokTani->nomor_hp}}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<input type="text" name="alamat" class="form-control" value="{{$KelompokTani->alamat}}" required>
+								<input type="text" name="alamat" class="form-control" value="{{$KelompokTani->alamat}}">
 							</div>
 						</div>
 						<daerah-komoditas
-							kota = {{$KelompokTani->kota_id}}
+							@if ($KelompokTani->kota_id) kota = {{$KelompokTani->kota_id}} @endif
 							api = {{Auth::User()->api_token}}
 							komoditas = {{$KelompokTani->Komoditas->pluck('id')}}
 							keltani = {{$KelompokTani->id}}
