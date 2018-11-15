@@ -30,7 +30,7 @@ class PenyuluhController extends Controller
 
   public function TambahSubmit(Request $request){
     $user = User::firstOrNew(['username' => $request->nip]);
-    if ($user->id) return redirect()->back()->withInput()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIP Sudah Ada']);
+    if ($user->id) return redirect()->back()->withInput()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
     $user->password = 12345;
     $user->tipe = 1;
     $user->save();
@@ -56,6 +56,11 @@ class PenyuluhController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $Penyuluh->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $Penyuluh->user_id]);
+    $user->username = $request->nip;
+    $user->save();
     $Penyuluh->fill($request->all());
     if ($request->foto) {
       if (!str_is('*default.png', $Penyuluh->foto)) {
