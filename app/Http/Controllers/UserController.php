@@ -31,13 +31,9 @@ class UserController extends Controller
     return $User;
   }
 
-  public function Hapus($Id=null,$Verify=null){
-    if ($Verify) {
-      $Id = HCrypt::Decrypt($Id);
-      $User = User::findOrFail($Id);
-      $User->delete();
-      return $User;
-    }
-    return false;
+  public function Hapus($Id=null){
+    $User = User::findOrFail($Id);
+    $User->delete();
+    return $User;
   }
 }

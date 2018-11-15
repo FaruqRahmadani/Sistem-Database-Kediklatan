@@ -59,4 +59,15 @@ class AdminController extends Controller
     $admin->save();
     return redirect()->Route('adminData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Ubah Data Berhasil']);
   }
+
+  public function hapus($id=null, $verify=null){
+    if (!$id || !$verify) return abort(404);
+    $id = HCrypt::Decrypt($id);
+    $admin = Admin::findOrFail($id);
+    $userControleler = new UserController;
+    $user = $userControleler->Hapus($admin->User->id);
+    if (!str_is('*default.png', $admin->foto)) File::delete($admin->foto);
+    $admin->delete();
+    return redirect()->Route('adminData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+  }
 }
