@@ -17,6 +17,7 @@ class P4S extends Model
     'nomor_hp',
     'alamat',
     'kota_id',
+    'user_id',
   ];
 
   public function getAlamatLengkapAttribute($value){
