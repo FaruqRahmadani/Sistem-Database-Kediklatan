@@ -35,7 +35,7 @@
 									<td>{{$DataAdmin->User->username}}</td>
 									<td>
 										<a href="{{Route('adminEditForm', ['id' => $DataAdmin->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<button data={{$DataAdmin->UUID}} href={{Route('adminHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										<button data={{$DataAdmin->UUID}} href={{Route('adminHapus')}} class="btn btn-warning btn-xs btn-delete" @if (Auth::User()->Data->id == $DataAdmin->id) status="Tidak Dapat Menghapus Data Sendiri" @endif>Delete</button>
 									</td>
 								</tr>
 							@endforeach
