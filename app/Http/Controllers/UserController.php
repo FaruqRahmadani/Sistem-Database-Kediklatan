@@ -22,14 +22,13 @@ class UserController extends Controller
   }
 
   public function EditSubmit(Request $request, $Id){
-    $Id = HCrypt::Decrypt($Id);
     Validator::make($request->all(),[
       'username' => Rule::unique('users')->ignore($Id),
     ])->validate();
     $User = User::findOrFail($Id);
     $User->fill($request->all());
     $User->save();
-    return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+    return $User;
   }
 
   public function Hapus($Id=null,$Verify=null){
@@ -37,8 +36,8 @@ class UserController extends Controller
       $Id = HCrypt::Decrypt($Id);
       $User = User::findOrFail($Id);
       $User->delete();
-      return redirect()->Route('userData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
+      return $User;
     }
-    return abort(404);
+    return false;
   }
-  }
+}

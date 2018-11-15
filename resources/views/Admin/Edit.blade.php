@@ -9,23 +9,24 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('userData') }}
-					></button-kembali>
+					<a href="{{Route('adminData')}}" class="btn btn-primary btn-sm">
+						<span class="fa fa-reply img-circle text-default"></span>
+						Kembali
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('userEditSubmit', ['Id' => $User->UUID])}}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('adminEditSubmit', ['Id' => $admin->UUID])}}" method="POST" enctype="multipart/form-data">
 						{{csrf_field()}}
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
 							<div class="col-md-10">
-								<input type="text" name="nama" class="form-control" value="{{$User->nama}}" required>
+								<input type="text" name="nama" class="form-control" value="{{$admin->nama}}" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Username</label>
 							<div class="col-md-10">
-								<input type="text" name="username" class="form-control" value="{{$User->username}}" required>
+								<input type="text" name="username" class="form-control" value="{{$admin->User->username}}" required>
 							</div>
 						</div>
 						<div class="form-group">
@@ -33,6 +34,13 @@
 							<div class="col-md-10">
 								<input type="password" name="password" class="form-control">
 								<small>Isi Hanya Jika Ubah Password</small>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Foto</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control" accept="image/*">
+								<small>*Ukuran Foto 1:1, Isi Hanya Jika Ubah Foto</small>
 							</div>
 						</div>
 						<div class="row">

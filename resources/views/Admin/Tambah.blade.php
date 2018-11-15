@@ -38,7 +38,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Foto</label>
 							<div class="col-md-10">
-								<input type="file" name="foto" class="form-control">
+								<input type="file" name="foto" class="form-control" accept="image/*">
 								<small>*Ukuran Foto 1:1</small>
 							</div>
 						</div>
