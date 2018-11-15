@@ -13,6 +13,14 @@
 						<span class="fa fa-plus img-circle text-default"></span>
 						Tambah Data
 					</a>
+					<a href="{{Route('cetakP4s')}}" class="btn btn-info btn-sm" target="_blank">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Cetak
+				  </a>
+					<a href="{{Route('p4sExport')}}" class="btn btn-default btn-sm text-right">
+				    <span class="fa fa-print img-circle text-default"></span>
+				    Export Excel
+				  </a>
 				</div>
 				<div class="panel-body">
 					<table id="myTable" data-order-disable="[2]" class="table table-hover table-custom">
@@ -42,6 +50,7 @@
 									<td>{!!nl2br($DataP4S->AlamatLengkap)!!}</td>
 									<td>
 										<a href="{{Route('p4sEditForm', ['id' => $DataP4S->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<a href="{{Route('p4sDetail', ['id' => $DataP4S->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
 										<button data={{$DataP4S->UUID}} href={{Route('p4sHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>

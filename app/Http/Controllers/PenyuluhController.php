@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\PenyuluhExport;
+use App\Penyuluh;
 use Storage;
 use HCrypt;
+use Excel;
 use File;
-
-use App\Penyuluh;
 
 class PenyuluhController extends Controller
 {
   public function Data(){
     $Penyuluh = Penyuluh::all();
     return view('Penyuluh.Data', compact('Penyuluh'));
+  }
+
+  public function detail($Id){
+    $Id = HCrypt::Decrypt($Id);
+    $Penyuluh = Penyuluh::findOrFail($Id);
+    return view('Penyuluh.Detail', compact('Penyuluh'));
   }
 
   public function TambahForm(){
@@ -23,10 +30,12 @@ class PenyuluhController extends Controller
   public function TambahSubmit(Request $request){
     $Penyuluh = new Penyuluh;
     $Penyuluh->fill($request->all());
-    $FotoExt = $request->foto->getClientOriginalExtension();
-    $FotoName = "[$request->nip]$request->nama.$request->_token";
-    $Foto = "{$FotoName}.{$FotoExt}";
-    $Penyuluh->foto = $request->foto->move('img/penyuluh', $Foto);
+    if ($request->foto) {
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "[$request->nip]$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $Penyuluh->foto = $request->foto->move('img/penyuluh', $Foto);
+    }
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Tambah Data Berhasil']);
   }
@@ -42,7 +51,7 @@ class PenyuluhController extends Controller
     $Penyuluh = Penyuluh::findOrFail($Id);
     $Penyuluh->fill($request->all());
     if ($request->foto) {
-      if ($Penyuluh->foto != 'default.png') {
+      if (!str_is('*default.png', $Penyuluh->foto)) {
         File::delete($Penyuluh->foto);
       }
       $FotoExt = $request->foto->getClientOriginalExtension();
@@ -62,5 +71,9 @@ class PenyuluhController extends Controller
       return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Delete Data Berhasil']);
     }
     return abort(404);
+  }
+
+  public function exportData(){
+    return Excel::download(new PenyuluhExport(), 'Data Penyuluh.xlsx');
   }
 }

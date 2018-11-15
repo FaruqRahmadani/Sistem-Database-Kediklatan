@@ -39,6 +39,10 @@ class Penyuluh extends Model
     return $this->hasMany('App\KelompokTani');
   }
 
+  public function Pelatihan(){
+    return $this->belongsToMany('App\Pelatihan', 'pelatihan_penyuluhs');
+  }
+
   public function getNIPNamaAttribute($value){
     return "({$this->nip}) <br> {$this->nama}";
   }

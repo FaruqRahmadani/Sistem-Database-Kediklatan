@@ -14,16 +14,15 @@
 						<table id="myTable" class="table table-hover table-custom">
 							<thead>
 								<tr>
-									<th class="text-center">#</th>
-									<th class="text-center"></th>
-									<th class="text-center">Nama</th>
-									<th class="text-center">Nama Ketua</th>
-									<th class="text-center">Penyuluh</th>
-									<th class="text-center">Nomor HP</th>
-									<th class="text-center">Alamat</th>
-									<th class="text-center">Provinsi</th>
-									<th class="text-center">Kota</th>
-									<th class="text-center">Komoditas</th>
+									<th>#</th>
+									<th></th>
+									<th>Nama</th>
+									<th>Nama Ketua</th>
+									<th>Penyuluh</th>
+									<th>Nomor HP</th>
+									<th>Alamat</th>
+									<th>Kota</th>
+									<th>Komoditas</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -38,7 +37,6 @@
 										<td>{{$DataPeserta->Penyuluh->nama}}</td>
 										<td>{{$DataPeserta->nomor_hp}}</td>
 										<td>{{$DataPeserta->alamat}}</td>
-										<td>{{$DataPeserta->Provinsi->nama}}</td>
 										<td>{{$DataPeserta->Kota->nama}}</td>
 										<td class="text-center">
 											@foreach ($DataPeserta->Komoditas as $Komoditas)

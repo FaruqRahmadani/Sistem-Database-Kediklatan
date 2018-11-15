@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KelompokTaniExport;
 use Illuminate\Http\Request;
 use App\KelompokTani;
 use App\Komoditas;
 use App\Penyuluh;
 use App\Kota;
 use HCrypt;
+use Excel;
 use File;
 
 class KelTaniController extends Controller
@@ -15,6 +17,12 @@ class KelTaniController extends Controller
   public function Data(){
     $KelompokTani = KelompokTani::all();
     return view('KelompokTani.Data', compact('KelompokTani'));
+  }
+
+  public function detail($id){
+    $id = HCrypt::Decrypt($id);
+    $KelompokTani = KelompokTani::findOrFail($id);
+    return view('KelompokTani.Detail', compact('KelompokTani'));
   }
 
   public function TambahForm(){
@@ -26,10 +34,12 @@ class KelTaniController extends Controller
     $Kota = Kota::findOrFail($request->kota_id);
     $KelompokTani = new KelompokTani;
     $KelompokTani->fill($request->all());
-    $FotoExt = $request->foto->getClientOriginalExtension();
-    $FotoName = "$request->nama.$request->_token";
-    $Foto = "{$FotoName}.{$FotoExt}";
-    $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    if ($request->foto) {
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    }
     $KelompokTani->save();
     foreach ($request->komoditas_id as $KomoditasId) {
       if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
@@ -60,7 +70,7 @@ class KelTaniController extends Controller
     }
     $KelompokTani->fill($request->all());
     if ($request->foto) {
-      if ($KelompokTani->foto != 'default.png') {
+      if (!str_is('*default.png', $KelompokTani->foto)) {
         File::delete($KelompokTani->foto);
       }
       $FotoExt = $request->foto->getClientOriginalExtension();
@@ -82,5 +92,9 @@ class KelTaniController extends Controller
       return redirect()->Route('kelompokTaniData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Hapus Data Berhasil']);
     }
     return abort(404);
+  }
+
+  public function exportData(){
+    return Excel::download(new KelompokTaniExport(), 'Data Kelompok Tani.xlsx');
   }
 }

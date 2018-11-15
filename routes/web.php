@@ -36,6 +36,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'penyuluh', 'as' => 'penyuluh'], function () {
     Route::GET('', 'PenyuluhController@Data')->Name('Data');
+    Route::GET('export', 'PenyuluhController@exportData')->Name('Export');
+    Route::GET('detail/{id}', 'PenyuluhController@detail')->Name('Detail');
     Route::GET('tambah', 'PenyuluhController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'PenyuluhController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'PenyuluhController@EditForm')->Name('EditForm');
@@ -62,6 +64,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'kelompoktani', 'as' => 'kelompokTani'], function () {
     Route::GET('', 'KelTaniController@Data')->Name('Data');
+    Route::GET('export', 'KelTaniController@exportData')->Name('Export');
+    Route::GET('detail/{id}', 'KelTaniController@detail')->Name('Detail');
     Route::GET('tambah', 'KelTaniController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'KelTaniController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'KelTaniController@EditForm')->Name('EditForm');
@@ -71,6 +75,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   Route::group(['prefix' => 'p4s', 'as' => 'p4s'], function () {
     Route::GET('', 'P4SController@Data')->Name('Data');
+    Route::GET('export', 'P4SController@exportData')->Name('Export');
+    Route::GET('detail/{id}', 'P4SController@detail')->Name('Detail');
     Route::GET('tambah', 'P4SController@TambahForm')->Name('TambahForm');
     Route::POST('tambah', 'P4SController@TambahSubmit')->Name('TambahSubmit');
     Route::GET('edit/{id}', 'P4SController@EditForm')->Name('EditForm');
@@ -103,6 +109,17 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::Group(['prefix' => 'cetak', 'as' => 'cetak'], function () {
     Route::GET('satuankerja', 'CetakController@SatuanKerja')->name('SatuanKerja');
     Route::GET('unitkerja', 'CetakController@UnitKerja')->name('UnitKerja');
-    Route::GET('penyuluh', 'CetakController@Penyuluh')->name('Penyuluh');
+    Route::Group(['prefix' => 'penyuluh', 'as' => 'Penyuluh'], function () {
+      Route::GET('', 'CetakController@Penyuluh');
+      Route::GET('detail/{id}', 'CetakController@penyuluhDetail')->Name('Detail');
+    });
+    Route::Group(['prefix' => 'kelompoktani', 'as' => 'KelompokTani'], function () {
+      Route::GET('', 'CetakController@kelompokTani');
+      Route::GET('detail/{id}', 'CetakController@kelompokTaniDetail')->Name('Detail');
+    });
+    Route::Group(['prefix' => 'p4s', 'as' => 'P4s'], function () {
+      Route::GET('', 'CetakController@p4s');
+      Route::GET('detail/{id}', 'CetakController@p4sDetail')->Name('Detail');
+    });
   });
 });
