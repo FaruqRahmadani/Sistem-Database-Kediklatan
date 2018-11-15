@@ -86301,11 +86301,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: {
-                id: "satuankerja",
-                name: "satuan_kerja_id",
-                required: ""
-              },
+              attrs: { id: "satuankerja", name: "satuan_kerja_id" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -86774,7 +86770,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: { id: "unitkerja", name: "unit_kerja_id", required: "" },
+              attrs: { id: "unitkerja", name: "unit_kerja_id" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter

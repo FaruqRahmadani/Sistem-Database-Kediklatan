@@ -4,7 +4,7 @@
       <label class="col-md-2 control-label">Unit Kerja</label>
       <div class="col-md-10">
         <div class="input-group">
-          <select id="unitkerja" name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId" required>
+          <select id="unitkerja" name="unit_kerja_id" class="form-control input-lg" v-model="UnitKerjaId">
             <option v-for="dataunitkerja in this.dataunitkerja" :value="dataunitkerja.id">{{dataunitkerja.nama}}</option>
           </select>
           <span class="input-group-btn">
