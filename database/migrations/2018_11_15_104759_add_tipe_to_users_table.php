@@ -14,7 +14,7 @@ class AddTipeToUsersTable extends Migration
   public function up()
   {
     Schema::table('users', function (Blueprint $table) {
-      $table->tinyInt('tipe')->default(5)->after('foto');
+      $table->tinyInteger('tipe')->default(5)->after('foto');
     });
   }
 
