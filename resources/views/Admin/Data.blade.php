@@ -2,14 +2,14 @@
 @section('content')
 	<div class="row row-header">
 		<div class="col-lg-12">
-			<h3 class="page-header">Data User</h3>
+			<h3 class="page-header">Data Admin</h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<a href="{{Route('userTambahForm')}}" class="btn btn-primary btn-sm">
+					<a href="{{Route('adminTambahForm')}}" class="btn btn-primary btn-sm">
 						<span class="fa fa-plus img-circle text-default"></span>
 						Tambah Data
 					</a>
@@ -25,14 +25,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($User as $Index=>$DataUser)
+							@foreach ($admin as $DataAdmin)
 								<tr>
-									<td>{{$Index+1}}</td>
-									<td>{{$DataUser->nama}}</td>
-									<td>{{$DataUser->username}}</td>
+									<td>{{$loop->iteration}}</td>
 									<td>
-										<a href="{{Route('userEditForm', ['id' => $DataUser->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<button data={{$DataUser->UUID}} href={{Route('userHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										<img src="{{asset($DataAdmin->foto)}}" alt="{{$DataAdmin->nama}}" class="img-circle img img-45 img-thumbnail">
+										{{$DataAdmin->nama}}
+									</td>
+									<td>{{$DataAdmin->User->username}}</td>
+									<td>
+										<a href="{{Route('adminEditForm', ['id' => $DataAdmin->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+										<button data={{$DataAdmin->UUID}} href={{Route('adminHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
 									</td>
 								</tr>
 							@endforeach

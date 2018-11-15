@@ -48,8 +48,8 @@
           </a>
           <ul class="children collapse" id="sub-item-1">
             <li>
-              <a href="{{Route('userData')}}">
-                <em class="fa fa-user">&nbsp;</em> Data User
+              <a href="{{Route('adminData')}}">
+                <em class="fa fa-user">&nbsp;</em> Data Admin
               </a>
             </li>
             <li>

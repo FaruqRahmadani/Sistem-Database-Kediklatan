@@ -7,13 +7,13 @@ Route::POST('login', 'Auth\LoginController@login');
 Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('', 'DashboardController@Dashboard')->Name('Dashboard');
 
-  Route::group(['prefix' => 'user', 'as' => 'user'], function () {
-    Route::GET('', 'UserController@Data')->Name('Data');
-    Route::GET('tambah', 'UserController@TambahForm')->Name('TambahForm');
-    Route::POST('tambah', 'UserController@TambahSubmit')->Name('TambahSubmit');
-    Route::GET('edit/{id}', 'UserController@EditForm')->Name('EditForm');
-    Route::POST('edit/{id}', 'UserController@EditSubmit')->Name('EditSubmit');
-    Route::GET('hapus/{id?}/{verify?}', 'UserController@Hapus')->Name('Hapus');
+  Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
+    Route::GET('', 'AdminController@data')->Name('Data');
+    Route::GET('tambah', 'AdminController@tambahForm')->Name('TambahForm');
+    Route::POST('tambah', 'AdminController@tambahSubmit')->Name('TambahSubmit');
+    Route::GET('edit/{id}', 'AdminController@editForm')->Name('EditForm');
+    Route::POST('edit/{id}', 'AdminController@editSubmit')->Name('EditSubmit');
+    Route::GET('hapus/{id?}/{verify?}', 'AdminController@hapus')->Name('Hapus');
   });
 
   Route::group(['prefix' => 'satuankerja', 'as' => 'satuanKerja'], function () {
