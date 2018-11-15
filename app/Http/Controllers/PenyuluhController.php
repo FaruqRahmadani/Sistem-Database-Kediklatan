@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exports\PenyuluhExport;
+use Illuminate\Http\Request;
 use App\Penyuluh;
+use App\User;
 use Storage;
 use HCrypt;
 use Excel;
@@ -28,8 +29,14 @@ class PenyuluhController extends Controller
   }
 
   public function TambahSubmit(Request $request){
+    $user = User::firstOrNew(['username' => $request->nip]);
+    if ($user->id) return redirect()->back()->withInput()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIP Sudah Ada']);
+    $user->password = 12345;
+    $user->tipe = 1;
+    $user->save();
     $Penyuluh = new Penyuluh;
     $Penyuluh->fill($request->all());
+    $Penyuluh->user_id = $user->id;
     if ($request->foto) {
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "[$request->nip]$request->nama.$request->_token";
