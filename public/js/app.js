@@ -86027,12 +86027,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control input-lg",
-            attrs: {
-              name: "kota_id",
-              id: "kota",
-              disabled: _vm.disable == 1,
-              required: !_vm.required
-            },
+            attrs: { name: "kota_id", id: "kota", disabled: _vm.disable == 1 },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
