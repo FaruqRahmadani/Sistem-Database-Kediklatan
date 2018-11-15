@@ -27,4 +27,8 @@ class User extends Authenticatable
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
   }
+
+  public function Data(){
+    if ($this->tipe == 5) return $this->hasOne('App\Admin');
+  }
 }

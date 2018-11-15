@@ -26,12 +26,12 @@
       <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <div class="profile-sidebar">
           <div class="profile-userpic">
-            <img src="{{asset('img/user/'.Auth::User()->foto)}}" class="img-responsive" alt="">
+            <img src="{{asset(Auth::User()->Data->foto)}}" class="img-responsive" alt="">
           </div>
           <div class="profile-usertitle">
             <div class="profile-usertitle-name">{{Auth::User()->username}}</div>
             <div class="profile-usertitle-status">
-              {{Auth::User()->nama}}
+              {{Auth::User()->Data->nama}}
             </div>
           </div>
           <div class="clear"></div>
