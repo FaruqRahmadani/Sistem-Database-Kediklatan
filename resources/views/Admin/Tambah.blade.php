@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row row-header">
 		<div class="col-lg-12">
-			<h3 class="page-header">Tambah User</h3>
+			<h3 class="page-header">Tambah Admin</h3>
 		</div>
 	</div>
 	<div class="row">
