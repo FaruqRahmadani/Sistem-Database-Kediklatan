@@ -9,13 +9,13 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<a href="{{Route('userData')}}" class="btn btn-primary btn-sm">
+					<a href="{{Route('adminData')}}" class="btn btn-primary btn-sm">
 						<span class="fa fa-reply img-circle text-default"></span>
 						Kembali
 					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('userTambahSubmit')}}" method="POST">
+					<form class="form-horizontal row-border" action="{{Route('adminTambahSubmit')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
@@ -33,6 +33,13 @@
 							<label class="col-md-2 control-label">Password</label>
 							<div class="col-md-10">
 								<input type="password" name="password" class="form-control" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Foto</label>
+							<div class="col-md-10">
+								<input type="file" name="foto" class="form-control">
+								<small>*Ukuran Foto 1:1</small>
 							</div>
 						</div>
 						<div class="row">

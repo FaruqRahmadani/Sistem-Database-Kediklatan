@@ -11,4 +11,8 @@ class AdminController extends Controller
     $admin = Admin::all();
     return view('Admin.Data', compact('admin'));
   }
+
+  public function tambahForm(){
+    return view('Admin.Tambah');
+  }
 }
