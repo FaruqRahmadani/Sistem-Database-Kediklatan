@@ -22,6 +22,10 @@
           <dl class="col-lg-9 col-sm-12">
             <legend>Data Penyuluh</legend>
             <dl>
+              <dt class="col-sm-3 col-lg-4">NIK/NIP</dt>
+              <dd class="col-sm-9 col-lg-8">{{$Penyuluh->nip}}</dd>
+            </dl>
+            <dl>
               <dt class="col-sm-3 col-lg-4">Nama</dt>
               <dd class="col-sm-9 col-lg-8">{{$Penyuluh->nama}}</dd>
             </dl>

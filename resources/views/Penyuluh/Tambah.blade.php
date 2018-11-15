@@ -18,7 +18,7 @@
 					<form class="form-horizontal row-border" action="{{Route('penyuluhTambahForm')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
-							<label class="col-md-2 control-label">NIP</label>
+							<label class="col-md-2 control-label">NIK/NIP</label>
 							<div class="col-md-10">
 								<input type="text" name="nip" class="form-control" required>
 							</div>
