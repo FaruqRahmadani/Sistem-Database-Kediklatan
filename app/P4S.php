@@ -11,6 +11,7 @@ class P4S extends Model
   use SoftDeletes;
 
   protected $fillable = [
+    'nip',
     'nama',
     'nama_ketua',
     'nomor_hp',
