@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kota;
-use App\User;
+use App\KelompokTani;
+use App\Penyuluh;
 use App\P4S;
+use App\User;
+use App\Kota;
 use Auth;
 use File;
 use Hash;
@@ -14,12 +16,19 @@ class HomeController extends Controller
 {
   public function ubahData(){
     $auth = Auth::User();
+    if ($auth->tipe == 2) return $this->ubahDataKelTaniForm($auth);
     if ($auth->tipe == 3) return $this->ubahDataP4SForm($auth);
   }
 
   public function ubahDataSubmit(Request $request){
     $auth = Auth::User();
     if ($auth->tipe == 3) return $this->ubahDataP4SSubmit($auth, $request);
+  }
+
+  public function ubahDataKelTaniForm($auth){
+    $KelompokTani = KelompokTani::findOrFail($auth->Data->id);
+    $Penyuluh = Penyuluh::all();
+    return view('PesertaAuth.ubahDataKelompokTani', compact('KelompokTani', 'Penyuluh'));
   }
 
   public function ubahDataP4SForm($auth){
