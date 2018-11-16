@@ -29,7 +29,7 @@ class P4S extends Model
   }
 
   public function Kota(){
-    return $this->belongsTo('App\Kota');
+    return $this->belongsTo('App\Kota')->withDefault(['nama' => '']);
   }
 
   public function Pelatihan(){
