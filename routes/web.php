@@ -7,6 +7,10 @@ Route::POST('login', 'Auth\LoginController@login');
 Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('', 'DashboardController@Dashboard')->Name('Dashboard');
 
+  Route::group(['middleware' => ['PesertaMiddleware']], function () {
+    Route::get('ubah-data', 'HomeController@ubahData')->name('ubahData');
+  });
+
   Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
       Route::GET('', 'AdminController@data')->Name('Data');

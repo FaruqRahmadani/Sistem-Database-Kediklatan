@@ -43,62 +43,75 @@
               <em class="fa fa-dashboard">&nbsp;</em> Dashboard
             </a>
           </li>
-          <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-            <em class="fa fa-navicon">&nbsp;</em> Master <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-          </a>
-          <ul class="children collapse" id="sub-item-1">
-            <li>
-              <a href="{{Route('adminData')}}">
-                <em class="fa fa-user">&nbsp;</em> Data Admin
-              </a>
-            </li>
-            <li>
-              <a href="{{Route('satuanKerjaData')}}">
-                <em class="fa fa-building">&nbsp;</em> Satuan Kerja
-              </a>
-            </li>
-            <li>
-              <a href="{{Route('unitKerjaData')}}">
-                <em class="fa fa-building-o">&nbsp;</em> Unit Kerja
-              </a>
-            </li>
-            <li>
-              <a href="{{Route('komoditasData')}}">
-                <em class="fa fa-archive">&nbsp;</em> Komoditas
-              </a>
-            </li>
-            <li>
-              <a href="{{Route('kotaKomoditasData')}}">
-                <em class="fa fa-map-o">&nbsp;</em> Kota Komoditas
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="{{Route('penyuluhData')}}">
-            <em class="fa fa-user">&nbsp;</em> Penyuluh
-          </a>
-        </li>
-        <li>
-          <a href="{{Route('kelompokTaniData')}}">
-            <em class="fa fa-users">&nbsp;</em> Kelompok Tani
-          </a>
-        </li>
-        <li>
-          <a href="{{Route('p4sData')}}">
-            <em class="fa fa-th-large">&nbsp;</em> P4S
-          </a>
-        </li>
-        <li>
-          <a href="{{Route('pelatihanData')}}">
-            <em class="fa fa-ellipsis-h">&nbsp;</em> Pelatihan
-          </a>
-        </li>
-        <li>
-          <a href="{{Route('pencarianForm')}}">
-            <em class="fa fa-search">&nbsp;</em> Pencarian Data
-          </a>
-        </li>
+          @if (Auth::User()->tipe == 5)
+            <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+              <em class="fa fa-navicon">&nbsp;</em> Master <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+              <li>
+                <a href="{{Route('adminData')}}">
+                  <em class="fa fa-user">&nbsp;</em> Data Admin
+                </a>
+              </li>
+              <li>
+                <a href="{{Route('satuanKerjaData')}}">
+                  <em class="fa fa-building">&nbsp;</em> Satuan Kerja
+                </a>
+              </li>
+              <li>
+                <a href="{{Route('unitKerjaData')}}">
+                  <em class="fa fa-building-o">&nbsp;</em> Unit Kerja
+                </a>
+              </li>
+              <li>
+                <a href="{{Route('komoditasData')}}">
+                  <em class="fa fa-archive">&nbsp;</em> Komoditas
+                </a>
+              </li>
+              <li>
+                <a href="{{Route('kotaKomoditasData')}}">
+                  <em class="fa fa-map-o">&nbsp;</em> Kota Komoditas
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="{{Route('penyuluhData')}}">
+              <em class="fa fa-user">&nbsp;</em> Penyuluh
+            </a>
+          </li>
+          <li>
+            <a href="{{Route('kelompokTaniData')}}">
+              <em class="fa fa-users">&nbsp;</em> Kelompok Tani
+            </a>
+          </li>
+          <li>
+            <a href="{{Route('p4sData')}}">
+              <em class="fa fa-th-large">&nbsp;</em> P4S
+            </a>
+          </li>
+          <li>
+            <a href="{{Route('pelatihanData')}}">
+              <em class="fa fa-ellipsis-h">&nbsp;</em> Pelatihan
+            </a>
+          </li>
+          <li>
+            <a href="{{Route('pencarianForm')}}">
+              <em class="fa fa-search">&nbsp;</em> Pencarian Data
+            </a>
+          </li>
+        @else
+          <li>
+            <a href="{{Route('ubahData')}}">
+              <em class="fa fa-pencil">&nbsp;</em> Ubah Data
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <em class="fa fa-key">&nbsp;</em> Ubah Autentikasi
+            </a>
+          </li>
+        @endif
         <li>
           <a href="#" id="logout">
             <em class="fa fa-power-off">&nbsp;</em> Logout
