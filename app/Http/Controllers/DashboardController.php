@@ -9,10 +9,15 @@ use App\UnitKerja;
 use App\Komoditas;
 use App\Pelatihan;
 use App\Penyuluh;
+use Auth;
 
 class DashboardController extends Controller
 {
   public function Dashboard(){
+    if (Auth::User()->tipe == 5) return $this->dashboardAdmin(); 
+  }
+
+  public function dashboardAdmin(){
     $Penyuluh = Penyuluh::all();
     $Komoditas = Komoditas::all();
     $KelompokTani = KelompokTani::all();
