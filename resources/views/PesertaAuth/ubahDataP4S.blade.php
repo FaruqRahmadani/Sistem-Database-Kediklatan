@@ -10,14 +10,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a href="{{Route('p4sData')}}" class="btn btn-primary btn-sm">
-						<span class="fa fa-reply img-circle text-default"></span>
-						Kembali
-					</a>
-				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal row-border" action="{{Route('ubahDataSubmit')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIK/NIP</label>
