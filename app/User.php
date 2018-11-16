@@ -19,13 +19,31 @@ class User extends Authenticatable
   ];
 
   public function setPasswordAttribute($value){
-    if ($value) {
-      $this->attributes['password'] = bcrypt($value);
-    }
+    if ($value) $this->attributes['password'] = bcrypt($value);
   }
 
   public function getUUIDAttribute($value){
     return HCrypt::Encrypt($this->id);
+  }
+
+  public function getTipeTextAttribute(){
+    switch ($this->tipe) {
+      case 5:
+        return "Admin";
+        break;
+      case 1:
+        return "Penyuluh";
+        break;
+      case 2:
+        return "Kelompok Tani";
+        break;
+      case 3:
+        return "P4S";
+        break;
+      default:
+        return "Kode Tidak Diketahui";
+        break;
+    }
   }
 
   public function Data(){

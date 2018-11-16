@@ -29,7 +29,7 @@
             <img src="{{asset(Auth::User()->Data->foto)}}" class="img-responsive" alt="">
           </div>
           <div class="profile-usertitle">
-            <div class="profile-usertitle-name">{{Auth::User()->username}}</div>
+            <div class="profile-usertitle-name">{{Auth::User()->TipeText}}</div>
             <div class="profile-usertitle-status">
               {{Auth::User()->Data->nama}}
             </div>
