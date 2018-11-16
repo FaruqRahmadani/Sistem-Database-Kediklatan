@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\KelompokTani;
+use App\SatuanKerja;
+use App\UnitKerja;
 use App\Penyuluh;
 use App\P4S;
 use App\User;
@@ -16,6 +18,7 @@ class HomeController extends Controller
 {
   public function ubahData(){
     $auth = Auth::User();
+    if ($auth->tipe == 1) return $this->ubahDataPenyuluhForm($auth);
     if ($auth->tipe == 2) return $this->ubahDataKelTaniForm($auth);
     if ($auth->tipe == 3) return $this->ubahDataP4SForm($auth);
   }
@@ -24,6 +27,13 @@ class HomeController extends Controller
     $auth = Auth::User();
     if ($auth->tipe == 2) return $this->ubahDataKelTaniSubmit($auth, $request);
     if ($auth->tipe == 3) return $this->ubahDataP4SSubmit($auth, $request);
+  }
+
+  public function ubahDataPenyuluhForm($auth){
+    $Penyuluh = Penyuluh::findOrFail($auth->Data->id);
+    $SatuanKerja = SatuanKerja::all();
+    $UnitKerja = UnitKerja::all();
+    return view('PesertaAuth.ubahDataPenyuluh', compact('Penyuluh', 'SatuanKerja', 'UnitKerja'));
   }
 
   public function ubahDataKelTaniForm($auth){

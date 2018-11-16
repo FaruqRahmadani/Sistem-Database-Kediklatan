@@ -85917,6 +85917,9 @@ $(document).ready(function () {
     }
   });
   $("#select2").select2();
+  $(".select2").select2({
+    placeholder: "Pilih"
+  });
   $("#logout").click(function () {
     __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
       title: "Logout",
