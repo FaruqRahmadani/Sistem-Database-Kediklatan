@@ -16,6 +16,7 @@ class DashboardController extends Controller
 {
   public function Dashboard(){
     if (Auth::User()->tipe == 5) return $this->dashboardAdmin();
+    if (Auth::User()->tipe == 1) return $this->dashboardPenyuluh();
     if (Auth::User()->tipe == 2) return $this->dashboardKelompokTani();
     if (Auth::User()->tipe == 3) return $this->dashboardP4S();
   }
@@ -26,6 +27,11 @@ class DashboardController extends Controller
     $KelompokTani = KelompokTani::all();
     $Pelatihan = Pelatihan::all();
     return view('Dashboard.Dashboard', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
+  }
+
+  public function dashboardPenyuluh(){
+    $Penyuluh = Penyuluh::findOrFail(Auth::User()->Data->id);
+    return view('Dashboard.Penyuluh', compact('Penyuluh'));
   }
 
   public function dashboardKelompokTani(){
