@@ -59,6 +59,11 @@ class P4SController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $P4S->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $P4S->user_id]);
+    $user->username = $request->nip;
+    $user->save();
     $P4S->fill($request->all());
     if ($request->foto) {
       if (!str_is('*default.png', $P4S->foto)) {

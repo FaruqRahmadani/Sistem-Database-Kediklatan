@@ -18,6 +18,12 @@
 					<form class="form-horizontal row-border" action="{{Route('p4sEditSubmit', ['id' => $P4S->UUID])}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
+							<label class="col-md-2 control-label">NIK/NIP</label>
+							<div class="col-md-10">
+								<input type="text" name="nip" class="form-control" value="{{$P4S->nip}}" required>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-md-2 control-label">Nama</label>
 							<div class="col-md-10">
 								<input type="text" name="nama" class="form-control" required value="{{$P4S->nama}}">
@@ -26,7 +32,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nama Ketua</label>
 							<div class="col-md-10">
-								<input type="text" name="nama_ketua" class="form-control" required value="{{$P4S->nama_ketua}}">
+								<input type="text" name="nama_ketua" class="form-control" value="{{$P4S->nama_ketua}}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -39,19 +45,19 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nomor HP</label>
 							<div class="col-md-10">
-								<input type="text" name="nomor_hp" class="form-control" required value="{{$P4S->nomor_hp}}">
+								<input type="text" name="nomor_hp" class="form-control" value="{{$P4S->nomor_hp}}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Alamat</label>
 							<div class="col-md-10">
-								<textarea name="alamat" class="form-control" rows="4" required>{{$P4S->alamat}}</textarea>
+								<textarea name="alamat" class="form-control" rows="4">{{$P4S->alamat}}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
 				      <label class="col-md-2 control-label">Kota</label>
 				      <div class="col-md-10">
-				        <select name="kota_id" class="form-control input-lg" required>
+				        <select name="kota_id" class="form-control input-lg">
 									<option value="">Kota</option>
 									@foreach ($Kota as $DataKota)
 										<option value="{{$DataKota->id}}" {{$DataKota->id==$P4S->kota_id? 'selected':''}}>{{$DataKota->nama}}</option>
