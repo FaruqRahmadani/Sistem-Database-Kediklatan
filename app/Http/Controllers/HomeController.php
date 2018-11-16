@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kota;
+use App\User;
 use App\P4S;
 use Auth;
+use File;
 
 class HomeController extends Controller
 {
@@ -20,13 +22,18 @@ class HomeController extends Controller
   }
 
   public function ubahDataP4SForm($auth){
-    $p4s = P4S::findOrFail($auth->Data->id);
+    $P4S = P4S::findOrFail($auth->Data->id);
     $Kota = Kota::all();
-    return view('PesertaAuth.ubahDataP4S', compact('p4s', 'Kota'));
+    return view('PesertaAuth.ubahDataP4S', compact('P4S', 'Kota'));
   }
 
   public function ubahDataP4SSubmit($auth, $request){
     $P4S = P4S::findOrFail($auth->Data->id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $P4S->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $P4S->user_id]);
+    $user->username = $request->nip;
+    $user->save();
     $P4S->fill($request->all());
     if ($request->foto) {
       if (!str_is('*default.png', $P4S->foto)) {
