@@ -9,12 +9,14 @@ use App\UnitKerja;
 use App\Komoditas;
 use App\Pelatihan;
 use App\Penyuluh;
+use App\P4S;
 use Auth;
 
 class DashboardController extends Controller
 {
   public function Dashboard(){
-    if (Auth::User()->tipe == 5) return $this->dashboardAdmin(); 
+    if (Auth::User()->tipe == 5) return $this->dashboardAdmin();
+    if (Auth::User()->tipe == 3) return $this->dashboardP4S();
   }
 
   public function dashboardAdmin(){
@@ -23,6 +25,11 @@ class DashboardController extends Controller
     $KelompokTani = KelompokTani::all();
     $Pelatihan = Pelatihan::all();
     return view('Dashboard.Dashboard', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
+  }
+
+  public function dashboardP4S(){
+    $p4s = P4S::findOrFail(Auth::User()->Data->id);
+    return view('Dashboard.P4S', compact('p4s'));
   }
 
   public function FormPencarian(){
