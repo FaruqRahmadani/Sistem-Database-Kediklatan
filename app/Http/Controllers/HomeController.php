@@ -25,6 +25,7 @@ class HomeController extends Controller
 
   public function ubahDataSubmit(Request $request){
     $auth = Auth::User();
+    if ($auth->tipe == 1) return $this->ubahDataPenyuluhSubmit($auth, $request);
     if ($auth->tipe == 2) return $this->ubahDataKelTaniSubmit($auth, $request);
     if ($auth->tipe == 3) return $this->ubahDataP4SSubmit($auth, $request);
   }
@@ -34,6 +35,27 @@ class HomeController extends Controller
     $SatuanKerja = SatuanKerja::all();
     $UnitKerja = UnitKerja::all();
     return view('PesertaAuth.ubahDataPenyuluh', compact('Penyuluh', 'SatuanKerja', 'UnitKerja'));
+  }
+
+  public function ubahDataPenyuluhSubmit($auth, $request){
+    $Penyuluh = Penyuluh::findOrFail($auth->Data->id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $Penyuluh->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $Penyuluh->user_id]);
+    $user->username = $request->nip;
+    $user->save();
+    $Penyuluh->fill($request->all());
+    if ($request->foto) {
+      if (!str_is('*default.png', $Penyuluh->foto)) {
+        File::delete($Penyuluh->foto);
+      }
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "[$request->nip]$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $Penyuluh->foto = $request->foto->move('img/penyuluh', $Foto);
+    }
+    $Penyuluh->save();
+    return redirect()->Route('Dashboard')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function ubahDataKelTaniForm($auth){
