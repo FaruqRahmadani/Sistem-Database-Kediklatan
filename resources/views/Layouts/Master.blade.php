@@ -107,7 +107,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="{{Route('ubahAuth')}}">
               <em class="fa fa-key">&nbsp;</em> Ubah Autentikasi
             </a>
           </li>

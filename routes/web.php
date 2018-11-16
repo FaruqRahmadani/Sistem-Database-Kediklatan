@@ -10,6 +10,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::group(['middleware' => ['PesertaMiddleware']], function () {
     Route::get('ubah-data', 'HomeController@ubahData')->name('ubahData');
     Route::post('ubah-data', 'HomeController@ubahDataSubmit')->name('ubahDataSubmit');
+    Route::get('ubah-auth', 'HomeController@ubahAuth')->name('ubahAuth');
+    Route::post('ubah-auth', 'HomeController@ubahAuthSubmit')->name('ubahAuthSubmit');
   });
 
   Route::group(['middleware' => ['AdminMiddleware']], function () {

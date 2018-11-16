@@ -8,6 +8,7 @@ use App\User;
 use App\P4S;
 use Auth;
 use File;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -45,6 +46,22 @@ class HomeController extends Controller
       $P4S->foto = $request->foto->move('img/P4S', $Foto);
     }
     $P4S->save();
+    return redirect()->route('Dashboard')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+  }
+
+  public function ubahAuth(){
+    return view('PesertaAuth.ubahAuth');
+  }
+
+  public function ubahAuthSubmit(Request $request){
+    $auth = Auth::User();
+    $user = User::findOrFail($auth->id);
+    if (!Hash::check($request->password_old, $user->password)) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'Password Lama Salah']);
+    $this->validate($request, [
+      'password' => 'confirmed',
+    ]);
+    $user->fill($request->all());
+    $user->save();
     return redirect()->route('Dashboard')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 }
