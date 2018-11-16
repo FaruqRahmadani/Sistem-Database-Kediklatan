@@ -22,6 +22,7 @@ class HomeController extends Controller
 
   public function ubahDataSubmit(Request $request){
     $auth = Auth::User();
+    if ($auth->tipe == 2) return $this->ubahDataKelTaniSubmit($auth, $request);
     if ($auth->tipe == 3) return $this->ubahDataP4SSubmit($auth, $request);
   }
 
@@ -29,6 +30,36 @@ class HomeController extends Controller
     $KelompokTani = KelompokTani::findOrFail($auth->Data->id);
     $Penyuluh = Penyuluh::all();
     return view('PesertaAuth.ubahDataKelompokTani', compact('KelompokTani', 'Penyuluh'));
+  }
+
+  public function ubahDataKelTaniSubmit($auth, $request){
+    $KelompokTani = KelompokTani::findOrFail($auth->Data->id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $KelompokTani->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $KelompokTani->user_id]);
+    $user->username = $request->nip;
+    $user->save();
+    $KelompokTani->fill($request->all());
+    if ($request->foto) {
+      if (!str_is('*default.png', $KelompokTani->foto)) {
+        File::delete($KelompokTani->foto);
+      }
+      $FotoExt = $request->foto->getClientOriginalExtension();
+      $FotoName = "$request->nama.$request->_token";
+      $Foto = "{$FotoName}.{$FotoExt}";
+      $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
+    }
+    $KelompokTani->save();
+    if ($request->kota_id) {
+      $Kota = Kota::findOrFail($request->kota_id);
+      foreach ($request->komoditas_id as $KomoditasId) {
+        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
+          $Kota->Komoditas()->attach($KomoditasId);
+        }
+      }
+    }
+    $KelompokTani->Komoditas()->sync($request->komoditas_id);
+    return redirect()->Route('Dashboard')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
   public function ubahDataP4SForm($auth){
