@@ -48,5 +48,8 @@ class User extends Authenticatable
 
   public function Data(){
     if ($this->tipe == 5) return $this->hasOne('App\Admin');
+    if ($this->tipe == 1) return $this->hasOne('App\Penyuluh');
+    if ($this->tipe == 2) return $this->hasOne('App\KelompokTani');
+    if ($this->tipe == 3) return $this->hasOne('App\P4S');
   }
 }
