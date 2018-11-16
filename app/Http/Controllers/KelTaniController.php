@@ -71,7 +71,7 @@ class KelTaniController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
-    $validate = User::whereUsername($KelompokTani->nip)->where('id', '!=', $KelompokTani->user_id)->count();
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $KelompokTani->user_id)->count();
     if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
     $user = User::firstOrNew(['id' => $KelompokTani->user_id]);
     $user->username = $request->nip;
