@@ -58,10 +58,15 @@ class PenyuluhController extends Controller
     $Penyuluh = Penyuluh::findOrFail($Id);
     $validate = User::whereUsername($request->nip)->where('id', '!=', $Penyuluh->user_id)->count();
     if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
-    $user = User::firstOrNew(['id' => $Penyuluh->user_id]);
+    $user = User::firstOrNew(['username' => $Penyuluh->nip]);
+    if (!$Penyuluh->user_id) {
+      $user->password = 12345;
+      $user->tipe = 1;
+    }
     $user->username = $request->nip;
     $user->save();
     $Penyuluh->fill($request->all());
+    if (!$Penyuluh->user_id) $Penyuluh->user_id = $user->id;
     if ($request->foto) {
       if (!str_is('*default.png', $Penyuluh->foto)) {
         File::delete($Penyuluh->foto);
