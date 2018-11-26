@@ -56,7 +56,7 @@ class PenyuluhController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $Penyuluh = Penyuluh::findOrFail($Id);
-    $validate = User::whereUsername($request->nip)->where('id', '!=', $Penyuluh->user_id)->count();
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $Penyuluh->user_id??0)->count();
     if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
     $user = User::firstOrNew(['username' => $Penyuluh->nip]);
     if (!$Penyuluh->user_id) {

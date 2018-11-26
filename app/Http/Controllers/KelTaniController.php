@@ -71,12 +71,17 @@ class KelTaniController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $KelompokTani = KelompokTani::findOrFail($Id);
-    $validate = User::whereUsername($request->nip)->where('id', '!=', $KelompokTani->user_id)->count();
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $KelompokTani->user_id??0)->count();
     if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
-    $user = User::firstOrNew(['id' => $KelompokTani->user_id]);
+    $user = User::firstOrNew(['username' => $KelompokTani->nip]);
+    if (!$KelompokTani->user_id) {
+      $user->password = 12345;
+      $user->tipe = 2;
+    }
     $user->username = $request->nip;
     $user->save();
     $KelompokTani->fill($request->all());
+    if (!$KelompokTani->user_id) $KelompokTani->user_id = $user->id;
     if ($request->foto) {
       if (!str_is('*default.png', $KelompokTani->foto)) {
         File::delete($KelompokTani->foto);
