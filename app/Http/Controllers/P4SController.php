@@ -62,9 +62,14 @@ class P4SController extends Controller
     $validate = User::whereUsername($request->nip)->where('id', '!=', $P4S->user_id)->count();
     if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
     $user = User::firstOrNew(['id' => $P4S->user_id]);
+    if (!$P4S->user_id) {
+      $user->password = 12345;
+      $user->tipe = 2;
+    }
     $user->username = $request->nip;
     $user->save();
     $P4S->fill($request->all());
+    if (!$P4S->user_id) $P4S->user_id = $user->id;
     if ($request->foto) {
       if (!str_is('*default.png', $P4S->foto)) {
         File::delete($P4S->foto);
