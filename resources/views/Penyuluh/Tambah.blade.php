@@ -46,11 +46,9 @@
 							<div class="col-md-10">
 								<select name="agama" class="form-control input-lg">
 									<option value="" selected hidden>Agama</option>
-									<option value="Islam" @if(old('agama')=="Islam") selected @endif>Islam</option>
-									<option value="Kristen Protestan" @if(old('agama')=="Kristen Protestan") selected @endif>Kristen Protestan</option>
-									<option value="Katolik" @if(old('agama')=="Katolik") selected @endif>Katolik</option>
-									<option value="Hindu" @if(old('agama')=="Hindu") selected @endif>Hindu</option>
-									<option value="Buddha" @if(old('agama')=="Buddha") selected @endif>Buddha</option>
+									@foreach (HData::agama() as $value)
+										<option value="{{$value}}" @if(old('agama')==$value) selected @endif>{{$value}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -59,8 +57,9 @@
 							<div class="col-md-10">
 								<select name="jenis_kelamin" class="form-control input-lg">
 									<option value="" selected hidden>Jenis Kelamin</option>
-									<option value="Laki-Laki" @if(old('jenis_kelamin')=="Laki-Laki") selected @endif>Laki-Laki</option>
-									<option value="Perempuan" @if(old('jenis_kelamin')=="Perempuan") selected @endif>Perempuan</option>
+									@foreach (HData::jenisKelamin() as $value)
+										<option value="{{$value}}" @if(old('jenis_kelamin')==$value) selected @endif>{{$value}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -69,8 +68,9 @@
 							<div class="col-md-10">
 								<select name="status_kawin" class="form-control input-lg">
 									<option value="" selected hidden>Status Kawin</option>
-									<option value="Belum Kawin" @if(old('status_kawin')=="Belum Kawin") selected @endif>Belum Kawin</option>
-									<option value="Sudah Kawin" @if(old('status_kawin')=="Sudah Kawin") selected @endif>Sudah Kawin</option>
+									@foreach (HData::statusKawin() as $value)
+										<option value="{{$value}}" @if(old('status_kawin')==$value) selected @endif>{{$value}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -91,11 +91,9 @@
 							<div class="col-md-10">
 								<select name="pendidikan_terakhir" class="form-control input-lg">
 									<option value="" selected hidden>Pendidikan Terakhir</option>
-									<option value="SD" @if(old('pendidikan_terakhir')=="SD") selected @endif>SD</option>
-									<option value="SMP" @if(old('pendidikan_terakhir')=="SMP") selected @endif>SMP</option>
-									<option value="SMA" @if(old('pendidikan_terakhir')=="SMA") selected @endif>SMA</option>
-									<option value="DI/II" @if(old('pendidikan_terakhir')=="DI/DII") selected @endif>DI/II</option>
-									<option value="S1" @if(old('pendidikan_terakhir')=="S1") selected @endif>S1</option>
+									@foreach (HData::pendidikanTerakhir() as $value)
+										<option value="{{$value}}" @if(old('pendidikan_terakhir')==$value) selected @endif>{{$value}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>

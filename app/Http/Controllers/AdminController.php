@@ -48,9 +48,7 @@ class AdminController extends Controller
     $user = $userControleler->EditSubmit($request, $admin->User->id);
     $admin->fill($request->all());
     if ($request->foto) {
-      if (!str_is('*default.png', $admin->foto)) {
-        File::delete($admin->foto);
-      }
+      if (!str_is('*default.png', $admin->foto)) File::delete($admin->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama-$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";

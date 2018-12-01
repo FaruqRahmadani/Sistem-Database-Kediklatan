@@ -46,11 +46,9 @@
 							<div class="col-md-10">
 								<select name="agama" class="form-control input-lg">
 									<option value="" selected hidden>Agama</option>
-									<option value="Islam" {{$Penyuluh->agama == 'Islam' ? 'selected' : ''}}>Islam</option>
-									<option value="Kristen Protestan" {{$Penyuluh->agama == 'Kristen Protestan' ? 'selected' : ''}}>Kristen Protestan</option>
-									<option value="Katolik" {{$Penyuluh->agama == 'Katolik' ? 'selected' : ''}}>Katolik</option>
-									<option value="Hindu" {{$Penyuluh->agama == 'Hindu' ? 'selected' : ''}}>Hindu</option>
-									<option value="Buddha" {{$Penyuluh->agama == 'Buddha' ? 'selected' : ''}}>Buddha</option>
+									@foreach (HData::agama() as $value)
+										<option value="{{$value}}" @if ($Penyuluh->agama == $value) selected @endif>{{$value}}</option>
+									@endforeach
 				        </select>
 							</div>
 						</div>
@@ -59,8 +57,9 @@
 							<div class="col-md-10">
 								<select name="jenis_kelamin" class="form-control input-lg">
 									<option value="" selected hidden>Jenis Kelamin</option>
-									<option value="Laki-Laki" {{$Penyuluh->jenis_kelamin == 'Laki-Laki' ? 'selected' : ''}}>Laki-Laki</option>
-									<option value="Perempuan" {{$Penyuluh->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+									@foreach (HData::jenisKelamin() as $value)
+										<option value="{{$value}}" @if ($Penyuluh->jenis_kelamin == $value) selected @endif>{{$value}}</option>
+									@endforeach
 				        </select>
 							</div>
 						</div>
@@ -69,8 +68,9 @@
 							<div class="col-md-10">
 								<select name="status_kawin" class="form-control input-lg">
 									<option value="" selected hidden>Status Kawin</option>
-									<option value="Belum Kawin" {{$Penyuluh->status_kawin == 'Belum Kawin' ? 'selected' : ''}}>Belum Kawin</option>
-									<option value="Sudah Kawin" {{$Penyuluh->status_kawin == 'Sudah Kawin' ? 'selected' : ''}}>Sudah Kawin</option>
+									@foreach (HData::statusKawin() as $value)
+										<option value="{{$value}}" @if ($Penyuluh->status_kawin == $value) selected @endif>{{$value}}</option>
+									@endforeach
 				        </select>
 							</div>
 						</div>
@@ -91,11 +91,9 @@
 							<div class="col-md-10">
 								<select name="pendidikan_terakhir" class="form-control input-lg">
 									<option value="" selected hidden>Pendidikan Terakhir</option>
-									<option value="SD" {{$Penyuluh->pendidikan_terakhir == 'SD' ? 'selected' : ''}}>SD</option>
-									<option value="SMP" {{$Penyuluh->pendidikan_terakhir == 'SMP' ? 'selected' : ''}}>SMP</option>
-									<option value="SMA" {{$Penyuluh->pendidikan_terakhir == 'SMA' ? 'selected' : ''}}>SMA</option>
-									<option value="DI/II" {{$Penyuluh->pendidikan_terakhir == 'DI/DII' ? 'selected' : ''}}>DI/II</option>
-									<option value="S1" {{$Penyuluh->pendidikan_terakhir == 'S1' ? 'selected' : ''}}>S1</option>
+									@foreach (HData::pendidikanTerakhir() as $value)
+										<option value="{{$value}}" @if ($Penyuluh->pendidikan_terakhir == $value) selected @endif>{{$value}}</option>
+									@endforeach
 				        </select>
 							</div>
 						</div>

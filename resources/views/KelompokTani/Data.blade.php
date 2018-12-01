@@ -8,20 +8,22 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a href="{{Route('kelompokTaniTambahForm')}}" class="btn btn-primary btn-sm">
-						<span class="fa fa-plus img-circle text-default"></span>
-						Tambah Data
-					</a>
-					<a href="{{Route('cetakKelompokTani')}}" class="btn btn-info btn-sm" target="_blank">
-				    <span class="fa fa-print img-circle text-default"></span>
-				    Cetak
-				  </a>
-					<a href="{{Route('kelompokTaniExport')}}" class="btn btn-default btn-sm text-right">
-				    <span class="fa fa-print img-circle text-default"></span>
-				    Export Excel
-				  </a>
-				</div>
+				@if (Auth::User())
+					<div class="panel-heading">
+						<a href="{{Route('kelompokTaniTambahForm')}}" class="btn btn-primary btn-sm">
+							<span class="fa fa-plus img-circle text-default"></span>
+							Tambah Data
+						</a>
+						<a href="{{Route('cetakKelompokTani')}}" class="btn btn-info btn-sm" target="_blank">
+							<span class="fa fa-print img-circle text-default"></span>
+							Cetak
+						</a>
+						<a href="{{Route('kelompokTaniExport')}}" class="btn btn-default btn-sm text-right">
+							<span class="fa fa-print img-circle text-default"></span>
+							Export Excel
+						</a>
+					</div>
+				@endif
 				<div class="panel-body">
 					<table id="myTable" class="table table-hover table-custom">
 						<thead>
@@ -35,7 +37,9 @@
 								<th>Alamat</th>
 								<th>Kabupaten/Kota</th>
 								<th>Komoditas</th>
-								<th>Action</th>
+								@if (Auth::User())
+									<th>Action</th>
+								@endif
 							</tr>
 						</thead>
 						<tbody>
@@ -62,11 +66,13 @@
 										  </span>
 										@endforeach
 									</td>
-									<td class="text-center">
-										<a href="{{Route('kelompokTaniEditForm', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<a href="{{Route('kelompokTaniDetail', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
-										<button data={{$DataKelompokTani->UUID}} href={{Route('kelompokTaniHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
-									</td>
+									@if (Auth::User())
+										<td class="text-center">
+											<a href="{{Route('kelompokTaniEditForm', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+											<a href="{{Route('kelompokTaniDetail', ['id' => $DataKelompokTani->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
+											<button data={{$DataKelompokTani->UUID}} href={{Route('kelompokTaniHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										</td>
+									@endif
 								</tr>
 							@endforeach
 						</tbody>

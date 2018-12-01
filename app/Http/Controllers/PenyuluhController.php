@@ -68,9 +68,7 @@ class PenyuluhController extends Controller
     $Penyuluh->fill($request->all());
     if (!$Penyuluh->user_id) $Penyuluh->user_id = $user->id;
     if ($request->foto) {
-      if (!str_is('*default.png', $Penyuluh->foto)) {
-        File::delete($Penyuluh->foto);
-      }
+      if (!str_is('*default.png', $Penyuluh->foto)) File::delete($Penyuluh->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "[$request->nip]$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";

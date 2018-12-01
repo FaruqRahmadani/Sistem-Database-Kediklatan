@@ -4,14 +4,24 @@ Route::GET('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::POST('login', 'Auth\LoginController@login');
 
 
+Route::GET('', 'DashboardController@Dashboard')->name('Dashboard');
+Route::group(['prefix' => 'data', 'as' => 'public'], function () {
+  Route::GET('penyuluh', 'PenyuluhController@Data')->name('Penyuluh');
+  Route::GET('kelompoktani', 'KelTaniController@Data')->name('KelompokTani');
+  Route::GET('p4s', 'P4SController@Data')->name('P4S');
+});
+
 Route::group(['middleware' => ['UserMiddleware']], function () {
-  Route::GET('', 'DashboardController@Dashboard')->Name('Dashboard');
 
   Route::group(['middleware' => ['PesertaMiddleware']], function () {
-    Route::get('ubah-data', 'HomeController@ubahData')->name('ubahData');
-    Route::post('ubah-data', 'HomeController@ubahDataSubmit')->name('ubahDataSubmit');
-    Route::get('ubah-auth', 'HomeController@ubahAuth')->name('ubahAuth');
-    Route::post('ubah-auth', 'HomeController@ubahAuthSubmit')->name('ubahAuthSubmit');
+    Route::group(['prefix' => 'ubah-data', 'as' => 'ubahData'], function () {
+      Route::get('', 'HomeController@ubahData');
+      Route::post('', 'HomeController@ubahDataSubmit')->name('Submit');
+    });
+    Route::group(['prefix' => 'ubah-auth', 'as' => 'ubahAuth'], function () {
+      Route::get('', 'HomeController@ubahAuth');
+      Route::post('', 'HomeController@ubahAuthSubmit')->name('Submit');
+    });
   });
 
   Route::group(['middleware' => ['AdminMiddleware']], function () {
