@@ -15,10 +15,19 @@ use Auth;
 class DashboardController extends Controller
 {
   public function Dashboard(){
+    if (!Auth::User()) return $this->landingPage();
     if (Auth::User()->tipe == 5) return $this->dashboardAdmin();
     if (Auth::User()->tipe == 1) return $this->dashboardPenyuluh();
     if (Auth::User()->tipe == 2) return $this->dashboardKelompokTani();
     if (Auth::User()->tipe == 3) return $this->dashboardP4S();
+  }
+
+  private function landingPage(){
+    $Penyuluh = Penyuluh::all();
+    $Komoditas = Komoditas::all();
+    $KelompokTani = KelompokTani::all();
+    $Pelatihan = Pelatihan::all();
+    return view('Dashboard.LandingPage', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
   }
 
   private function dashboardAdmin(){
