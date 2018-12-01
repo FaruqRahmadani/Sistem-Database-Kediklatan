@@ -8,31 +8,25 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<button-kembali
-					url = {{ Route('userData') }}
-					></button-kembali>
-				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('userEditSubmit', ['Id' => $User->UUID])}}" method="POST">
-						{{csrf_field()}}
+					<form class="form-horizontal row-border" action="{{Route('ubahAuthSubmit')}}" method="POST" enctype="multipart/form-data">
+						@csrf
 						<div class="form-group">
-							<label class="col-md-2 control-label">Nama</label>
+							<label class="col-md-2 control-label">Password Lama</label>
 							<div class="col-md-10">
-								<input type="text" name="nama" class="form-control" value="{{$User->nama}}" required>
+								<input type="password" name="password_old" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Username</label>
+							<label class="col-md-2 control-label">Password Baru</label>
 							<div class="col-md-10">
-								<input type="text" name="username" class="form-control" value="{{$User->username}}" required>
+								<input type="password" name="password" class="form-control" required>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Password</label>
+							<label class="col-md-2 control-label">Konfirmasi Password</label>
 							<div class="col-md-10">
-								<input type="password" name="password" class="form-control">
-								<small>Isi Hanya Jika Ubah Password</small>
+								<input type="password" name="password_confirmation" class="form-control" required>
 							</div>
 						</div>
 						<div class="row">

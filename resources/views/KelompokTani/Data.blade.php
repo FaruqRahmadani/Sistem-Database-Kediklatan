@@ -27,6 +27,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
+								<th>NIK/NIP</th>
 								<th>Nama</th>
 								<th>Ketua Kelompok</th>
 								<th>Penyuluh</th>
@@ -38,9 +39,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($KelompokTani as $Index=>$DataKelompokTani)
+							@foreach ($KelompokTani as $DataKelompokTani)
 								<tr>
-									<td>{{$Index+1}}</td>
+									<td>{{$loop->iteration}}</td>
+									<td>{{$DataKelompokTani->nip}}</td>
 									<td>{{$DataKelompokTani->nama}}</td>
 									<td class="text-center">
 										<img src="{{asset($DataKelompokTani->foto)}}" alt="{{$DataKelompokTani->nama}}" class="img-circle img img-45 img-thumbnail">

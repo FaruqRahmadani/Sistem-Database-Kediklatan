@@ -11,11 +11,13 @@ class P4S extends Model
   use SoftDeletes;
 
   protected $fillable = [
+    'nip',
     'nama',
     'nama_ketua',
     'nomor_hp',
     'alamat',
     'kota_id',
+    'user_id',
   ];
 
   public function getAlamatLengkapAttribute($value){
@@ -27,7 +29,7 @@ class P4S extends Model
   }
 
   public function Kota(){
-    return $this->belongsTo('App\Kota');
+    return $this->belongsTo('App\Kota')->withDefault(['nama' => '']);
   }
 
   public function Pelatihan(){

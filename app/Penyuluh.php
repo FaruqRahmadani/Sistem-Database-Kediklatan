@@ -28,11 +28,11 @@ class Penyuluh extends Model
   ];
 
   public function SatuanKerja(){
-    return $this->belongsTo('App\SatuanKerja');
+    return $this->belongsTo('App\SatuanKerja')->withDefault(['nama' => '']);
   }
 
   public function UnitKerja(){
-    return $this->belongsTo('App\UnitKerja');
+    return $this->belongsTo('App\UnitKerja')->withDefault(['nama' => '']);
   }
 
   public function KelompokTani(){

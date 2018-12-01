@@ -9,15 +9,39 @@ use App\UnitKerja;
 use App\Komoditas;
 use App\Pelatihan;
 use App\Penyuluh;
+use App\P4S;
+use Auth;
 
 class DashboardController extends Controller
 {
   public function Dashboard(){
+    if (Auth::User()->tipe == 5) return $this->dashboardAdmin();
+    if (Auth::User()->tipe == 1) return $this->dashboardPenyuluh();
+    if (Auth::User()->tipe == 2) return $this->dashboardKelompokTani();
+    if (Auth::User()->tipe == 3) return $this->dashboardP4S();
+  }
+
+  private function dashboardAdmin(){
     $Penyuluh = Penyuluh::all();
     $Komoditas = Komoditas::all();
     $KelompokTani = KelompokTani::all();
     $Pelatihan = Pelatihan::all();
     return view('Dashboard.Dashboard', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
+  }
+
+  private function dashboardPenyuluh(){
+    $Penyuluh = Penyuluh::findOrFail(Auth::User()->Data->id);
+    return view('Dashboard.Penyuluh', compact('Penyuluh'));
+  }
+
+  private function dashboardKelompokTani(){
+    $KelompokTani = KelompokTani::findOrFail(Auth::User()->Data->id);
+    return view('Dashboard.KelompokTani', compact('KelompokTani'));
+  }
+
+  private function dashboardP4S(){
+    $p4s = P4S::findOrFail(Auth::User()->Data->id);
+    return view('Dashboard.P4S', compact('p4s'));
   }
 
   public function FormPencarian(){

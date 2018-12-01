@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\P4SExport;
 use App\Kota;
+use App\User;
 use App\P4S;
 use Storage;
 use HCrypt;
@@ -30,8 +31,14 @@ class P4SController extends Controller
   }
 
   public function TambahSubmit(Request $request){
+    $user = User::firstOrNew(['username' => $request->nip]);
+    if ($user->id) return redirect()->back()->withInput()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user->password = 12345;
+    $user->tipe = 3;
+    $user->save();
     $P4S = new P4S;
     $P4S->fill($request->all());
+    $P4S->user_id = $user->id;
     if ($request->foto) {
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama.$request->_token";
@@ -52,7 +59,17 @@ class P4SController extends Controller
   public function EditSubmit(Request $request, $Id){
     $Id = HCrypt::Decrypt($Id);
     $P4S = P4S::findOrFail($Id);
+    $validate = User::whereUsername($request->nip)->where('id', '!=', $P4S->user_id)->count();
+    if ($validate) return redirect()->back()->with(['alert' => true, 'tipe' => 'error', 'judul' => 'Ada Masalah', 'pesan' => 'NIK/NIP Sudah Ada']);
+    $user = User::firstOrNew(['id' => $P4S->user_id]);
+    if (!$P4S->user_id) {
+      $user->password = 12345;
+      $user->tipe = 2;
+    }
+    $user->username = $request->nip;
+    $user->save();
     $P4S->fill($request->all());
+    if (!$P4S->user_id) $P4S->user_id = $user->id;
     if ($request->foto) {
       if (!str_is('*default.png', $P4S->foto)) {
         File::delete($P4S->foto);

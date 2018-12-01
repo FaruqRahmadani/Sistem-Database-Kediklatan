@@ -11,6 +11,7 @@ class KelompokTani extends Model
   use SoftDeletes;
 
   protected $fillable = [
+    'nip',
     'nama',
     'nama_ketua',
     'nomor_hp',
@@ -23,16 +24,12 @@ class KelompokTani extends Model
     return $this->belongsToMany('App\Komoditas')->withTrashed();
   }
 
-  public function Provinsi(){
-    return $this->belongsTo('App\Provinsi');
-  }
-
   public function Kota(){
-    return $this->belongsTo('App\Kota');
+    return $this->belongsTo('App\Kota')->withDefault(['nama' => '']);
   }
 
   public function Penyuluh(){
-    return $this->belongsTo('App\Penyuluh')->withTrashed();
+    return $this->belongsTo('App\Penyuluh')->withTrashed()->withDefault(['nama' => '']);
   }
 
   public function Pelatihan(){

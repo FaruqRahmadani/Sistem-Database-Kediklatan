@@ -85917,6 +85917,9 @@ $(document).ready(function () {
     }
   });
   $("#select2").select2();
+  $(".select2").select2({
+    placeholder: "Pilih"
+  });
   $("#logout").click(function () {
     __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()({
       title: "Logout",
@@ -86027,12 +86030,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control input-lg",
-            attrs: {
-              name: "kota_id",
-              id: "kota",
-              disabled: _vm.disable == 1,
-              required: !_vm.required
-            },
+            attrs: { name: "kota_id", id: "kota", disabled: _vm.disable == 1 },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -86301,11 +86299,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: {
-                id: "satuankerja",
-                name: "satuan_kerja_id",
-                required: ""
-              },
+              attrs: { id: "satuankerja", name: "satuan_kerja_id" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -86774,7 +86768,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control input-lg",
-              attrs: { id: "unitkerja", name: "unit_kerja_id", required: "" },
+              attrs: { id: "unitkerja", name: "unit_kerja_id" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter

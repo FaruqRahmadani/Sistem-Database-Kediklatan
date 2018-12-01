@@ -2,20 +2,16 @@
 @section('content')
 	<div class="row row-header">
 		<div class="col-lg-12">
-			<h3 class="page-header">Edit Penyuluh</h3>
+			<h3 class="page-header">Ubah Data
+        <small>P4S</small>
+      </h3>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a href="{{Route('penyuluhData')}}" class="btn btn-primary btn-sm">
-						<span class="fa fa-reply img-circle text-default"></span>
-						Kembali
-					</a>
-				</div>
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('penyuluhEditSubmit', ['id' => $Penyuluh->UUID])}}" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal row-border" action="{{Route('ubahDataSubmit')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">NIK/NIP</label>
@@ -105,14 +101,28 @@
 								<input type="text" name="nomor_hp" class="form-control" value="{{$Penyuluh->nomor_hp}}">
 							</div>
 						</div>
-						<field-satkerja
-							api = {{Auth::User()->api_token}}
-							SatKerja = {{$Penyuluh->satuan_kerja_id}}
-						></field-satkerja>
-						<field-unitkerja
-							api = {{Auth::User()->api_token}}
-							UnitKerja = {{$Penyuluh->unit_kerja_id}}
-						></field-unitkerja>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Satuan Kerja</label>
+							<div class="col-md-10">
+								<select name="satuan_kerja_id" class="form-control input-lg select2">
+									<option value="" selected hidden>Pilih</option>
+									@foreach ($SatuanKerja as $dataSatuanKerja)
+										<option value="{{$dataSatuanKerja->id}}">{{$dataSatuanKerja->nama}}</option>
+									@endforeach
+				        </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Unit Kerja</label>
+							<div class="col-md-10">
+								<select name="unit_kerja_id" class="form-control input-lg select2">
+									<option value="" selected hidden>Pilih</option>
+									@foreach ($UnitKerja as $dataUnitKerja)
+										<option value="{{$dataUnitKerja->id}}">{{$dataUnitKerja->nama}}</option>
+									@endforeach
+				        </select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Foto</label>
 							<div class="col-md-10">
