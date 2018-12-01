@@ -19,7 +19,7 @@ class DataHelper
   }
 
   public static function pendidikanTerakhir(){
-    $data = ['SD', 'SMP', 'SMA', 'DI/DII', 'S1'];
+    $data = ['SMP','SMA', 'SMK PERTANIAN', 'SPP', 'DI', 'DII', 'DIII', 'DIV', 'S1', 'S2' ];
     return $data;
   }
 }
