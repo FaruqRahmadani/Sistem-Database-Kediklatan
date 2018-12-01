@@ -71,9 +71,7 @@ class P4SController extends Controller
     $P4S->fill($request->all());
     if (!$P4S->user_id) $P4S->user_id = $user->id;
     if ($request->foto) {
-      if (!str_is('*default.png', $P4S->foto)) {
-        File::delete($P4S->foto);
-      }
+      if (!str_is('*default.png', $P4S->foto)) File::delete($P4S->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";

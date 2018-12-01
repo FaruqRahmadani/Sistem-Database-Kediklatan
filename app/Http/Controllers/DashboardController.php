@@ -53,12 +53,8 @@ class DashboardController extends Controller
 
   public function DataPenyuluhFilter(Request $request){
     $Penyuluh = new Penyuluh;
-    if ($request->satuanKerja) {
-      $Penyuluh = $Penyuluh->whereSatuanKerjaId($request->satuanKerja);
-    }
-    if ($request->unitKerja) {
-      $Penyuluh = $Penyuluh->whereUnitKerjaId($request->unitKerja);
-    }
+    if ($request->satuanKerja) $Penyuluh = $Penyuluh->whereSatuanKerjaId($request->satuanKerja);
+    if ($request->unitKerja) $Penyuluh = $Penyuluh->whereUnitKerjaId($request->unitKerja);
     $Penyuluh = $Penyuluh->get();
     $SatuanKerja = SatuanKerja::all();
     $UnitKerja = UnitKerja::all();
@@ -69,12 +65,8 @@ class DashboardController extends Controller
 
   public function DataKelTaniFilter(Request $request){
     $KelompokTani = new KelompokTani;
-    if ($request->provinsi_id) {
-      $KelompokTani = $KelompokTani->whereProvinsiId($request->provinsi_id);
-    }
-    if ($request->kota_id) {
-      $KelompokTani = $KelompokTani->whereKotaId($request->kota_id);
-    }
+    if ($request->provinsi_id) $KelompokTani = $KelompokTani->whereProvinsiId($request->provinsi_id);
+    if ($request->kota_id) $KelompokTani = $KelompokTani->whereKotaId($request->kota_id);
     if ($request->komoditas_id) {
       $KelompokTani = $KelompokTani->whereHas('Komoditas', function($query) use ($request){
         $query->whereKomoditasId($request->komoditas_id);

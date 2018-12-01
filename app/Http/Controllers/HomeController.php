@@ -46,9 +46,7 @@ class HomeController extends Controller
     $user->save();
     $Penyuluh->fill($request->all());
     if ($request->foto) {
-      if (!str_is('*default.png', $Penyuluh->foto)) {
-        File::delete($Penyuluh->foto);
-      }
+      if (!str_is('*default.png', $Penyuluh->foto)) File::delete($Penyuluh->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "[$request->nip]$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";
@@ -73,9 +71,7 @@ class HomeController extends Controller
     $user->save();
     $KelompokTani->fill($request->all());
     if ($request->foto) {
-      if (!str_is('*default.png', $KelompokTani->foto)) {
-        File::delete($KelompokTani->foto);
-      }
+      if (!str_is('*default.png', $KelompokTani->foto)) File::delete($KelompokTani->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";
@@ -85,9 +81,7 @@ class HomeController extends Controller
     if ($request->komoditas_id) {
       $Kota = Kota::findOrFail($request->kota_id);
       foreach ($request->komoditas_id as $KomoditasId) {
-        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
-          $Kota->Komoditas()->attach($KomoditasId);
-        }
+        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) $Kota->Komoditas()->attach($KomoditasId);
       }
     }
     $KelompokTani->Komoditas()->sync($request->komoditas_id);
@@ -109,9 +103,7 @@ class HomeController extends Controller
     $user->save();
     $P4S->fill($request->all());
     if ($request->foto) {
-      if (!str_is('*default.png', $P4S->foto)) {
-        File::delete($P4S->foto);
-      }
+      if (!str_is('*default.png', $P4S->foto)) File::delete($P4S->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";

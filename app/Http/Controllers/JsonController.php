@@ -19,35 +19,23 @@ class JsonController extends Controller
   }
 
   public function DataKota($ProvinsiId = null){
-    if ($ProvinsiId) {
-      $Kota = Kota::where('provinsi_id', $ProvinsiId)
-                  ->get();
-    } else {
-      $Kota = Kota::all();
-    }
+    $Kota = $ProvinsiId? Kota::where('provinsi_id', $ProvinsiId)->get() : Kota::all();
     return $Kota;
   }
 
   public function DataSatuanKerja(){
-    $SatKerja = SatuanKerja::select('id', 'nama')
-                           ->get();
+    $SatKerja = SatuanKerja::select('id', 'nama')->get();
     return $SatKerja;
   }
 
   public function DataUnitKerja(){
-    $UnitKerja = UnitKerja::select('id', 'nama')
-                          ->get();
+    $UnitKerja = UnitKerja::select('id', 'nama')->get();
     return $UnitKerja;
   }
 
   public function DataKomoditas($Id = null){
-    if ($Id) {
-      $Komoditas = Komoditas::select('id', 'nama', 'keterangan')
-                            ->findOrFail($Id);
-    } else {
-      $Komoditas = Komoditas::select('id', 'nama', 'keterangan')
-                            ->get();
-    }
+    $rawKomoditas = Komoditas::select('id', 'nama', 'keterangan');
+    $Komoditas = $Id? $rawKomoditas->findOrFail($Id) : $rawKomoditas->get();
     return $Komoditas;
   }
   public function TambahSatuanKerja(Request $request){

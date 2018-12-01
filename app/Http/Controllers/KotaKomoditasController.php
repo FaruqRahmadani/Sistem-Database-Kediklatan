@@ -12,8 +12,7 @@ use HCrypt;
 class KotaKomoditasController extends Controller
 {
   public function Data(){
-    $Kota = Kota::has('komoditas')
-                ->get();
+    $Kota = Kota::has('komoditas')->get();
     return view('KotaKomoditas.Data', compact('Kota'));
   }
 
