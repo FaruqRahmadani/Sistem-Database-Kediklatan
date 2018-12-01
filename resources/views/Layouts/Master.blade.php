@@ -136,6 +136,11 @@
               <em class="fa fa-th-large">&nbsp;</em> P4S
             </a>
           </li>
+          <li>
+            <a href="{{Route('login')}}">
+              <em class="fa fa-sign-in">&nbsp;</em> Login
+            </a>
+          </li>
         @endif
       </ul>
     </div>
