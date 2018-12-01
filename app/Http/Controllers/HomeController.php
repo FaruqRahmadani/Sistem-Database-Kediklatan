@@ -82,7 +82,7 @@ class HomeController extends Controller
       $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
     }
     $KelompokTani->save();
-    if ($request->kota_id) {
+    if ($request->komoditas_id) {
       $Kota = Kota::findOrFail($request->kota_id);
       foreach ($request->komoditas_id as $KomoditasId) {
         if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
