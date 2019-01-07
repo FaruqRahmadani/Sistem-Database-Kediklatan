@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pengaturan;
+use File;
 
 class PengaturanController extends Controller
 {
@@ -17,6 +18,7 @@ class PengaturanController extends Controller
     if ($request->image_landing){
       $FotoExt = $request->image_landing->getClientOriginalExtension();
       $Foto = "imagelanding.{$FotoExt}";
+      if (Pengaturan::count()) File::delete($pengaturan->image_landing);
       $pengaturan->image_landing = $request->image_landing->move('img/pengaturan', $Foto);
     }
     $pengaturan->kontak = $request->kontak;
