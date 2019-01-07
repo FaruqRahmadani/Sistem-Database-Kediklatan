@@ -103,6 +103,11 @@
                 <em class="fa fa-search">&nbsp;</em> Pencarian Data
               </a>
             </li>
+            <li>
+              <a href="{{Route('pengaturanForm')}}">
+                <em class="fa fa-gears">&nbsp;</em> Pengaturan
+              </a>
+            </li>
           @else
             <li>
               <a href="{{Route('ubahData')}}">

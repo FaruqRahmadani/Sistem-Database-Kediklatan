@@ -29,7 +29,7 @@
             <li><a class="scrollLink" href="#top">BERANDA</a></li>
             <li><a class="scrollLink" href="#info">INFORMASI</a></li>
             <li><a class="scrollLink" href="#contact">KONTAK</a></li>
-            <li><a class="scrollLink" href="{{route('login')}}">LOGIN</a></li>
+            <li><a href="{{route('login')}}">LOGIN</a></li>
           </ul>
         </div>
       </div>

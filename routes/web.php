@@ -142,5 +142,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
         Route::get('detail/{id}', 'CetakController@p4sDetail')->Name('Detail');
       });
     });
+
+    Route::Group(['prefix' => 'pengaturan', 'as' => 'pengaturan'], function () {
+      Route::get('', 'PengaturanController@form')->name('Form');
+    });
   });
 });
