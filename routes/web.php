@@ -5,11 +5,11 @@ Route::post('login', 'Auth\LoginController@login');
 
 
 Route::get('', 'DashboardController@Dashboard')->name('Dashboard');
-Route::group(['prefix' => 'data', 'as' => 'public'], function () {
-  Route::get('penyuluh', 'PenyuluhController@Data')->name('Penyuluh');
-  Route::get('kelompoktani', 'KelTaniController@Data')->name('KelompokTani');
-  Route::get('p4s', 'P4SController@Data')->name('P4S');
-});
+// Route::group(['prefix' => 'data', 'as' => 'public'], function () {
+//   Route::get('penyuluh', 'PenyuluhController@Data')->name('Penyuluh');
+//   Route::get('kelompoktani', 'KelTaniController@Data')->name('KelompokTani');
+//   Route::get('p4s', 'P4SController@Data')->name('P4S');
+// });
 
 Route::group(['middleware' => ['UserMiddleware']], function () {
 
