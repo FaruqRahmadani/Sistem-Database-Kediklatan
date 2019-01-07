@@ -29,7 +29,6 @@
         <th class="text-center"> No </th>
         <th class="text-center"> Nama </th>
         <th class="text-center"> Alamat </th>
-        <th class="text-center"> Provinsi </th>
         <th class="text-center"> Kota </th>
         <th class="text-center"> Nomor Telepon </th>
       </tr>
@@ -40,8 +39,7 @@
           <td class="text-center">{{$Index+=1}}</td>
           <td>{{$DataSatKerja->nama}}</td>
           <td>{{$DataSatKerja->alamat}}</td>
-          <td>{{$DataSatKerja->Provinsi->nama_provinsi}}</td>
-          <td>{{$DataSatKerja->Kota->nama_kota}}</td>
+          <td>{{$DataSatKerja->Kota->nama}}</td>
           <td>{{$DataSatKerja->nomor_telepon}}</td>
         </tr>
       @endforeach
