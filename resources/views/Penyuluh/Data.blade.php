@@ -22,6 +22,10 @@
 					    <span class="fa fa-print img-circle text-default"></span>
 					    Export Excel
 					  </a>
+						<a href="{{Route('penyuluhImportForm')}}" class="btn btn-default btn-sm text-right">
+					    <span class="fa fa-upload img-circle text-default"></span>
+					    Import
+					  </a>
 					</div>
 				@endif
 				<div class="panel-body">

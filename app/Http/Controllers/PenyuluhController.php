@@ -78,6 +78,10 @@ class PenyuluhController extends Controller
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
   }
 
+  public function importForm(){
+    return view('Penyuluh.Import');
+  }
+
   public function Hapus($Id=null, $Verify=null){
     if ($Verify) {
       $Id = HCrypt::Decrypt($Id);
