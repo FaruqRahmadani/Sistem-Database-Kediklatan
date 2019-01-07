@@ -16,9 +16,10 @@ class PengaturanController extends Controller
   public function submit(Request $request){
     $pengaturan = Pengaturan::count()? Pengaturan::first() : new Pengaturan;
     if ($request->image_landing){
-      $FotoExt = $request->image_landing->getClientOriginalExtension();
-      $Foto = "imagelanding.{$FotoExt}";
       if (Pengaturan::count()) File::delete($pengaturan->image_landing);
+      $FotoExt = $request->image_landing->getClientOriginalExtension();
+      $date = date('Ymdhisv');
+      $Foto = "imagelanding_{$date}.{$FotoExt}";
       $pengaturan->image_landing = $request->image_landing->move('img/pengaturan', $Foto);
     }
     $pengaturan->kontak = $request->kontak;
