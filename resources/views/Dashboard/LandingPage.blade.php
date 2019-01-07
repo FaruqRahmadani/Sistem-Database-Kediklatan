@@ -29,7 +29,7 @@
             <li><a class="scrollLink" href="#top">BERANDA</a></li>
             <li><a class="scrollLink" href="#info">INFORMASI</a></li>
             <li><a class="scrollLink" href="#contact">KONTAK</a></li>
-            <li><a class="scrollLink" href="#">LOGIN</a></li>
+            <li><a class="scrollLink" href="{{route('login')}}">LOGIN</a></li>
           </ul>
         </div>
       </div>
@@ -63,7 +63,7 @@
               <i class="glyphicon glyphicon-user"></i>
             </div>
             <div class="text">
-              <var>100</var>
+              <var>{{$Penyuluh->count()}}</var>
             </div>
             <div class="info-title">DATA PENYULUH</div>
           </div>
@@ -74,7 +74,7 @@
               <i class="glyphicon glyphicon-grain"></i>
             </div>
             <div class="text">
-              <var>10</var>
+              <var>{{$KelompokTani->count()}}</var>
             </div>
             <div class="info-title">DATA KELOMPOK TANI</div>
           </div>
@@ -85,7 +85,7 @@
               <i class="glyphicon glyphicon-leaf"></i>
             </div>
             <div class="text">
-              <var>5</var>
+              <var>{{$Komoditas->count()}}</var>
             </div>
             <div class="info-title">DATA KOMODITAS</div>
           </div>
@@ -96,7 +96,7 @@
               <i class="glyphicon glyphicon-certificate"></i>
             </div>
             <div class="text">
-              <var>12</var>
+              <var>{{$Pelatihan->count()}}</var>
             </div>
             <div class="info-title">PELATIHAN</div>
           </div>
