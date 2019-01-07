@@ -13,6 +13,10 @@
 						<span class="fa fa-reply img-circle text-default"></span>
 						Kembali
 					</a>
+					<a href="{{asset('file/TemplateImportPenyuluh.xlsx')}}" class="btn btn-info btn-sm">
+						<span class="fa fa-download img-circle text-default"></span>
+						Template Import
+					</a>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal row-border" action="{{Route('penyuluhImportSubmit')}}" method="POST" enctype="multipart/form-data">
