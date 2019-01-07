@@ -108,7 +108,7 @@
     <div class="container">
       <div class="row text-center">
           <h1 class="title">KONTAK</h1>
-          <p> {!!nl2br($Pengaturan->kontak)??null!!} </p>
+          <p> {!!nl2br($Pengaturan->kontak??null)!!} </p>
         </div>
     </div>
   </div>
