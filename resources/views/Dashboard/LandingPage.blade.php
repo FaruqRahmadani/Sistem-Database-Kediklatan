@@ -39,7 +39,7 @@
     <div class="container">
       <div class="row mb">
           <div class="col-md-12">
-            <img class="img-fluid img-responsive" src="img/slides/office.jpg" alt="image">
+            <img class="img-fluid img-responsive" src="{{asset($Pengaturan->image_landing??null)}}" alt="image">
           </div>
       </div>
     </div>
@@ -108,11 +108,7 @@
     <div class="container">
       <div class="row text-center">
           <h1 class="title">KONTAK</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, quo. <br>
-            <strong>Phone :</strong> 0812 3456 7890 <br>
-            <strong>Fax :</strong> 0812 3456 1234 <br>
-            <strong>Email :</strong> email@email.com
-          </p>
+          <p> {!!nl2br($Pengaturan->kontak)??null!!} </p>
         </div>
     </div>
   </div>
