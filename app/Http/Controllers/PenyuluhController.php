@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PenyuluhsImport;
 use App\Exports\PenyuluhExport;
 use Illuminate\Http\Request;
 use App\Penyuluh;
@@ -80,6 +81,11 @@ class PenyuluhController extends Controller
 
   public function importForm(){
     return view('Penyuluh.Import');
+  }
+
+  public function importSubmit(Request $request){
+    Excel::import(new PenyuluhsImport, $request->data);
+    return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Import Data Berhasil']);
   }
 
   public function Hapus($Id=null, $Verify=null){

@@ -25,6 +25,7 @@ class Penyuluh extends Model
     'nomor_hp',
     'satuan_kerja_id',
     'unit_kerja_id',
+    'user_id',
   ];
 
   public function SatuanKerja(){

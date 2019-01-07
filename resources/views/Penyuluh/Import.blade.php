@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Data</label>
 							<div class="col-md-10">
-								<input type="file" name="data" class="form-control">
+								<input type="file" name="data" class="form-control" required>
 							</div>
 						</div>
 						<div class="row">
