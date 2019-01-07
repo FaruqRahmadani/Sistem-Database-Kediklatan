@@ -9,7 +9,7 @@ class PengaturanController extends Controller
 {
   public function form(){
     $pengaturan = Pengaturan::first();
-    return view('pengaturan.Form', compact('pengaturan'));
+    return view('pengaturan.form', compact('pengaturan'));
   }
 
   public function submit(Request $request){
