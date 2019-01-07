@@ -145,6 +145,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
     Route::Group(['prefix' => 'pengaturan', 'as' => 'pengaturan'], function () {
       Route::get('', 'PengaturanController@form')->name('Form');
+      Route::post('', 'PengaturanController@submit')->name('Submit');
     });
   });
 });

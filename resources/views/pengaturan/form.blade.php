@@ -8,27 +8,19 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Image Landing Page
-				</div>
-				<div class="panel-body text-center">
-					<img src="{{asset('img/logofix.png')}}" style="width:85%">
-				</div>
-			</div>
-			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-horizontal row-border" action="{{Route('p4sTambahSubmit')}}" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal row-border" action="{{Route('pengaturanSubmit')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
 							<label class="col-md-2 control-label">Image Landing Page</label>
 							<div class="col-md-10">
-								<input type="file" name="image_landing" class="form-control" required>
+								<input type="file" name="image_landing" class="form-control">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Kontak</label>
 							<div class="col-md-10">
-								<textarea name="kontak" rows="4" class="form-control" required></textarea>
+								<textarea name="kontak" rows="4" class="form-control" required>{{$pengaturan->kontak??null}}</textarea>
 							</div>
 						</div>
 						<div class="row">
@@ -40,6 +32,14 @@
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Image Landing Page
+				</div>
+				<div class="panel-body text-center">
+					<img src="{{asset($pengaturan->image_landing??null)}}" style="width:85%">
 				</div>
 			</div>
 		</div>

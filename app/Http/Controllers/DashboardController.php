@@ -9,6 +9,7 @@ use App\UnitKerja;
 use App\Komoditas;
 use App\Pelatihan;
 use App\Penyuluh;
+use App\Pengaturan;
 use App\P4S;
 use Auth;
 
@@ -27,7 +28,8 @@ class DashboardController extends Controller
     $Komoditas = Komoditas::all();
     $KelompokTani = KelompokTani::all();
     $Pelatihan = Pelatihan::all();
-    return view('Dashboard.LandingPage', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan'));
+    $Pengaturan = Pengaturan::first();
+    return view('Dashboard.LandingPage', compact('Penyuluh', 'Komoditas', 'KelompokTani', 'Pelatihan', 'Pengaturan'));
   }
 
   private function dashboardAdmin(){
