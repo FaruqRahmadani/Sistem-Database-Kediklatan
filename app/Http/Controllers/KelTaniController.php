@@ -50,9 +50,7 @@ class KelTaniController extends Controller
     if ($request->komoditas_id) {
       $Kota = Kota::findOrFail($request->kota_id);
       foreach ($request->komoditas_id as $KomoditasId) {
-        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
-          $Kota->Komoditas()->attach($KomoditasId);
-        }
+        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) $Kota->Komoditas()->attach($KomoditasId);
         $KelompokTani->Komoditas()->attach($KomoditasId);
       }
       $KelompokTani->Komoditas()->sync($request->komoditas_id);
@@ -83,21 +81,17 @@ class KelTaniController extends Controller
     $KelompokTani->fill($request->all());
     if (!$KelompokTani->user_id) $KelompokTani->user_id = $user->id;
     if ($request->foto) {
-      if (!str_is('*default.png', $KelompokTani->foto)) {
-        File::delete($KelompokTani->foto);
-      }
+      if (!str_is('*default.png', $KelompokTani->foto)) File::delete($KelompokTani->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";
       $KelompokTani->foto = $request->foto->move('img/kelTani', $Foto);
     }
     $KelompokTani->save();
-    if ($request->kota_id) {
+    if ($request->komoditas_id) {
       $Kota = Kota::findOrFail($request->kota_id);
       foreach ($request->komoditas_id as $KomoditasId) {
-        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) {
-          $Kota->Komoditas()->attach($KomoditasId);
-        }
+        if ($Kota->Komoditas->pluck('id')->search($KomoditasId) === false) $Kota->Komoditas()->attach($KomoditasId);
       }
     }
     $KelompokTani->Komoditas()->sync($request->komoditas_id);

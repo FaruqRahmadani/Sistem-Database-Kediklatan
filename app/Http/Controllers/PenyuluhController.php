@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PenyuluhsImport;
 use App\Exports\PenyuluhExport;
 use Illuminate\Http\Request;
 use App\Penyuluh;
@@ -68,9 +69,7 @@ class PenyuluhController extends Controller
     $Penyuluh->fill($request->all());
     if (!$Penyuluh->user_id) $Penyuluh->user_id = $user->id;
     if ($request->foto) {
-      if (!str_is('*default.png', $Penyuluh->foto)) {
-        File::delete($Penyuluh->foto);
-      }
+      if (!str_is('*default.png', $Penyuluh->foto)) File::delete($Penyuluh->foto);
       $FotoExt = $request->foto->getClientOriginalExtension();
       $FotoName = "[$request->nip]$request->nama.$request->_token";
       $Foto = "{$FotoName}.{$FotoExt}";
@@ -78,6 +77,15 @@ class PenyuluhController extends Controller
     }
     $Penyuluh->save();
     return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Edit Data Berhasil']);
+  }
+
+  public function importForm(){
+    return view('Penyuluh.Import');
+  }
+
+  public function importSubmit(Request $request){
+    Excel::import(new PenyuluhsImport, $request->data);
+    return redirect()->Route('penyuluhData')->with(['alert' => true, 'tipe' => 'success', 'judul' => 'Berhasil', 'pesan' => 'Import Data Berhasil']);
   }
 
   public function Hapus($Id=null, $Verify=null){

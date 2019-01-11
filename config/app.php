@@ -213,6 +213,7 @@ return [
         'HRoute' => App\Helpers\RouteHelper::class,
         'HCrypt' => App\Helpers\CryptHelper::class,
         'HDate' => App\Helpers\DateHelper::class,
+        'HData' => App\Helpers\DataHelper::class,
     ],
 
 ];

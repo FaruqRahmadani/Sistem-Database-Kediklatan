@@ -8,20 +8,26 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<a href="{{Route('penyuluhTambahForm')}}" class="btn btn-primary btn-sm">
-						<span class="fa fa-plus img-circle text-default"></span>
-						Tambah Data
-					</a>
-					<a href="{{Route('cetakPenyuluh')}}" class="btn btn-info btn-sm" target="_blank">
-				    <span class="fa fa-print img-circle text-default"></span>
-				    Cetak
-				  </a>
-					<a href="{{Route('penyuluhExport')}}" class="btn btn-default btn-sm text-right">
-				    <span class="fa fa-print img-circle text-default"></span>
-				    Export Excel
-				  </a>
-				</div>
+				@if (Auth::User())
+					<div class="panel-heading">
+						<a href="{{Route('penyuluhTambahForm')}}" class="btn btn-primary btn-sm">
+							<span class="fa fa-plus img-circle text-default"></span>
+							Tambah Data
+						</a>
+						<a href="{{Route('cetakPenyuluh')}}" class="btn btn-info btn-sm" target="_blank">
+					    <span class="fa fa-print img-circle text-default"></span>
+					    Cetak
+					  </a>
+						<a href="{{Route('penyuluhExport')}}" class="btn btn-default btn-sm text-right">
+					    <span class="fa fa-print img-circle text-default"></span>
+					    Export Excel
+					  </a>
+						<a href="{{Route('penyuluhImportForm')}}" class="btn btn-default btn-sm text-right">
+					    <span class="fa fa-upload img-circle text-default"></span>
+					    Import
+					  </a>
+					</div>
+				@endif
 				<div class="panel-body">
 					<table id="myTable" data-order-disable="[1]" class="table table-hover table-custom">
 						<thead>
@@ -37,7 +43,9 @@
 								<th>Nomor HP</th>
 								<th>Satuan Kerja</th>
 								<th>Unit Kerja</th>
-								<th>Action</th>
+								@if (Auth::User())
+									<th>Action</th>
+								@endif
 							</tr>
 						</thead>
 						<tbody>
@@ -56,11 +64,13 @@
 									<td>{{$DataPenyuluh->nomor_hp}}</td>
 									<td>{{$DataPenyuluh->SatuanKerja->nama}}</td>
 									<td>{{$DataPenyuluh->UnitKerja->nama}}</td>
-									<td>
-										<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
-										<a href="{{Route('penyuluhDetail', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
-										<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
-									</td>
+									@if (Auth::User())
+										<td>
+											<a href="{{Route('penyuluhEditForm', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-info btn-xs">Edit</a>
+											<a href="{{Route('penyuluhDetail', ['id' => $DataPenyuluh->UUID])}}" class="btn btn-primary btn-xs">Detail</a>
+											<button data={{$DataPenyuluh->UUID}} href={{Route('penyuluhHapus')}} class="btn btn-warning btn-xs btn-delete">Delete</button>
+										</td>
+									@endif
 								</tr>
 							@endforeach
 						</tbody>
